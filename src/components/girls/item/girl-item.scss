@@ -1,0 +1,19 @@
+.girl-item {
+  display: flex;
+
+  .girl-basic-info {
+    display: flex;
+
+    .girl-stats-group {
+      display: flex;
+    }
+  }
+
+  .girl-skills {
+    display: flex;
+  }
+}
+
+.text-pre-wrap {
+  white-space: pre-wrap;
+}
