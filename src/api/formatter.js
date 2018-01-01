@@ -7,6 +7,8 @@ class Formatter {
         defense: formattedGirl.originalStats.defense + formattedGirl.bonusStats.defense,
         hitPoint: formattedGirl.originalStats.hitPoint + formattedGirl.bonusStats.hitPoint,
       };
+      formattedGirl.allStats = Object.values(formattedGirl.totalStats)
+        .reduce((total, currentValue) => total + currentValue, 0);
       return formattedGirl;
     });
   }

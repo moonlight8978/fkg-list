@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './girl-item.scss';
-import { GirlApi } from './../../../api';
 
 class GirlItem extends React.Component {
   render() {
