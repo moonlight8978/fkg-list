@@ -1,6 +1,7 @@
 import React from 'react';
 
 import GirlItem from './../item';
+import './girl-list.scss';
 
 class GirlList extends React.Component {
   renderGirls() {

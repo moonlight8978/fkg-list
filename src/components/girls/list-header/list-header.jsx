@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './list-header.scss';
+
 class ListHeader extends React.Component {
   constructor(props) {
     super(props);
@@ -26,106 +28,50 @@ class ListHeader extends React.Component {
 
     return (
       <div className="girl-list-header">
-        <div>
-          名前/戦闘スキル名
+        <div className="form-group">
           <input
+            className="form-control keyword-text"
             value={searchKeyword}
             onChange={this.handleSearchKeywordChange}
+            placeholder="名前/戦闘スキル名"
           />
         </div>
 
-        <div>
-          <input
-            type="radio"
-            value="id"
-            checked={sortBy === 'id'}
-            onChange={this.handleSortByChange}
-          />ID<br />
+        <div className="row">
+          <div className="col-sm-8 col-md-4">
+            <div className="form-group d-flex">
+              <label className="pr-2 text-placeholder">Sort by:</label>
+              <select
+                value={sortBy}
+                className="form-control sort-select"
+                onChange={this.handleSortByChange}
+              >
+                <option value="id">ID</option>
+                <option value="originalStats.hitPoint">Hit Point</option>
+                <option value="originalStats.attack">Attack</option>
+                <option value="originalStats.defense">Defense</option>
+                <option value="bonusStats.hitPoint">Bonus Hit Point</option>
+                <option value="bonusStats.attack">Bonus Attack</option>
+                <option value="bonusStats.defense">Bonus Defense</option>
+                <option value="totalStats.hitPoint">Total Hit Point</option>
+                <option value="totalStats.attack">Total Attack</option>
+                <option value="totalStats.defense">Total Defense</option>
+                <option value="allStats">All stats</option>
+                <option value="originalStats.speed">Speed</option>
+              </select>
+            </div>
+          </div>
 
-          <input
-            type="radio"
-            value="originalStats.hitPoint"
-            checked={sortBy === 'originalStats.hitPoint'}
-            onChange={this.handleSortByChange}
-          />Hit Point<br />
-
-          <input
-            type="radio"
-            value="originalStats.attack"
-            checked={sortBy === 'originalStats.attack'}
-            onChange={this.handleSortByChange}
-          />Attack<br />
-
-          <input
-            type="radio"
-            value="originalStats.defense"
-            checked={sortBy === 'originalStats.defense'}
-            onChange={this.handleSortByChange}
-          />Defense<br />
-
-          <input
-            type="radio"
-            value="bonusStats.hitPoint"
-            checked={sortBy === 'bonusStats.hitPoint'}
-            onChange={this.handleSortByChange}
-          />Bonus Hit Point<br />
-
-          <input
-            type="radio"
-            value="bonusStats.attack"
-            checked={sortBy === 'bonusStats.attack'}
-            onChange={this.handleSortByChange}
-          />Bonus Attack<br />
-
-          <input
-            type="radio"
-            value="bonusStats.defense"
-            checked={sortBy === 'bonusStats.defense'}
-            onChange={this.handleSortByChange}
-          />Bonus Defense<br />
-
-          <input
-            type="radio"
-            value="totalStats.hitPoint"
-            checked={sortBy === 'totalStats.hitPoint'}
-            onChange={this.handleSortByChange}
-          />Total Hit Point<br />
-
-          <input
-            type="radio"
-            value="totalStats.attack"
-            checked={sortBy === 'totalStats.attack'}
-            onChange={this.handleSortByChange}
-          />Total Attack<br />
-
-          <input
-            type="radio"
-            value="totalStats.defense"
-            checked={sortBy === 'totalStats.defense'}
-            onChange={this.handleSortByChange}
-          />Total Defense<br />
-
-          <input
-            type="radio"
-            value="allStats"
-            checked={sortBy === 'allStats'}
-            onChange={this.handleSortByChange}
-          />All stats<br />
-
-          <input
-            type="radio"
-            value="originalStats.speed"
-            checked={sortBy === 'originalStats.speed'}
-            onChange={this.handleSortByChange}
-          />Speed<br />
-        </div>
-
-        <div>
-          <input
-            type="checkbox"
-            checked={reverseSort}
-            onChange={this.handleRevertSortChange}
-          />Reverse sort
+          <div className="col-sm-4 col-md-4">
+            <div className="form-group">
+              <input
+                type="checkbox"
+                checked={reverseSort}
+                onChange={this.handleRevertSortChange}
+              />
+              <label className="pl-2">Reverse</label>
+            </div>
+          </div>
         </div>
       </div>
     );

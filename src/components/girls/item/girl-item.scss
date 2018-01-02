@@ -1,5 +1,18 @@
 .girl-item {
   display: flex;
+  background-color: #fff;
+  padding: 1rem 1rem;
+  position: relative;
+
+  &:not(:last-child):after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 1px;
+    background-color: #ddd;
+  }
 
   .girl-basic-info {
     display: flex;

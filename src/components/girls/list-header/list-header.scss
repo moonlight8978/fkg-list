@@ -1,0 +1,33 @@
+input {
+  outline: 0 !important;
+}
+
+label {
+  margin: 0;
+}
+
+.keyword-text {
+  padding: .75rem 1rem;
+  border-radius: 2px;
+  border: 0 !important;
+  box-shadow: 0 3px 3px -3px rgba(0,0,0,0.5);
+
+  &:focus {
+    box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);
+  }
+}
+
+.sort-select {
+  background-color: transparent !important;
+  border: 0;
+  padding: 0;
+  height: fit-content !important;
+  box-shadow: none !important;
+  width: auto;
+  margin-top: 1px;
+  color: #212529;
+}
+
+.text-placeholder {
+  color: #90949c;
+}

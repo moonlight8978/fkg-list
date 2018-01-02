@@ -1,13 +1,16 @@
 import React from 'react';
 
-import Girls from './components/girls';
+import Routes from './routes';
+import Navbar from './components/navbar';
 
-import './style.scss';
+import './app.scss';
 
 function App() {
   return (
     <div className="">
-      <Girls />
+      <Navbar />
+
+      <Routes />
     </div>
   );
 }
