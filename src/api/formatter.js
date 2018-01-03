@@ -1,3 +1,5 @@
+// TODO change data structure Array => Map
+
 class Formatter {
   format(girls) {
     return girls.map((girl) => {
