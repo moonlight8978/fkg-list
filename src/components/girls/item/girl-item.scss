@@ -46,6 +46,23 @@ $grid-breakpoints: (
     }
   }
 
+  .girl-stats-group {
+    flex-wrap: wrap;
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+
+  .girl-stats-item {
+    text-align: center;
+    font-size: 0.85rem;
+    width: 60px;
+    padding: 5px 4px;
+
+    .total-stats {
+      margin-bottom: 4px;
+    }
+  }
+
   .girl-stats {
     width: calc(100% - 75px);
 
@@ -73,6 +90,10 @@ $grid-breakpoints: (
     //   width: 50%;
     // }
   }
+
+  .girl-passive-skills .passive-skill {
+    padding-bottom: .5rem;
+  }
 }
 
 .girl-item {
@@ -93,4 +114,17 @@ $grid-breakpoints: (
 
 .text-pre-wrap {
   white-space: pre-wrap;
+}
+
+.tag {
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  background-color: violet;
+
+  &.bg-pink { background-color: #E91E63; }
+  &.bg-yellow { background-color: #FF9800; }
+  &.bg-red { background-color: #F44336; }
+  &.bg-blue { background-color: #2196F3; }
+  &.bg-green { background-color: #4CAF50; }
 }

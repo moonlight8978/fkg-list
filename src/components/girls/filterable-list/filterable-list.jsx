@@ -1,10 +1,10 @@
 import React from 'react';
 
-import ListHeader from './../list-header';
-import GirlList from './../list';
-import Sort from './../../../utils/sort';
-import SortOneLevelDeep from './../../../utils/sort-one-level-deep';
-import SortTwoLevelDeep from './../../../utils/sort-two-level-deep';
+import ListHeader from '../list-header';
+import GirlList from '../list';
+import Sort from '../../../utils/sort';
+import SortOneLevelDeep from '../../../utils/sort-one-level-deep';
+import SortTwoLevelDeep from '../../../utils/sort-two-level-deep';
 
 class FilterableList extends React.Component {
   constructor(props) {
@@ -58,6 +58,7 @@ class FilterableList extends React.Component {
     // reverse results
     if (this.state.reverseSort) {
       girls = girls.reverse();
+      // return [];
     }
 
     return girls;

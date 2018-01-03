@@ -70,9 +70,8 @@ const girls = [
     "name": "シンビジューム",
     "attribute": "blue",
     "images": [
-      "",
-      "",
-      "",
+      "http://フラワーナイトガール.攻略wiki.com/index.php?plugin=ref&page=%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%85%2F%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB&src=%E3%82%B7%E3%83%B3%E3%83%93%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%A0%E9%80%B2%E5%8C%96%E5%89%8D.jpg",
+      "http://フラワーナイトガール.攻略wiki.com/index.php?plugin=ref&page=%E2%98%85%E2%98%85%E2%98%85%E2%98%85%E2%98%85%2F%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB&src=%E3%82%B7%E3%83%B3%E3%83%93%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%A02.jpg",
     ],
     "originalStats": {
       "hitPoint": 10350,
