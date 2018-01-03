@@ -16,7 +16,7 @@ class Girls extends React.Component {
     setTimeout(() => {
       GirlApi.getAttributes().then(attributes => this.setState({ attributes }));
       GirlApi.getGirls().then(girls => this.setState({ girls }));
-    }, 3000);
+    }, 0);
   }
 
   render() {

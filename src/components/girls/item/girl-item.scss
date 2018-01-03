@@ -1,9 +1,81 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+@mixin responsive($media) {
+  @media (min-width: map-get($grid-breakpoints, $media)) {
+    @content;
+  }
+}
+
 .girl-item {
   display: flex;
   background-color: #fff;
-  padding: 1rem 1rem;
+  padding: 1rem .5rem;
   position: relative;
+  transition: background-color .2s ease;
+  cursor: pointer;
 
+  .item-col {
+    padding: 0 .5rem;
+  }
+
+  .row {
+    margin: 0;
+  }
+
+  .girl-basic-info,
+  .girl-stats-group {
+    display: flex;
+  }
+
+  .girl-basic-info {
+    padding: 0;
+    flex-wrap: wrap;
+  }
+
+  .girl-img {
+    width: 75px;
+
+    @include responsive(sm) {
+      width: 100px;
+    }
+  }
+
+  .girl-stats {
+    width: calc(100% - 75px);
+
+    @include responsive(sm) {
+      width: calc(100% - 100px);
+    }
+
+    // @include responsive(lg) {
+    //   width: calc(60% - 100px);
+    // }
+    //
+    // @include responsive(xl) {
+    //   width: calc(50% - 100px);
+    // }
+  }
+
+  .girl-active-skill {
+    width: 100%;
+
+    // @include responsive(lg) {
+    //   width: 40%;
+    // }
+    //
+    // @include responsive(xl) {
+    //   width: 50%;
+    // }
+  }
+}
+
+.girl-item {
   &:not(:last-child):after {
     content: '';
     position: absolute;
@@ -14,16 +86,8 @@
     background-color: #ddd;
   }
 
-  .girl-basic-info {
-    display: flex;
-
-    .girl-stats-group {
-      display: flex;
-    }
-  }
-
-  .girl-skills {
-    display: flex;
+  &:hover {
+    background-color: #E1F5FE;
   }
 }
 

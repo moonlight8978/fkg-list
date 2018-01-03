@@ -1,6 +1,6 @@
 # まだ考え中。。。
 
-A simple girl list for [Flower Knight Girl](http://pc-play.games.dmm.com/play/flower/) using [React](http://reactjs.org/) (WIP).
+A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/play/flower/) using [React](http://reactjs.org/) (WIP).
 
 ##### Features
 
