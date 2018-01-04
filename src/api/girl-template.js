@@ -1,6 +1,10 @@
 {
   "id": "",
   "name": "",
+  "stars": 5,
+  "nation": "",
+  "love": "",
+  "obtainBy": "プレミアムガチャ",
   "attribute": "",
   "images": [
     "",

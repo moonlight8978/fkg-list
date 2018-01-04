@@ -1,31 +1,32 @@
-import React from 'react';
+import React from 'react'
 
-import './girl-item.scss';
+import ImgPlaceholder from '../../../common/img-placeholder'
+import './girl-item.scss'
 
 class GirlItem extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       image: 0,
-    };
+    }
   }
 
   changeImage(image) {
-    this.setState({ image });
+    this.setState({ image })
   }
 
   render() {
-    const { girl } = this.props;
+    const { girl } = this.props
 
-    const imageSrc = girl.images[this.state.image];
+    const imageSrc = girl.images[this.state.image]
 
     return (
       <div className="girl-item">
         <div className="row">
           <div className="girl-basic-info col-md-6 col-lg-5 col-xl-4 item-col">
             <div className="item-col girl-img">
-              <img src={imageSrc} alt={girl.name} />
+              <ImgPlaceholder src={imageSrc} alt={girl.name} ratio="1_1" />
               <div className="tag bg-pink mt-2">
                 {girl.allStats}
               </div>
@@ -82,14 +83,14 @@ class GirlItem extends React.Component {
             <h6><strong>アビリティ</strong></h6>
             <div className="girl-passive-skills">
               {girl.skills.passive.map((skill, index) => {
-                return <div className="text-pre-wrap passive-skill" key={index}>{skill}</div>;
+                return <div className="text-pre-wrap passive-skill" key={index}>{skill}</div>
               })}
             </div>
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default GirlItem;
+export default GirlItem

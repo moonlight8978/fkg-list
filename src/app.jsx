@@ -1,9 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import Routes from './routes';
-import Navbar from './components/navbar';
+import Routes from './routes'
+import Navbar from './components/navbar'
+import Footer from './components/footer'
 
-import './app.scss';
+import './app.scss'
 
 function App() {
   return (
@@ -13,8 +14,10 @@ function App() {
       <div className="container body">
         <Routes />
       </div>
+
+      <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

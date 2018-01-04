@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
+import ImgPlaceholder from '../../common/img-placeholder'
 import './navbar.scss'
 
 function Navbar() {
@@ -9,9 +10,7 @@ function Navbar() {
       <div className="container">
         <Link className="navbar-brand" to="/">
           <div className="app-logo">
-            <div className="img-placeholder ratio-1_1">
-              <img className="img-fluid" src="octopus.png" alt="FKG List Logo" />
-            </div>
+            <ImgPlaceholder src="/octopus.png" alt="FKG List Logo" ratio="1_1" />
           </div>
           <div className="app-name d-none d-sm-block">
             FKG List

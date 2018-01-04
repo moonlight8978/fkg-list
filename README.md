@@ -1,4 +1,4 @@
-# まだ考え中。。。
+# FKG List
 
 A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/play/flower/) using [React](http://reactjs.org/) (WIP).
 
@@ -17,6 +17,8 @@ A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/pl
 ##### TODO
 
 * Filter by passive skills name
+
+* Add characters to custom list for comparing
 
 * ?
 

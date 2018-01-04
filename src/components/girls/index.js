@@ -1,3 +1,3 @@
-import Girls from './girls';
+import Girls from './girls'
 
-export default Girls;
+export default Girls

@@ -1,3 +1,3 @@
-import GirlItem from './girl-item';
+import GirlItem from './girl-item'
 
-export default GirlItem;
+export default GirlItem

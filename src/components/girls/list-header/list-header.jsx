@@ -1,30 +1,30 @@
-import React from 'react';
+import React from 'react'
 
-import './list-header.scss';
+import './list-header.scss'
 
 class ListHeader extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.handleSearchKeywordChange = this.handleSearchKeywordChange.bind(this);
-    this.handleSortByChange = this.handleSortByChange.bind(this);
-    this.handleRevertSortChange = this.handleRevertSortChange.bind(this);
+    this.handleSearchKeywordChange = this.handleSearchKeywordChange.bind(this)
+    this.handleSortByChange = this.handleSortByChange.bind(this)
+    this.handleRevertSortChange = this.handleRevertSortChange.bind(this)
   }
 
   handleSearchKeywordChange(event) {
-    this.props.onSearchKeywordChange(event.target.value);
+    this.props.onSearchKeywordChange(event.target.value)
   }
 
   handleSortByChange(event) {
-    this.props.onSortByChange(event.target.value);
+    this.props.onSortByChange(event.target.value)
   }
 
   handleRevertSortChange(event) {
-    this.props.onRevertSortChange(event.target.checked);
+    this.props.onRevertSortChange(event.target.checked)
   }
 
   render() {
-    const { searchKeyword, sortBy, reverseSort } = this.props;
+    const { searchKeyword, sortBy, reverseSort } = this.props
 
     return (
       <div className="girl-list-header">
@@ -74,8 +74,8 @@ class ListHeader extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default ListHeader;
+export default ListHeader

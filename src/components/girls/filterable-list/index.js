@@ -1,3 +1,3 @@
-import FilterableList from './filterable-list';
+import FilterableList from './filterable-list'
 
-export default FilterableList;
+export default FilterableList

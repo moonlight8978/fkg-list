@@ -1,3 +1,3 @@
-import GirlList from './girl-list';
+import GirlList from './girl-list'
 
-export default GirlList;
+export default GirlList

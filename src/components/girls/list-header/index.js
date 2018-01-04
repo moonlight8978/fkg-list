@@ -1,3 +1,3 @@
-import ListHeader from './list-header';
+import ListHeader from './list-header'
 
-export default ListHeader;
+export default ListHeader
