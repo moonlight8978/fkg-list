@@ -7,7 +7,8 @@ function Footer() {
     <footer>
       <div className="container">
         <div className="app-name">
-          <strong>FKG List</strong> - Design by _MoonLight_
+          <strong>FKG List</strong> - A simple character
+          list using <a href="http://reactjs.org/">React</a>
         </div>
         <div className="app-credits">
           <div>For issues and features, please mail me at moonlight8978@gmail.com</div>

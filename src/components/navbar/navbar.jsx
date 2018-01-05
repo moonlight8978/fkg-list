@@ -19,6 +19,9 @@ function Navbar() {
 
         <ul className="navbar-nav flex-row">
           <li className="nav-item">
+            <NavLink to="/form" activeClassName="active" className="nav-link">Form</NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to="/girls" activeClassName="active" className="nav-link">Collection</NavLink>
           </li>
           <li className="nav-item">

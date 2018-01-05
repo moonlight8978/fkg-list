@@ -1,4 +1,4 @@
-import girls from './girls'
+import axios from 'axios'
 import attributes from './attributes'
 import nations from './nations'
 import loves from './loves'
@@ -24,9 +24,10 @@ class GirlApi {
     return Promise.resolve(this.nations)
   }
 
-  getGirls() {
+  async getGirls() {
     if (!this.isGirlsResolved()) {
-      this.girls = Formatter.format(girls)
+      const response = await axios.get('/girls.json')
+      this.girls = Formatter.format(response.data)
     }
     return Promise.resolve(this.girls)
   }
