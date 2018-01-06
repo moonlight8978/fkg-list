@@ -65,13 +65,13 @@ class FilterableList extends React.Component {
   }
 
   render() {
-    const { attributes } = this.props
+    const { girls, ...constants } = this.props
 
     let list = null
-    if (this.props.girls) {
-      const girls = this.filterGirls()
+    if (girls) {
+      const girlsToRender = this.filterGirls()
 
-      list = <GirlList girls={girls} attributes={attributes} />
+      list = <GirlList girls={girlsToRender} {...constants} />
     }
 
     return (

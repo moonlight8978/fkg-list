@@ -18,7 +18,7 @@ class GirlItem extends React.Component {
 
   render() {
     const { girl } = this.props
-    console.log(JSON.stringify(girl))
+    // const { girl, attributes, nations, loves } = this.props
 
     const imageSrc = girl.images[this.state.image]
 

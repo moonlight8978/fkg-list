@@ -4,14 +4,31 @@ class BasicInformation extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      obtainByGacha: false,
+    }
+
     this.handleFieldChange = this.handleFieldChange.bind(this)
     this.handleImageChange = this.handleImageChange.bind(this)
     this.addImage = this.addImage.bind(this)
     this.removeImage = this.removeImage.bind(this)
+    this.handleObtainByGachaChange = this.handleObtainByGachaChange.bind(this)
+
+    this.createOptions()
   }
 
-  handleFieldChange(propName, event) {
-    const value = propName === 'stars' ? parseInt(event.target.value, 10) : event.target.value
+  createOptions() {
+    const { nations, loves, attributes } = this.props
+    this.attributeOptions = []
+    this.nationOptions = []
+    this.loveOptions = []
+
+    nations.forEach((value, key) => this.nationOptions.push(<option key={key} value={key}>{value}</option>))
+    attributes.forEach((value, key) => this.attributeOptions.push(<option key={key} value={key}>{value}</option>))
+    loves.forEach((value, key) => this.loveOptions.push(<option key={key} value={key}>{value}</option>))
+  }
+
+  handleFieldChange(propName, value) {
     const newGirl = Object.assign({}, this.props.girl, { [`${propName}`]: value })
     this.props.onGirlChange(newGirl)
   }
@@ -43,9 +60,16 @@ class BasicInformation extends React.Component {
     }
   }
 
+  handleObtainByGachaChange(event) {
+    this.setState({ obtainByGacha: event.target.checked }, () => {
+      const value = this.state.obtainByGacha ? "プレミアムガチャ" : ""
+      this.handleFieldChange("obtainBy", value)
+    })
+  }
+
   render() {
     const { girl } = this.props
-
+    
     return (
       <div>
         <h6>Basic information</h6>
@@ -58,7 +82,7 @@ class BasicInformation extends React.Component {
                 type="text"
                 className="form-control"
                 value={girl.id}
-                onChange={event => this.handleFieldChange('id', event)}
+                onChange={event => this.handleFieldChange('id', event.target.value)}
               />
             </div>
 
@@ -68,7 +92,7 @@ class BasicInformation extends React.Component {
                 type="text"
                 className="form-control"
                 value={girl.name}
-                onChange={event => this.handleFieldChange('name', event)}
+                onChange={event => this.handleFieldChange('name', event.target.value)}
               />
             </div>
 
@@ -77,7 +101,7 @@ class BasicInformation extends React.Component {
               <select
                 className="form-control"
                 value={girl.stars}
-                onChange={event => this.handleFieldChange('stars', event)}
+                onChange={event => this.handleFieldChange('stars', parseInt(event.target.value, 10))}
               >
                 <option value="" disabled>Please select one...</option>
                 <option value="2">★★</option>
@@ -93,13 +117,10 @@ class BasicInformation extends React.Component {
               <select
                 className="form-control"
                 value={girl.attribute}
-                onChange={event => this.handleFieldChange('attribute', event)}
+                onChange={event => this.handleFieldChange('attribute', event.target.value)}
               >
                 <option value="" disabled>Please select one...</option>
-                <option value="red">斬</option>
-                <option value="blue">打</option>
-                <option value="yellow">突</option>
-                <option value="purple">魔</option>
+                {this.attributeOptions}
               </select>
             </div>
 
@@ -108,14 +129,10 @@ class BasicInformation extends React.Component {
               <select
                 className="form-control"
                 value={girl.nation}
-                onChange={event => this.handleFieldChange('nation', event)}
+                onChange={event => this.handleFieldChange('nation', event.target.value)}
               >
                 <option value="" disabled>Please select one...</option>
-                <option value="winter_rose">ウィンターローズ</option>
-                <option value="bergamot_valley">ベルガモットバレー</option>
-                <option value="banana_ocean">バナナオーシャン</option>
-                <option value="blossom_hill">ブロッサムヒル</option>
-                <option value="lily_wood">リリィウッド</option>
+                {this.nationOptions}
               </select>
             </div>
 
@@ -124,13 +141,10 @@ class BasicInformation extends React.Component {
               <select
                 className="form-control"
                 value={girl.love}
-                onChange={event => this.handleFieldChange('love', event)}
+                onChange={event => this.handleFieldChange('love', event.target.value)}
               >
                 <option value="" disabled>Please select one...</option>
-                <option value="book">本</option>
-                <option value="cake">ケーキ</option>
-                <option value="doll">ぬいぐるみ</option>
-                <option value="gemstone">宝石</option>
+                {this.loveOptions}
               </select>
             </div>
           </div>
@@ -142,8 +156,17 @@ class BasicInformation extends React.Component {
                 type="text"
                 className="form-control"
                 value={girl.obtainBy}
-                onChange={event => this.handleFieldChange('obtainBy', event)}
+                onChange={event => this.handleFieldChange('obtainBy', event.target.value)}
               />
+            </div>
+            <div className="form-check">
+              <input 
+                type="checkbox" 
+                className="form-check-input"
+                checked={this.state.obtainByGacha}
+                onChange={this.handleObtainByGachaChange}
+              />
+              <label>Obtain by gacha</label>
             </div>
             <div className="form-group">
               <label>Images</label>

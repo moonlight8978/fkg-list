@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SubmitAPI } from '../../api'
+import { SubmitAPI, GirlApi } from '../../api'
 import defaultGirl from './const'
 import BasicInformation from './basic-information'
 import Skills from './skills'
@@ -13,11 +13,20 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-      girl: defaultGirl
+      girl: defaultGirl,
+      attributes: null,
+      nations: null,
+      loves: null,
     }
 
     this.handleGirlChange = this.handleGirlChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    GirlApi.getAttributes().then(attributes => this.setState({ attributes }))
+    GirlApi.getNations().then(nations => this.setState({ nations }))
+    GirlApi.getLoves().then(loves => this.setState({ loves }))
   }
 
   handleGirlChange(girl) {
@@ -36,33 +45,37 @@ class Form extends React.Component {
   }
 
   render() {
+    const { girl, attributes, nations, loves } = this.state
+
     return (
       <div>
         <h5 className="mb-3">Create new character</h5>
 
-        <form
-          className="material-form"
-          onSubmit={this.handleSubmit}
-        >
-          <BasicInformation
-            {...this.state}
-            onGirlChange={this.handleGirlChange}
-          />
+        { attributes && nations && loves &&
+          <form
+            className="material-form"
+            onSubmit={this.handleSubmit}
+          >
+            <BasicInformation
+              {...this.state}
+              onGirlChange={this.handleGirlChange}
+            />
 
-          <Skills
-            {...this.state}
-            onGirlChange={this.handleGirlChange}
-          />
+            <Skills
+              girl={girl}
+              onGirlChange={this.handleGirlChange}
+            />
 
-          <Stats
-            {...this.state}
-            onGirlChange={this.handleGirlChange}
-          />
+            <Stats
+              girl={girl}
+              onGirlChange={this.handleGirlChange}
+            />
 
-          <div className="d-flex justify-content-end">
-            <button className="md-btn md-btn-raised md-btn-ripple" type="submit">Submit</button>
-          </div>
-        </form>
+            <div className="d-flex justify-content-end">
+              <button className="md-btn md-btn-raised md-btn-ripple" type="submit">Submit</button>
+            </div>
+          </form>
+        }
       </div>
     )
   }

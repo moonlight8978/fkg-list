@@ -7,12 +7,12 @@ import './girl-list.scss'
 
 class GirlList extends React.Component {
   renderGirls() {
-    const { girls, attributes } = this.props
+    const { girls, ...constants } = this.props
 
     return girls.map((girl, index) => {
       return (
         <Fade duration={300} key={girl.id}>
-          <GirlItem girl={girl} attributes={attributes} />
+          <GirlItem girl={girl} {...constants} />
         </Fade>
       )
     })

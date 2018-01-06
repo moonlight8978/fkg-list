@@ -9,6 +9,8 @@ class Girls extends React.Component {
     this.state = {
       attributes: null,
       girls: null,
+      nations: null,
+      loves: null,
       delay: null,
     }
   }
@@ -17,6 +19,8 @@ class Girls extends React.Component {
     this.setState({
       delay: setTimeout(() => {
         GirlApi.getAttributes().then(attributes => this.setState({ attributes }))
+        GirlApi.getNations().then(nations => this.setState({ nations }))
+        GirlApi.getLoves().then(loves => this.setState({ loves }))
         GirlApi.getGirls().then(girls => this.setState({ girls }))
       }, 1000)
     })
@@ -27,7 +31,9 @@ class Girls extends React.Component {
   }
 
   render() {
-    return <FilterableList {...this.state} />
+    const { delay, ...constAndGirls } = this.state
+
+    return <FilterableList {...constAndGirls} />
   }
 }
 
