@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Select } from '../../../common/form'
+
 class BasicInformation extends React.Component {
   constructor(props) {
     super(props)
@@ -13,19 +15,6 @@ class BasicInformation extends React.Component {
     this.addImage = this.addImage.bind(this)
     this.removeImage = this.removeImage.bind(this)
     this.handleObtainByGachaChange = this.handleObtainByGachaChange.bind(this)
-
-    this.createOptions()
-  }
-
-  createOptions() {
-    const { nations, loves, attributes } = this.props
-    this.attributeOptions = []
-    this.nationOptions = []
-    this.loveOptions = []
-
-    nations.forEach((value, key) => this.nationOptions.push(<option key={key} value={key}>{value}</option>))
-    attributes.forEach((value, key) => this.attributeOptions.push(<option key={key} value={key}>{value}</option>))
-    loves.forEach((value, key) => this.loveOptions.push(<option key={key} value={key}>{value}</option>))
   }
 
   handleFieldChange(propName, value) {
@@ -68,8 +57,8 @@ class BasicInformation extends React.Component {
   }
 
   render() {
-    const { girl } = this.props
-    
+    const { girl, attributes, nations, loves } = this.props
+
     return (
       <div>
         <h6>Basic information</h6>
@@ -112,41 +101,26 @@ class BasicInformation extends React.Component {
               </select>
             </div>
 
-            <div className="form-group">
-              <label>Attribute</label>
-              <select
-                className="form-control"
-                value={girl.attribute}
-                onChange={event => this.handleFieldChange('attribute', event.target.value)}
-              >
-                <option value="" disabled>Please select one...</option>
-                {this.attributeOptions}
-              </select>
-            </div>
+            <Select
+              name="Attribute"
+              value={girl.nation}
+              onChange={event => this.handleFieldChange('nation', event.target.value)}
+              optionsMap={attributes}
+            />
 
-            <div className="form-group">
-              <label>Nation</label>
-              <select
-                className="form-control"
-                value={girl.nation}
-                onChange={event => this.handleFieldChange('nation', event.target.value)}
-              >
-                <option value="" disabled>Please select one...</option>
-                {this.nationOptions}
-              </select>
-            </div>
+            <Select
+              name="Nation"
+              value={girl.attribute}
+              onChange={event => this.handleFieldChange('attribute', event.target.value)}
+              optionsMap={nations}
+            />
 
-            <div className="form-group">
-              <label>Love</label>
-              <select
-                className="form-control"
-                value={girl.love}
-                onChange={event => this.handleFieldChange('love', event.target.value)}
-              >
-                <option value="" disabled>Please select one...</option>
-                {this.loveOptions}
-              </select>
-            </div>
+            <Select
+              name="Love"
+              value={girl.love}
+              onChange={event => this.handleFieldChange('love', event.target.value)}
+              optionsMap={loves}
+            />
           </div>
 
           <div className="col-6">
@@ -160,8 +134,8 @@ class BasicInformation extends React.Component {
               />
             </div>
             <div className="form-check">
-              <input 
-                type="checkbox" 
+              <input
+                type="checkbox"
                 className="form-check-input"
                 checked={this.state.obtainByGacha}
                 onChange={this.handleObtainByGachaChange}

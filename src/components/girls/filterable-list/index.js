@@ -1,3 +1,3 @@
-import FilterableList from './filterable-list'
+import FilterableListContainer from './filterable-list-container'
 
-export default FilterableList
+export default FilterableListContainer

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { SubmitAPI, GirlApi } from '../../api'
-import defaultGirl from './const'
+import defaultGirl from './default-girl'
 import BasicInformation from './basic-information'
 import Skills from './skills'
 import Stats from './stats'

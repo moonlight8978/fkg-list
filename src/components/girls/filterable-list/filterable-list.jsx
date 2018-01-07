@@ -1,6 +1,5 @@
 import React from 'react'
 
-import ListHeader from '../list-header'
 import GirlList from '../list'
 import Sort from '../../../utils/sort'
 import SortOneLevelDeep from '../../../utils/sort-one-level-deep'
@@ -11,80 +10,60 @@ class FilterableList extends React.Component {
     super(props)
 
     this.state = {
-      searchKeyword: '',
-      sortBy: 'id',
-      reverseSort: false,
+      girls: props.girls,
     }
-
-    this.handleSearchKeywordChange = this.handleSearchKeywordChange.bind(this)
-    this.handleSortByChange = this.handleSortByChange.bind(this)
-    this.handleRevertSortChange = this.handleRevertSortChange.bind(this)
   }
 
-  handleSearchKeywordChange(searchKeyword) {
-    this.setState({ searchKeyword })
+  componentWillReceiveProps(nextProps) {
+    if (this.props.searchKeyword !== nextProps.searchKeyword) {
+      console.log('filtering')
+      this.filterGirls(nextProps.searchKeyword)
+    }
   }
 
-  handleSortByChange(sortBy) {
-    this.setState({ sortBy })
-  }
-
-  handleRevertSortChange(reverseSort) {
-    this.setState({ reverseSort })
-  }
-
-  filterGirls() {
+  filterGirls(keyword) {
     // filter
-    let girls = this.props.girls.filter(girl => {
+    const girls = this.props.girls.filter(girl => {
       const valid =
-        girl.name.indexOf(this.state.searchKeyword) >= 0
-        || girl.skills.active.name.indexOf(this.state.searchKeyword) >= 0
+        girl.name.indexOf(keyword) >= 0
+        || girl.skills.active.name.indexOf(keyword) >= 0
 
       return valid
     })
 
-    // sort
+    this.setState({ girls })
+  }
+
+  sortGirls() {
+    console.log('sorting')
+    let girls = [...this.state.girls]
+    const { sortBy, reverseSort } = this.props
+
     girls = (() => {
-      switch (this.state.sortBy.split('.').length) {
+      switch (this.props.sortBy.split('.').length) {
         case 1:
-          return (new Sort(new SortOneLevelDeep())).sort(girls, this.state.sortBy)
+          return (new Sort(new SortOneLevelDeep())).sort(girls, sortBy)
         case 2:
-          return (new Sort(new SortTwoLevelDeep())).sort(girls, this.state.sortBy)
+          return (new Sort(new SortTwoLevelDeep())).sort(girls, sortBy)
         default:
           return girls
       }
     })()
 
-    // reverse results
-    if (this.state.reverseSort) {
+    if (reverseSort) {
       girls = girls.reverse()
-      // return []
     }
 
     return girls
   }
 
   render() {
-    const { girls, ...constants } = this.props
+    const { constants } = this.props
 
-    let list = null
-    if (girls) {
-      const girlsToRender = this.filterGirls()
-
-      list = <GirlList girls={girlsToRender} {...constants} />
-    }
+    const girlsToRender = this.sortGirls()
 
     return (
-      <div>
-        <ListHeader
-          onSearchKeywordChange={this.handleSearchKeywordChange}
-          onSortByChange={this.handleSortByChange}
-          onRevertSortChange={this.handleRevertSortChange}
-          {...this.state}
-        />
-
-        {list}
-      </div>
+      <GirlList girls={girlsToRender} {...constants} />
     )
   }
 }

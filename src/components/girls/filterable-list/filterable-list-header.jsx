@@ -1,30 +1,10 @@
 import React from 'react'
 
-import './list-header.scss'
+import './filterable-list-header.scss'
 
-class ListHeader extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.handleSearchKeywordChange = this.handleSearchKeywordChange.bind(this)
-    this.handleSortByChange = this.handleSortByChange.bind(this)
-    this.handleRevertSortChange = this.handleRevertSortChange.bind(this)
-  }
-
-  handleSearchKeywordChange(event) {
-    this.props.onSearchKeywordChange(event.target.value)
-  }
-
-  handleSortByChange(event) {
-    this.props.onSortByChange(event.target.value)
-  }
-
-  handleRevertSortChange(event) {
-    this.props.onRevertSortChange(event.target.checked)
-  }
-
+class FilterableListHeader extends React.Component {
   render() {
-    const { searchKeyword, sortBy, reverseSort } = this.props
+    const { searchKeyword, sortBy, reverseSort, total, onChange, onKeywordChange } = this.props
 
     return (
       <div className="girl-list-header">
@@ -32,19 +12,22 @@ class ListHeader extends React.Component {
           <input
             className="form-control keyword-text"
             value={searchKeyword}
-            onChange={this.handleSearchKeywordChange}
+            onChange={event => onKeywordChange(event.target.value)}
             placeholder="名前/戦闘スキル名"
           />
         </div>
 
         <div className="row">
+          <div className="col-sm-12 col-md-2">
+            {total} results
+          </div>
           <div className="col-sm-8 col-md-4">
             <div className="form-group d-flex">
               <label className="pr-2 text-placeholder">Sort by:</label>
               <select
                 value={sortBy}
                 className="form-control sort-select"
-                onChange={this.handleSortByChange}
+                onChange={event => onChange('sortBy', event.target.value)}
               >
                 <option value="id">ID</option>
                 <option value="originalStats.hitPoint">Hit Point</option>
@@ -67,7 +50,7 @@ class ListHeader extends React.Component {
               <input
                 type="checkbox"
                 checked={reverseSort}
-                onChange={this.handleRevertSortChange}
+                onChange={event => onChange('reverseSort', event.target.checked)}
               />
               <label className="pl-2">Reverse</label>
             </div>
@@ -78,4 +61,4 @@ class ListHeader extends React.Component {
   }
 }
 
-export default ListHeader
+export default FilterableListHeader

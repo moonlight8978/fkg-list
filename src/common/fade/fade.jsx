@@ -7,7 +7,7 @@ function Fade({ children, ...props }) {
   return (
     <CSSTransition
       {...props}
-      timeout={300}
+      timeout={{enter: 300, exit: 0}}
       appear
       classNames="fade"
     >
