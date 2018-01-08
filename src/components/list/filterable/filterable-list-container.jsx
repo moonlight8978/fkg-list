@@ -41,12 +41,11 @@ class FilterableListContainer extends React.Component {
           total={girls ? girls.length : 0}
         />
 
-        { girls &&
-          <FilterableList
-            {...this.state}
-            {...this.props}
-          />
-        }
+        <FilterableList
+          data={girls}
+          {...this.state}
+          {...this.props}
+        />
       </div>
     )
   }

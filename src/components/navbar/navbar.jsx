@@ -25,6 +25,9 @@ function Navbar() {
             <NavLink to="/girls" activeClassName="active" className="nav-link">Collection</NavLink>
           </li>
           <li className="nav-item">
+            <NavLink to="/my-list" activeClassName="active" className="nav-link">My List</NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to="/about" activeClassName="active" className="nav-link">About</NavLink>
           </li>
         </ul>

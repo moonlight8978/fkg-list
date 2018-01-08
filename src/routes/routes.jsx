@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import Girls from '../components/girls'
+import MyList from '../components/my-list'
 import Home from '../components/home'
 import Form from '../components/form'
 import About from '../components/about'
@@ -22,6 +23,7 @@ function Routes({ location }) {
           <Route path="/girls" component={Girls} />
           <Route path="/form" component={Form} />
           <Route path="/about" component={About} />
+          <Route path="/my-list" component={MyList} />
         </Switch>
       </CSSTransition>
     </TransitionGroup>

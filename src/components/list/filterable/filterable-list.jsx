@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Loading from '../../../common/loading'
 import GirlList from '../list'
 import Sort from '../../../utils/sort'
 import SortOneLevelDeep from '../../../utils/sort-one-level-deep'
@@ -68,4 +69,4 @@ class FilterableList extends React.Component {
   }
 }
 
-export default FilterableList
+export default Loading(FilterableList)

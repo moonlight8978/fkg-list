@@ -17,13 +17,13 @@ class GirlItem extends React.Component {
   }
 
   render() {
-    const { girl } = this.props
+    const { girl, addItem, removeItem } = this.props
     // const { girl, attributes, nations, loves } = this.props
 
     const imageSrc = girl.images[this.state.image]
 
     return (
-      <div className="girl-item">
+      <div className="girl-item" onClick={event => addItem(girl)}>
         <div className="row">
           <div className="girl-basic-info col-md-6 col-lg-5 col-xl-4 item-col">
             <div className="item-col girl-img">

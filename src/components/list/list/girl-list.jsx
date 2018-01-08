@@ -1,6 +1,7 @@
 import React from 'react'
 import { TransitionGroup } from 'react-transition-group'
 
+import { AddGirlToMyList } from '../../my-list'
 import GirlItem from '../item'
 import Fade from '../../../common/fade'
 import './girl-list.scss'
@@ -12,7 +13,12 @@ class GirlList extends React.Component {
     return girls.map((girl, index) => {
       return (
         <Fade duration={300} key={girl.id}>
-          <GirlItem girl={girl} {...constants} />
+          <GirlItem
+            girl={girl}
+            {...constants}
+            addItem={AddGirlToMyList.add}
+            removeItem={AddGirlToMyList.remove}
+          />
         </Fade>
       )
     })

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { GirlApi } from '../../api'
-import FilterableListContainer from './filterable-list'
+import FilterableListContainer from '../list'
 
 class Girls extends React.Component {
   constructor(props) {
