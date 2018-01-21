@@ -1,0 +1,33 @@
+.girl {
+  position: relative;
+  transition: background-color .2s ease;
+  cursor: pointer;
+
+  .girl-options {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .girl-options-item {
+    font-size: .9rem;
+    padding: .5rem 1rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #ddd;
+    }
+
+    &:hover {
+      background-color: #e9ebee;
+    }
+  }
+
+  &:hover {
+    background-color: #E1F5FE;
+  }
+}

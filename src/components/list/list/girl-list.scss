@@ -1,4 +1,26 @@
-.girl-list {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  // box-shadow: 0 5px 5px -5px rgba(0,0,0,0.6);
+.grid-wrapper-fix {
+  margin-bottom: -1rem;
+}
+
+.icon-group {
+  display: inline-flex;
+  // border: 1px solid #ddd;
+
+  .icon-item {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    color: #555;
+    background-color: #fff;
+    transition: all 0.15s ease;
+    &:not(:first-child) {
+      border-left-color: transparent;
+    }
+
+
+    &.active,
+    &:hover {
+      border-color: #2196F3;
+      color: #2196F3;
+    }
+  }
 }
