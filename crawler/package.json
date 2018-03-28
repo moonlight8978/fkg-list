@@ -1,0 +1,14 @@
+{
+  "name": "fkg-list-crawler",
+  "version": "1.0.0",
+  "description": "Crawler for FKGList",
+  "main": "index.js",
+  "author": "_moon",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "cheerio": "^1.0.0-rc.2",
+    "crawler": "^1.1.2",
+    "immutable": "^3.8.2"
+  }
+}
