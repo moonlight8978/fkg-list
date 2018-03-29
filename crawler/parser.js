@@ -1,13 +1,13 @@
 const fs = require('fs');
 const cheerio = require('cheerio');
 
-const { parseFKG } = require('./parser/raw');
-const { FKGAdapter } = require('./parser/adapter');
+const parseFKG = require('./parser/raw');
+const FKGAdapter = require('./parser/adapter');
 
 // Files need to parse
 const files = [
   './build/★★★★★★.html',
-  // './build/★★★★★.html',
+  './build/★★★★★.html',
   // './build/★★★★.html',
   // './build/★★★.html',
   // './build/★★.html',
@@ -25,10 +25,13 @@ function parseHTML() {
 
     const $rows = $('#sortabletable1 > tbody > tr');
     $rows.each(function(rowIndex) {
-      console.log(`File ${index}, Row ${rowIndex}`);
-      const raw = parseFKG($, this, stars[index]);
-      const fkg = new FKGAdapter(raw);
-      fkgs.push(fkg);
+      if (true) {
+        const raw = parseFKG($, this, stars[index]);
+        const fkg = new FKGAdapter(raw);
+        fkgs.push(fkg);
+
+        console.log(`File ${index}, Row ${rowIndex}, FKG No.${fkg.id}`);
+      }
     })
   })
 

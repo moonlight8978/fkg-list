@@ -7,8 +7,8 @@ const regexStats = [
 ];
 
 const passiveSkillsDelimiters = [
-  '(<strong>&#x9032;&#x5316;&#x5F8C;+</strong>)',
-  '(<strong>&#x958B;&#x82B1;&#x5F8C;</strong>)',
+  /\(?(<strong>)?\(?(&#x9032;&#x5316;&#x5F8C;\+)\)?(<\/strong>)?\)?/,
+  /\(?(<strong>)?\(?(&#x958B;&#x82B1;&#x5F8C;)\)?(<\/strong>)?\)?/,
 ];
 
 const regexDownChar = /&#x2193;/g;
@@ -31,14 +31,14 @@ function parseStats($, statsString) {
 
 function parsePassiveSkills($, skillsString) {
   let skills = [];
-  let basic, evolution, blooming, _evolutionAndBlooming;
+  let delim, basic, evolution, blooming, _evolutionAndBlooming;
 
-  [basic, _evolutionAndBlooming] = skillsString.split(passiveSkillsDelimiters[0]);
-  [evolution, blooming] = _evolutionAndBlooming.split(passiveSkillsDelimiters[1]);
+  [basic, _evolutionAndBlooming] = findDelimAndSplit(passiveSkillsDelimiters[0], skillsString);
+  [evolution, blooming] = findDelimAndSplit(passiveSkillsDelimiters[1], _evolutionAndBlooming);
 
-  basic = splitPassiveSkills($, basic);
-  evolution = splitPassiveSkills($, evolution);
-  blooming = splitPassiveSkills($, blooming);
+  basic = basic && splitPassiveSkills($, basic);
+  evolution = evolution && splitPassiveSkills($, evolution);
+  blooming = blooming && splitPassiveSkills($, blooming);
 
   return { basic, evolution, blooming };
 }
@@ -66,9 +66,19 @@ function encode($, htmlString) {
   return $('<div/>').html(htmlString).text().trim();
 }
 
+function findDelimAndSplit(pattern, string) {
+  const match = string.match(pattern);
+  if (match) {
+    const delim = match[0];
+    return string.split(delim);
+  } else {
+    return [string, null];
+  }
+}
+
 module.exports = {
-  parseStats: parseStats,
-  splitPassiveSkills: splitPassiveSkills,
-  parsePassiveSkills: parsePassiveSkills,
-  splitActiveSkill: splitActiveSkill,
+  parseStats,
+  splitPassiveSkills,
+  parsePassiveSkills,
+  splitActiveSkill,
 }

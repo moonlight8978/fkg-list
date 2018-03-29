@@ -47,4 +47,4 @@ class FKGAdapter {
   }
 }
 
-module.exports.FKGAdapter = FKGAdapter;
+module.exports = FKGAdapter;

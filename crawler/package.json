@@ -6,9 +6,14 @@
   "author": "_moon",
   "license": "MIT",
   "dependencies": {
-    "babel-preset-env": "^1.6.1",
+    "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "crawler": "^1.1.2",
-    "immutable": "^3.8.2"
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "test": "http-server ./ -o -c-1",
+    "build": "node index.js",
+    "crawl": "node crawler.js"
   }
 }

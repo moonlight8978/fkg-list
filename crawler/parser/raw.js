@@ -44,4 +44,4 @@ function parseFKG($, row, star) {
   return fkg;
 }
 
-module.exports.parseFKG = parseFKG;
+module.exports = parseFKG;
