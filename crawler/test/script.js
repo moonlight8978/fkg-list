@@ -1,17 +1,18 @@
 const el = document.getElementById('dataTable');
-const star = 6;
+const minStar = 2;
+const maxStar = 6;
 
 axios
   .get('data.json')
   .then((response) => {
     console.log(response);
 
-    el.innerHTML = renderFKGs(response.data, star);
+    el.innerHTML = renderFKGs(response.data, minStar, maxStar);
   });
 
-function renderFKGs(fkgs, star = 5) {
-  const filteredFKGs = fkgs.filter((e) => e.star == star);
-  const sortedFKGs = filteredFKGs.sort((a, b) => b.stats.total - a.stats.total);
+function renderFKGs(fkgs, minStar = 2, maxStar = 6) {
+  const filteredFKGs = fkgs.filter((e) => e.star >= minStar && e.star <= maxStar);
+  // const sortedFKGs = filteredFKGs.sort((a, b) => b.stats.total - a.stats.total);
   return `
     <table>
       <thead>
@@ -26,9 +27,9 @@ function renderFKGs(fkgs, star = 5) {
           <th>Numbers of passive skills</th>
         </tr>
       </thead>
-      
+
       <tbody>
-        ${sortedFKGs.map((fkg) => renderFKG(fkg)).join("")}
+        ${filteredFKGs.map((fkg) => renderFKG(fkg)).join("")}
       </tbody>
     </table>
   `;

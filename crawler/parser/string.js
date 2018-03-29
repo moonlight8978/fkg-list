@@ -29,11 +29,10 @@ function parseStats($, statsString) {
   return { basic, maxLevel, bonus };
 }
 
-function parsePassiveSkills($, skillsString) {
-  let skills = [];
-  let delim, basic, evolution, blooming, _evolutionAndBlooming;
+function parsePassiveSkills($, skillsHTML) {
+  let basic, evolution, blooming, _evolutionAndBlooming;
 
-  [basic, _evolutionAndBlooming] = findDelimAndSplit(passiveSkillsDelimiters[0], skillsString);
+  [basic, _evolutionAndBlooming] = findDelimAndSplit(passiveSkillsDelimiters[0], skillsHTML);
   [evolution, blooming] = findDelimAndSplit(passiveSkillsDelimiters[1], _evolutionAndBlooming);
 
   basic = basic && splitPassiveSkills($, basic);
@@ -43,34 +42,38 @@ function parsePassiveSkills($, skillsString) {
   return { basic, evolution, blooming };
 }
 
-function splitPassiveSkills($, skillsString) {
-  const htmlString = skillsString
+function splitPassiveSkills($, skillsHTML) {
+  const html = skillsHTML
     .replace(regexDownChar, '')
     .replace(regexBr, '\n')
     .trim();
-  const text = encode($, htmlString);
+  const text = encode($, html);
   const skills = text.split('\n\n');
 
   return skills;
 }
 
-function splitActiveSkill($, skillHtml) {
-  const [name, triggerRate, description] = skillHtml
+function splitActiveSkill($, skillHTML) {
+  const [name, triggerRate, description] = skillHTML
     .split(br)
-    .map((htmlString) => encode($, htmlString));
+    .map((html) => encode($, html));
 
   return { name, triggerRate, description };
 }
 
-function encode($, htmlString) {
-  return $('<div/>').html(htmlString).text().trim();
+function encode($, html) {
+  return $('<div/>').html(html).text().trim();
 }
 
 function findDelimAndSplit(pattern, string) {
+  if (string == null) {
+    return [null, null];
+  }
+
   const match = string.match(pattern);
   if (match) {
-    const delim = match[0];
-    return string.split(delim);
+    const delimiter = match[0];
+    return string.split(delimiter);
   } else {
     return [string, null];
   }
@@ -78,7 +81,6 @@ function findDelimAndSplit(pattern, string) {
 
 module.exports = {
   parseStats,
-  splitPassiveSkills,
   parsePassiveSkills,
   splitActiveSkill,
 }

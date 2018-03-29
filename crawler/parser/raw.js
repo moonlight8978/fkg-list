@@ -1,6 +1,5 @@
 const {
   parseStats,
-  splitPassiveSkills,
   parsePassiveSkills,
   splitActiveSkill,
 } = require('./string')

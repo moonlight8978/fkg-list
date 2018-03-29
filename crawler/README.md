@@ -1,8 +1,8 @@
-# Version 1.0.0
+# Version 1.1.0
 
 
 * JSON generator for FKGList
-* Support 5 and 6 stars only
+* ~~Support 5 and 6 stars only~~ Support 2-6 stars
 
 ##### Environment
 * OS: Windows 10 Pro Build 16299.309
@@ -14,16 +14,18 @@ v8.7.0
 ```
 
 ##### Setup
-`$ yarn install`
+* `$ yarn install`
 
 ##### Get the HTML files
-`$ yarn crawl`
+* `$ yarn crawl`
 
-##### Build JSON
-`$ yarn build`
+##### Build JSON (after crawling the HTMLs)
+* `$ yarn build`
 
-##### Run test data
-`$ yarn test`
+##### Run test data (after building the JSON file)
+* `$ cp ./build/data.json ./test`
+
+* `$ yarn test`
 
 ##### Links
 * http://xn--eckq7fg8cygsa1a1je.xn--wiki-4i9hs14f.com/

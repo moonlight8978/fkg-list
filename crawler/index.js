@@ -2,4 +2,4 @@ const parseHTML = require('./parser')
 const writeJSON = require('./writer')
 
 const fkgs = parseHTML();
-writeJSON(fkgs);
+writeJSON(fkgs, 0);

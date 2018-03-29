@@ -8,9 +8,9 @@ const FKGAdapter = require('./parser/adapter');
 const files = [
   './build/★★★★★★.html',
   './build/★★★★★.html',
-  // './build/★★★★.html',
-  // './build/★★★.html',
-  // './build/★★.html',
+  './build/★★★★.html',
+  './build/★★★.html',
+  './build/★★.html',
 ];
 
 const stars = [6, 5, 4, 3, 2];
@@ -25,11 +25,10 @@ function parseHTML() {
 
     const $rows = $('#sortabletable1 > tbody > tr');
     $rows.each(function(rowIndex) {
-      if (true) {
-        const raw = parseFKG($, this, stars[index]);
-        const fkg = new FKGAdapter(raw);
+      const raw = parseFKG($, this, stars[index]);
+      const fkg = new FKGAdapter(raw);
+      if (fkg.id) {
         fkgs.push(fkg);
-
         console.log(`File ${index}, Row ${rowIndex}, FKG No.${fkg.id}`);
       }
     })
