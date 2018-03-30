@@ -1,68 +1,99 @@
-import React from 'react'
+import React from 'react';
 
-import Sort from '../../utils/sort'
-import SortOneLevelDeep from '../../utils/sort-one-level-deep'
-import SortTwoLevelDeep from '../../utils/sort-two-level-deep'
-import CompareArray from '../../utils/compare-array'
+import Header from './header';
+import Sidebar from './sidebar';
 
-import Loading from '../../common/loading'
-import DataView from './data'
-import FilterableListHeader from './header'
+import './filterable-list.css';
 
 class FilterableList extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      searchKeyword: '',
+      keyword: '',
+      items: null,
+      filter: {
+        attribute: '',
+        minStar: 2,
+        maxStar: 6,
+      },
       sortBy: 'id',
-      reverseSort: false,
+    };
+
+    this.handleValueChange = this.handleValueChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleStarChange = this.handleStarChange.bind(this);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(nextProps)
+    if (nextProps.items === null) {
+      return null;
     }
-
-    this.timeout = null
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleKeywordChange = this.handleKeywordChange.bind(this)
+    return { items: nextProps.items };
   }
 
-  handleKeywordChange(value) {
-    clearTimeout(this.timeout)
-    this.timeout = setTimeout(() => {
-      console.log('keyword update')
-      this.setState({ searchKeyword: value })
-    }, 750)
+  handleValueChange(property, newValue) {
+    this.setState({ [`${property}`]: newValue });
   }
 
-  handleChange(property, value) {
-    this.setState({ [`${property}`]: value })
+  handleStarChange(min, max) {
+    this.setState({
+      ...this.state,
+      filter: {
+        ...this.state.filter,
+        minStar: min,
+        maxStar: max,
+      },
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log("Sort and filtering");
   }
 
   render() {
-    console.log('render');
-    const { girls } = this.props
+    console.log(this.state);
+    return (
+      <div>
+        <Header
+          onValueChange={this.handleValueChange}
+          onSubmit={this.handleSubmit}
+        />
 
-    if (girls) {
-      return (
-        <div>
-          <FilterableListHeader
-            onChange={this.handleChange}
-            onKeywordChange={this.handleKeywordChange}
-            total={0}
-          />
+        <div className="row">
+          <div className="col-3">
+            <Sidebar
+              {...this.state.filter}
+              onStarChange={this.handleStarChange}
+              sortBy={this.state.sortBy}
+              onValueChange={this.handleValueChange}
+            />
+          </div>
 
-          <DataView
-            girls={girls}
-            reverseSort={this.state.reverseSort}
-            sortBy={this.state.sortBy}
-            searchKeyword={this.state.searchKeyword}
-          />
+          <div className="col-9">
+            <table>
+              <tbody>
+                {this.state.items && this.state.items.map((fkg) => (
+                  <tr key={fkg.id}>
+                    {/* <td><img src={fkg.images[fkg.images.length - 1]} /></td> */}
+                    <td>{fkg.id}</td>
+                    <td>{fkg.name}</td>
+                    <td>{fkg.attribute}</td>
+                    <td>{fkg.nation}</td>
+                    <td>{fkg.stats.total}</td>
+                    <td>{fkg.skills.active.name}</td>
+                    <td>{fkg.skills.passive && fkg.skills.passive.length}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      )
-    } else {
-      return <div></div>
-    }
+      </div>
+    );
   }
 }
 
-export default Loading(FilterableList)
-// export default FilterableList
+export default FilterableList;

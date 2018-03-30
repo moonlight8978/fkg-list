@@ -1,0 +1,17 @@
+.filterable-list_header {
+  margin-bottom: 2rem; }
+  .filterable-list_header form {
+    display: flex; }
+  .filterable-list_header .form-control {
+    border: 0;
+    border-radius: 4px 0 0 4px;
+    padding: .75rem 1rem;
+    line-height: 1.5; }
+    .filterable-list_header .form-control:focus {
+      box-shadow: 5px 5px 15px 2px rgba(0, 0, 0, 0.25); }
+  .filterable-list_header .btn {
+    border-radius: 0 4px 4px 0;
+    padding-left: 2rem;
+    padding-right: 2rem; }
+    .filterable-list_header .btn:focus {
+      box-shadow: none; }

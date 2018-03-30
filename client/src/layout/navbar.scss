@@ -1,0 +1,49 @@
+@import "styles/color";
+
+.navbar-outer {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.navbar {
+  justify-content: space-between !important;
+  padding: 0 !important;
+  background-color: $white;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+
+.navbar-brand {
+  font-size: 1.1rem !important;
+
+  img,
+  span {
+    vertical-align: middle;
+  }
+
+  img {
+    width: 25px;
+    margin-right: 5px;
+  }
+
+  span {
+    color: $black;
+    font-weight: bold;
+  }
+}
+
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
+.nav-link {
+  padding: .75rem 1rem !important;
+  color: $black--light;
+  border-bottom: 2px solid transparent;
+  transition: all .3s ease;
+  font-weight: bold;
+
+  &.active,
+  &:hover {
+    color: $blue;
+    border-color: $blue;
+  }
+}

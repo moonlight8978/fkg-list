@@ -1,0 +1,31 @@
+@import "styles/color";
+
+.boxes {
+
+}
+
+.box {
+  background-color: $white;
+  padding: 1rem;
+  border: 1px solid $gray;
+
+  &.has-items {
+    padding: 0;
+  }
+}
+
+.box-item {
+  padding: 1rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $gray;
+  }
+
+  &.box-item-action {
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: $gray--dark;
+    }
+  }
+}

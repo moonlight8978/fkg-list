@@ -1,4 +1,5 @@
-import GirlApi from './girl-api'
-import SubmitAPI from './submit-api'
+import FKGApi from './fkg-api';
 
-export { GirlApi, SubmitAPI }
+export {
+  FKGApi,
+}
