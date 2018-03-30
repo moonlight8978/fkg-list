@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FilterableList from './filterable-list';
+import FKGItem from './fkg-item';
 
 import { FKGApi } from '../api';
 
@@ -21,7 +22,7 @@ class Gallery extends React.Component {
 
   render() {
     return (
-      <FilterableList items={this.state.fkgs}>
+      <FilterableList items={this.state.fkgs} ItemComponent={FKGItem} >
 
       </FilterableList>
     );

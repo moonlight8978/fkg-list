@@ -1,5 +1,6 @@
 body {
-  background-color: #e6ecf0 !important; }
+  background-color: #e6ecf0 !important;
+  overflow-y: scroll; }
 
 .page-content {
   padding-top: 1rem;

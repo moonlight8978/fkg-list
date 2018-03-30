@@ -2,6 +2,7 @@ import React from 'react';
 
 import Header from './header';
 import Sidebar from './sidebar';
+import FKGList from '../fkg-list';
 
 import './filterable-list.css';
 
@@ -26,7 +27,6 @@ class FilterableList extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps)
     if (nextProps.items === null) {
       return null;
     }
@@ -50,11 +50,13 @@ class FilterableList extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("Sort and filtering");
+    this.setState({ items: null });
+    setTimeout(() => {
+      this.setState({ items: this.props.items });
+    }, 3000);
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <Header
@@ -66,29 +68,18 @@ class FilterableList extends React.Component {
           <div className="col-3">
             <Sidebar
               {...this.state.filter}
-              onStarChange={this.handleStarChange}
               sortBy={this.state.sortBy}
+              onStarChange={this.handleStarChange}
               onValueChange={this.handleValueChange}
+              onSubmit={this.handleSubmit}
             />
           </div>
 
           <div className="col-9">
-            <table>
-              <tbody>
-                {this.state.items && this.state.items.map((fkg) => (
-                  <tr key={fkg.id}>
-                    {/* <td><img src={fkg.images[fkg.images.length - 1]} /></td> */}
-                    <td>{fkg.id}</td>
-                    <td>{fkg.name}</td>
-                    <td>{fkg.attribute}</td>
-                    <td>{fkg.nation}</td>
-                    <td>{fkg.stats.total}</td>
-                    <td>{fkg.skills.active.name}</td>
-                    <td>{fkg.skills.passive && fkg.skills.passive.length}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <FKGList
+              fkgs={this.state.items}
+              ItemComponent={this.props.ItemComponent}
+            />
           </div>
         </div>
       </div>
