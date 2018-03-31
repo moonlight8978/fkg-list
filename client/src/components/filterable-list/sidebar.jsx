@@ -1,33 +1,37 @@
-import React from 'react';
-import $ from 'jquery';
+import React from 'react'
+import $ from 'jquery'
 
-class Sidebar extends React.Component {
+class Sidebar extends React.PureComponent {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.starRange = React.createRef();
+    this.starRange = React.createRef()
   }
 
   componentDidMount() {
-    const $starRange = $(this.starRange.current);
-    const { minStar, maxStar, onStarChange } = this.props;
+    this.$starRange = $(this.starRange.current)
+    const { minStar, maxStar, onStarChange } = this.props
 
-    $starRange.slider({
+    this.$starRange.slider({
       range: true,
       min: 2,
       max: 6,
       values: [ minStar, maxStar ],
       slide: (event, ui) => onStarChange(ui.values[0], ui.values[1]),
-    });
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { minStar, maxStar } = this.props
+    this.$starRange.slider('values', minStar, maxStar)
   }
 
   componentWillUnmount() {
-    const $starRange = $(this.starRange.current);
-    $starRange.slider('destroy');
+    this.$starRange.slider('destroy')
   }
 
   render() {
-    const { sortBy, onValueChange } = this.props;
+    const { sortBy, onValueChange } = this.props
     return (
       <div className="filterable-list_sidebar">
         <div className="group">
@@ -55,12 +59,11 @@ class Sidebar extends React.Component {
 
           <div>
             <strong>Attribute</strong>
-            <div ref={this.starRange}></div>
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Sidebar;
+export default Sidebar

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { Box, BoxItem } from '../common/box';
+import { Box, BoxItem } from '../common/box'
 
 function Home() {
   return (
@@ -9,7 +9,7 @@ function Home() {
         Home 1
       </BoxItem>
     </Box>
-  );
+  )
 }
 
-export default Home;
+export default Home

@@ -1,0 +1,41 @@
+.fkg-item {
+  position: relative;
+  display: flex; }
+  .fkg-item .dropdown-toggle {
+    position: absolute;
+    right: 0;
+    top: 0; }
+
+.fkg-item_img-col {
+  flex-basis: 75px;
+  flex-shrink: 0; }
+
+.fkg-item_total-stats {
+  margin-top: .5rem;
+  background-color: blue;
+  color: #fff;
+  text-align: center;
+  padding-top: 4px;
+  padding-bottom: 4px; }
+
+.fkg-item_info-col {
+  flex-basis: 200px;
+  flex-shrink: 0;
+  padding-right: 2rem;
+  padding-left: 1rem; }
+
+.fkg-item_stats-group {
+  display: flex;
+  margin-right: -4px;
+  margin-top: 6px;
+  margin-bottom: 6px; }
+  .fkg-item_stats-group > div {
+    padding: 4px 8px;
+    margin-right: 4px;
+    font-size: 0.85rem;
+    background-color: red;
+    color: #fff; }
+
+.fkg-item_skills-col div {
+  white-space: pre-wrap;
+  margin-bottom: 8px; }

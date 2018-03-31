@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const FKGApi = {
-  all: function all() {
-    return axios.get('data.json');
+  all() {
+    return axios.get('data.json')
   },
-};
+}
 
-export default FKGApi;
+export default FKGApi
