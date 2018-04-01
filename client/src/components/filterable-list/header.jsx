@@ -12,7 +12,12 @@ class Header extends React.PureComponent {
     this.$keyword = $(this.keywordRef.current)
     this.$keyword.autocomplete({
       change: (event, ui) => {
-        console.log(event.target.value);
+        this.props.onValueChange('keyword', event.target.value)
+      },
+      close: (event, ui) => {
+        this.props.onValueChange('keyword', event.target.value)
+      },
+      select: (event, ui) => {
         this.props.onValueChange('keyword', event.target.value)
       }
     })
@@ -20,8 +25,11 @@ class Header extends React.PureComponent {
 
   componentDidUpdate(prevProps, prevState) {
     const { itemNames } = this.props
-    if (itemNames && prevProps.itemNames === null) {
-      console.log("Set autocomplete source");
+    const needUpdate =
+      (itemNames && prevProps.itemNames === null) ||
+      (itemNames && prevProps.itemNames && itemNames.length !== prevProps.itemNames.length)
+    if (needUpdate) {
+      console.log("Set autocomplete source")
       this.$keyword.autocomplete("option", "source", this.props.itemNames)
     }
   }
@@ -31,7 +39,7 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { onSubmit } = this.props
+    const { keyword, onSubmit, onValueChange } = this.props
 
     return (
       <div className="filterable-list_header">
@@ -40,6 +48,8 @@ class Header extends React.PureComponent {
             className="form-control"
             placeholder="Enter keyword..."
             ref={this.keywordRef}
+            value={keyword}
+            onChange={(event) => onValueChange('keyword', event.target.value)}
             autoFocus
           />
 

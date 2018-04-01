@@ -1,7 +1,7 @@
 import React from 'react'
 
 import FilterableList from './filterable-list'
-import { AddableFKGItem } from './fkg-list'
+import { AddableFKGItem } from './fkg-item'
 
 import { FKGApi, MyListApi } from '../api'
 

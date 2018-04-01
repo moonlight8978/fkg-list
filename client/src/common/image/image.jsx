@@ -13,6 +13,11 @@ class Image extends React.PureComponent {
     this.imgRef = React.createRef()
   }
 
+  componentDidUpdate() {
+    console.log("Update lazyload");
+    new lazyload([this.imgRef.current])
+  }
+
   componentDidMount() {
     new lazyload([this.imgRef.current])
   }

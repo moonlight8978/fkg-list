@@ -1,11 +1,11 @@
 import React from 'react'
 
-import './fkg-item.css'
+import './actionable.css'
 
 function actionable(FKGItem, type) {
   return function({ onAction, fkg }) {
     return (
-      <div className="fkg-item">
+      <div className="actionable_dropdown dropdown">
         <FKGItem fkg={fkg} />
 
         <button className="dropdown-toggle" data-toggle="dropdown" type="button"></button>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { RemoveableFKGItem } from './fkg-list'
+import { RemoveableFKGItem } from './fkg-item'
 import FilterableList from './filterable-list'
 
 import { MyListApi } from '../api'

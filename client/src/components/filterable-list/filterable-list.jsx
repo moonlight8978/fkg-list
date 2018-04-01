@@ -2,7 +2,7 @@ import React from 'react'
 
 import Header from './header'
 import Sidebar from './sidebar'
-import { FKGList } from '../fkg-list'
+import FKGList from '../fkg-list'
 
 import './filterable-list.css'
 

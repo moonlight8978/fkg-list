@@ -1,9 +1,7 @@
 import React from 'react'
 
-import withLoading from '../../common/loading'
-import { Box, BoxItem } from '../../common/box'
-
-import './fkg-item.css'
+import withLoading from '../common/loading'
+import { Box, BoxItem } from '../common/box'
 
 class FKGList extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
