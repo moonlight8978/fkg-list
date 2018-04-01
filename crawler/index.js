@@ -1,4 +1,4 @@
-const parseHTML = require('./parser')
+const { parseHTML } = require('./parser')
 const writeJSON = require('./writer')
 
 const fkgs = parseHTML();
