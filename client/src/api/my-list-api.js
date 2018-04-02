@@ -1,11 +1,15 @@
 import FKGApi from './fkg-api'
 
 class MyListApi {
+  // Return API object, fetch myList from localStorage,
+  // if not exists, it creates a new array
+  // myList store fkg ids only
   constructor() {
     const myListString = localStorage.getItem('myList')
     this.myList = myListString ? JSON.parse(myListString) : []
   }
 
+  // Add a fkg to myList
   add(fkg) {
     const i = this.find(fkg.id)
     if (i === -1) {
@@ -15,6 +19,7 @@ class MyListApi {
     }
   }
 
+  // Remove a fkg from myList
   remove(fkg) {
     const i = this.find(fkg.id)
     if (i >= 0) {
@@ -24,16 +29,19 @@ class MyListApi {
     }
   }
 
+  // Save new list to localStorage
   store(newList) {
     this.myList = newList
     const myListString = JSON.stringify(this.myList)
     localStorage.setItem('myList', myListString)
   }
 
+  // Use FKGApi to fetch myList fkgs' data
   all() {
     return FKGApi.where(this.myList)
   }
 
+  // Find fkg in myList
   find(fkgId) {
     return this.myList.findIndex((el) => el === fkgId)
   }
@@ -42,9 +50,10 @@ class MyListApi {
     return this.myList.slice()
   }
 
+  // Export myList into file, return url, fileName
   export() {
     const blob = new Blob(
-      this.myList,
+      [JSON.stringify(this.myList)],
       { type: 'application/json' }
     )
     const url = URL.createObjectURL(blob)
@@ -54,6 +63,21 @@ class MyListApi {
     return {
       blob, url, fileName
     }
+  }
+
+  // Import myList from input file
+  import(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = function(event) {
+        this.myList = event.target.result
+        resolve(event.target.result)
+      }
+      reader.onerror = function(event) {
+        reject(0)
+      }
+      reader.readAsText(file, 'UTF-8')
+    })
   }
 }
 

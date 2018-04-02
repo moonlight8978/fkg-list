@@ -28,7 +28,7 @@ class MyList extends React.Component {
     MyListApi.remove(target)
     const i = this.state.fkgs.findIndex(e => e.id === target.id)
     let fkgs = this.state.fkgs.slice()
-    if (i > 0) {
+    if (i > -1) {
       fkgs.splice(i, 1)
       this.setState({ fkgs })
     }

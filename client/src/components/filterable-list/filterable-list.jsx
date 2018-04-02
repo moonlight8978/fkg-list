@@ -3,6 +3,7 @@ import React from 'react'
 import Header from './header'
 import Sidebar from './sidebar'
 import FKGList from '../fkg-list'
+import sort from '../../utils/sort'
 
 import './filterable-list.css'
 
