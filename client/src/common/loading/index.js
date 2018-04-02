@@ -1,3 +1,3 @@
-import Loading from './loading'
+import withLoading from './loading';
 
-export default Loading
+export default withLoading;

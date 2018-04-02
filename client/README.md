@@ -1,12 +1,8 @@
-# FKG List
+# FKGList Remake
 
 A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/play/flower/) using [React](http://reactjs.org/) (WIP).
 
 ##### Features
-
-* Sort: Hit Point (HP), Attack (攻撃力), Defense (攻撃力) (basic stat, bloomed bonus stats, total stats), Speed (移動力), and All Stats (HP + Attack + Defense)
-
-* Filter: name, active skill name
 
 ##### Requirements
 
@@ -16,11 +12,9 @@ A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/pl
 
 ##### TODO
 
-* Filter by passive skills name
+* Sort
 
-* Add characters to custom list for comparing
-
-* ?
+* Filter (with autocomplete)
 
 ##### Setup
 

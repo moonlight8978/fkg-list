@@ -1,6 +1,6 @@
-const attributes = new Map();
-const loves = new Map();
-const nations = new Map();
+const attributes = new Map()
+const loves = new Map()
+const nations = new Map()
 
 attributes.set("斬", "red")
 attributes.set("打", "blue")
@@ -19,4 +19,4 @@ nations.set("ブロッサムヒル", "blossom_hill")
 nations.set("ロータスレイク", "lotus_lake")
 nations.set("リリィウッド", "lily_wood")
 
-module.exports = { attributes, loves, nations };
+module.exports = { attributes, loves, nations }

@@ -1,0 +1,22 @@
+.image_img-placeholder {
+  width: 100%;
+  position: relative;
+
+  &:after {
+    display: block;
+    content: '';
+  }
+}
+
+.image_ratio-11:after {
+  padding-bottom: 100%;
+}
+
+.image_img-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

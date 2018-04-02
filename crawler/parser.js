@@ -1,40 +1,78 @@
-const fs = require('fs');
-const cheerio = require('cheerio');
+const fs = require('fs')
+const cheerio = require('cheerio')
 
-const parseFKG = require('./parser/raw');
-const FKGAdapter = require('./parser/adapter');
+const { parseFKG, parseFKGShow } = require('./parser/raw')
+const FKGAdapter = require('./parser/adapter')
 
 // Files need to parse
-const files = [
-  './build/★★★★★★.html',
-  './build/★★★★★.html',
-  './build/★★★★.html',
-  './build/★★★.html',
-  './build/★★.html',
-];
+// const files = [
+//   './build/★★★★★★.html',
+//   './build/★★★★★.html',
+//   './build/★★★★.html',
+//   './build/★★★.html',
+//   './build/★★.html',
+// ]
 
-const stars = [6, 5, 4, 3, 2];
+const stars = [2, 3, 4, 5, 6]
 
-// Main function, parse html file
 function parseHTML() {
-  let fkgs = [];
+  let fkgs = []
 
+  const dirList = 'build/lists'
+  let files = fs.readdirSync(dirList)
   files.forEach(function(file, index) {
-    const data = fs.readFileSync(file);
-    const $ = cheerio.load(data);
-
-    const $rows = $('#sortabletable1 > tbody > tr');
-    $rows.each(function(rowIndex) {
-      const raw = parseFKG($, this, stars[index]);
-      const fkg = new FKGAdapter(raw);
-      if (fkg.id) {
-        fkgs.push(fkg);
-        console.log(`File ${index}, Row ${rowIndex}, FKG No.${fkg.id}`);
-      }
-    })
+    const list = parseList(`${dirList}/${file}`, index)
+    fkgs = fkgs.concat(list)
   })
 
-  return fkgs;
+  const dirItem = 'build/items'
+  files = fs.readdirSync(dirItem)
+  files.forEach(function(file, index) {
+    const fkg = parseItem(`${dirItem}/${file}`, index)
+    fixMissingImages(fkg, fkgs)
+    fkgs.push(fkg)
+  })
+
+  return fkgs
 }
 
-module.exports = parseHTML;
+// Main function, parse html file
+function parseList(path, listIndex) {
+  let fkgs = []
+
+  const data = fs.readFileSync(path)
+  const $ = cheerio.load(data)
+
+  const $rows = $('#sortabletable1 > tbody > tr')
+  $rows.each(function(rowIndex) {
+    const raw = parseFKG($, this, stars[listIndex])
+    const fkg = new FKGAdapter(raw)
+    if (fkg.id) {
+      fkgs.push(fkg)
+      console.log(`File ${listIndex}, Row ${rowIndex}, FKG No.${fkg.id}`)
+    }
+  })
+
+  return fkgs
+}
+
+// Parse single item
+function parseItem(path, index) {
+  const data = fs.readFileSync(path)
+  const $ = cheerio.load(data)
+
+  const raw = parseFKGShow($)
+  const fkg = new FKGAdapter(raw)
+
+  console.log(`Item ${index}`)
+
+  return fkg
+}
+
+// fix missing images from 昇華-FKG
+function fixMissingImages(fkg, fkgs) {
+  const lowStar = fkgs.find(e => e.id === fkg.id / 1000)
+  fkg.images = lowStar.images
+}
+
+module.exports = parseHTML

@@ -1,68 +1,99 @@
 import React from 'react'
 
-import Sort from '../../utils/sort'
-import SortOneLevelDeep from '../../utils/sort-one-level-deep'
-import SortTwoLevelDeep from '../../utils/sort-two-level-deep'
-import CompareArray from '../../utils/compare-array'
+import Header from './header'
+import Sidebar from './sidebar'
+import FKGList from '../fkg-list'
+import sort from '../../utils/sort'
 
-import Loading from '../../common/loading'
-import DataView from './data'
-import FilterableListHeader from './header'
+import './filterable-list.css'
 
 class FilterableList extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      searchKeyword: '',
+      keyword: '',
+      items: null,
+      itemNames: null,
+      filter: {
+        attribute: '',
+        minStar: 2,
+        maxStar: 6,
+      },
       sortBy: 'id',
-      reverseSort: false,
     }
 
-    this.timeout = null
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleKeywordChange = this.handleKeywordChange.bind(this)
+    this.handleValueChange = this.handleValueChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleStarChange = this.handleStarChange.bind(this)
   }
 
-  handleKeywordChange(value) {
-    clearTimeout(this.timeout)
-    this.timeout = setTimeout(() => {
-      console.log('keyword update')
-      this.setState({ searchKeyword: value })
-    }, 750)
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.items === null) {
+      return null
+    }
+    const itemNames = nextProps.items.map((item) => item.name)
+    return { items: nextProps.items, itemNames }
   }
 
-  handleChange(property, value) {
-    this.setState({ [`${property}`]: value })
+  handleValueChange(property, newValue) {
+    this.setState({ [`${property}`]: newValue })
+  }
+
+  handleStarChange(min, max) {
+    this.setState({
+      filter: {
+        ...this.state.filter,
+        minStar: min,
+        maxStar: max,
+      },
+    })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+
+    this.setState({ items: null })
+    setTimeout(() => {
+      this.setState({ items: this.props.items })
+    }, 3000)
   }
 
   render() {
-    console.log('render');
-    const { girls } = this.props
+    const { filter, sortBy, items, keyword, itemNames } = this.state
+    const { ListItem, onAction } = this.props
 
-    if (girls) {
-      return (
-        <div>
-          <FilterableListHeader
-            onChange={this.handleChange}
-            onKeywordChange={this.handleKeywordChange}
-            total={0}
-          />
+    return (
+      <div>
+        <Header
+          keyword={keyword}
+          itemNames={itemNames}
+          onValueChange={this.handleValueChange}
+          onSubmit={this.handleSubmit}
+        />
 
-          <DataView
-            girls={girls}
-            reverseSort={this.state.reverseSort}
-            sortBy={this.state.sortBy}
-            searchKeyword={this.state.searchKeyword}
-          />
+        <div className="row">
+          <div className="col-3">
+            <Sidebar
+              {...filter}
+              sortBy={sortBy}
+              onStarChange={this.handleStarChange}
+              onValueChange={this.handleValueChange}
+              onSubmit={this.handleSubmit}
+            />
+          </div>
+
+          <div className="col-9">
+            <FKGList
+              fkgs={items}
+              ListItem={ListItem}
+              onAction={onAction}
+            />
+          </div>
         </div>
-      )
-    } else {
-      return <div></div>
-    }
+      </div>
+    )
   }
 }
 
-export default Loading(FilterableList)
-// export default FilterableList
+export default FilterableList

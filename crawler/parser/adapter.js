@@ -1,5 +1,13 @@
 const { attributes, loves, nations } = require('./const');
 
+if (!Array.prototype.last) {
+  Array.prototype.last = function() {
+    return this[this.length - 1]
+  }
+}
+
+// Create new object from raw data
+// Raw sample data can be found in `sample.js`
 class FKGAdapter {
   constructor(raw) {
     this.id = parseInt(raw.id);
@@ -18,15 +26,14 @@ class FKGAdapter {
 
     this.obtainBy = raw.obtainBy;
 
-    this.skills = {
-      passive: raw.passiveSkills.blooming,
-      active: raw.activeSkill,
-    };
+    this.skill = raw.skill
+
+    this.abilities = raw.abilities.blooming
 
     this.stats = {
-      hitPoint: this.calculateStats(raw.hitPoint.maxLevel[2], raw.hitPoint.bonus[2]),
-      attack: this.calculateStats(raw.attack.maxLevel[2], raw.attack.bonus[2]),
-      defense: this.calculateStats(raw.defense.maxLevel[2], raw.defense.bonus[2]),
+      hp: this.calculateStats(raw.hp.maxLevel.last(), raw.hp.bonus.last()),
+      attack: this.calculateStats(raw.attack.maxLevel.last(), raw.attack.bonus.last()),
+      defense: this.calculateStats(raw.defense.maxLevel.last(), raw.defense.bonus.last()),
       speed: parseInt(raw.speed),
     };
     this.stats.total = this.totalStats();
@@ -43,7 +50,7 @@ class FKGAdapter {
   }
 
   totalStats() {
-    return this.stats.hitPoint + this.stats.attack + this.stats.defense;
+    return this.stats.hp + this.stats.attack + this.stats.defense;
   }
 }
 
