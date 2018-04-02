@@ -82,7 +82,7 @@ class FKGItem extends React.PureComponent {
 
             <div className="fkg-item_stats-group">
               <FKGStat property="hp">
-                {fkg.stats.hitPoint || '???'}
+                {fkg.stats.hp || '???'}
               </FKGStat>
 
               <FKGStat property="attack">
@@ -102,16 +102,16 @@ class FKGItem extends React.PureComponent {
 
         <div className="fkg-item_skills-col">
           <FKGSkills type="skill" show={skillPanel === 0} onClick={this.toggleSkillPanel}>
-            {fkg.skills.active.name}
+            {fkg.skill.name}
             <br />
-            {fkg.skills.active.triggerRate}
+            {fkg.skill.triggerRate}
             <br />
-            {fkg.skills.active.description}
+            {fkg.skill.description}
           </FKGSkills>
 
           <FKGSkills type="ability" show={skillPanel === 1} onClick={this.toggleSkillPanel}>
             <ol style={{ margin: 0, paddingLeft: '20px' }}>
-              {fkg.skills.passive && fkg.skills.passive.map((ability, index) => (
+              {fkg.abilities && fkg.abilities.map((ability, index) => (
                 <li className="fkg-item-ability" key={index}>{ability}</li>
               ))}
             </ol>

@@ -1,3 +1,5 @@
+import FKGApi from './fkg-api'
+
 class MyListApi {
   constructor() {
     const myListString = localStorage.getItem('myList')
@@ -5,16 +7,16 @@ class MyListApi {
   }
 
   add(fkg) {
-    const i = this.find(fkg)
+    const i = this.find(fkg.id)
     if (i === -1) {
       const newList = this.cloneMyList()
-      newList.push(fkg)
+      newList.push(fkg.id)
       this.store(newList)
     }
   }
 
   remove(fkg) {
-    const i = this.find(fkg)
+    const i = this.find(fkg.id)
     if (i >= 0) {
       const newList = this.cloneMyList()
       newList.splice(i, 1)
@@ -28,12 +30,30 @@ class MyListApi {
     localStorage.setItem('myList', myListString)
   }
 
-  find(fkg) {
-    return this.myList.findIndex((el) => el.id === fkg.id)
+  all() {
+    return FKGApi.where(this.myList)
+  }
+
+  find(fkgId) {
+    return this.myList.findIndex((el) => el === fkgId)
   }
 
   cloneMyList() {
     return this.myList.slice()
+  }
+
+  export() {
+    const blob = new Blob(
+      this.myList,
+      { type: 'application/json' }
+    )
+    const url = URL.createObjectURL(blob)
+    const now = new Date()
+    const fileName = `FKGList-MyList-${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}-${now.getHours()}${now.getMinutes()}${now.getSeconds()}.json`
+
+    return {
+      blob, url, fileName
+    }
   }
 }
 

@@ -17,12 +17,21 @@ class MyList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ fkgs: MyListApi.myList })
+    MyListApi.all()
+      .then(fkgs => {
+        console.log(fkgs);
+        this.setState({ fkgs })
+      })
   }
 
   handleRemove(target) {
     MyListApi.remove(target)
-    this.setState({ fkgs: MyListApi.myList })
+    const i = this.state.fkgs.findIndex(e => e.id === target.id)
+    let fkgs = this.state.fkgs.slice()
+    if (i > 0) {
+      fkgs.splice(i, 1)
+      this.setState({ fkgs })
+    }
     console.log(`Removed FKG No.${target.id}`)
   }
 
