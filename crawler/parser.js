@@ -30,7 +30,6 @@ function parseHTML() {
   files.forEach(function(file, index) {
     const fkg = parseItem(`${dirItem}/${file}`, index)
     fixMissingImages(fkg, fkgs)
-    console.log(fkg);
     fkgs.push(fkg)
   })
 
