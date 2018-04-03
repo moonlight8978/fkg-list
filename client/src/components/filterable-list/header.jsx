@@ -12,13 +12,13 @@ class Header extends React.PureComponent {
     this.$keyword = $(this.keywordRef.current)
     this.$keyword.autocomplete({
       change: (event, ui) => {
-        this.props.onValueChange('keyword', event.target.value)
+        this.props.onValueChange('keyword', event)
       },
       close: (event, ui) => {
-        this.props.onValueChange('keyword', event.target.value)
+        this.props.onValueChange('keyword', event)
       },
       select: (event, ui) => {
-        this.props.onValueChange('keyword', event.target.value)
+        this.props.onValueChange('keyword', event)
       }
     })
   }
@@ -49,7 +49,7 @@ class Header extends React.PureComponent {
             placeholder="Enter keyword..."
             ref={this.keywordRef}
             value={keyword}
-            onChange={(event) => onValueChange('keyword', event.target.value)}
+            onChange={(event) => onValueChange('keyword', event)}
             autoFocus
           />
 

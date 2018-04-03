@@ -11,6 +11,7 @@ class MyList extends React.Component {
 
     this.state = {
       fkgs: null,
+      loading: true,
     }
 
     this.handleRemove = this.handleRemove.bind(this)
@@ -20,7 +21,7 @@ class MyList extends React.Component {
     MyListApi.all()
       .then(fkgs => {
         console.log(fkgs);
-        this.setState({ fkgs })
+        this.setState({ fkgs, loading: false })
       })
   }
 
@@ -41,6 +42,7 @@ class MyList extends React.Component {
         items={this.state.fkgs}
         ListItem={RemoveableFKGItem}
         onAction={this.handleRemove}
+        loading={this.state.loading}
       />
     )
   }

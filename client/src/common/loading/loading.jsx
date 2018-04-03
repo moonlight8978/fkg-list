@@ -1,19 +1,21 @@
-import React from 'react';
+import React from 'react'
 
-import loading from './loading.gif';
+import loadingGif from './loading.gif'
+
+import './loading.css'
 
 function withLoading(FKGList) {
-  return function(props) {
-    if (props.fkgs) {
-      return <FKGList {...props} />;
+  return function({ loading, ...rest }) {
+    if (!loading) {
+      return <FKGList {...rest} />
     } else {
       return (
-        <div className="Loading_loading-container">
-          <img src={loading} alt="Loading" />
+        <div className="loading_container">
+          <img src={loadingGif} alt="Loading" />
         </div>
-      );
+      )
     }
-  };
+  }
 }
 
-export default withLoading;
+export default withLoading

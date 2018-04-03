@@ -8,7 +8,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
 
 .navbar-brand {
-  font-size: 1.1rem !important; }
+  font-size: 16px !important; }
   .navbar-brand img,
   .navbar-brand span {
     vertical-align: middle; }
@@ -23,11 +23,12 @@
   flex-grow: 0 !important; }
 
 .nav-link {
-  padding: .75rem 1rem !important;
+  padding: calc(.75rem + 2px) 1rem 0.75rem 1rem !important;
   color: #66757f;
   border-bottom: 2px solid transparent;
   transition: all .3s ease;
-  font-weight: bold; }
+  font-weight: bold;
+  font-size: 14px; }
   .nav-link.active, .nav-link:hover {
     color: #007bff;
     border-color: #007bff; }

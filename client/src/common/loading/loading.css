@@ -1,0 +1,7 @@
+.loading_container {
+  background-color: #fff;
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+  .loading_container img {
+    display: block;
+    margin: auto; }

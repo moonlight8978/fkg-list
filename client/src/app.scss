@@ -11,3 +11,60 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
+.show-more {
+  padding: 0;
+  background-color: transparent;
+
+  &:hover {
+    color: $blue;
+  }
+
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  * {
+    vertical-align: middle;
+  }
+
+  img {
+    height: 30px;
+  }
+
+  span {
+    padding-left: 6px;
+  }
+}
+
+#wrapper {
+  > * {
+    @media (max-width: 575px) {
+      padding: 0;
+    }
+  }
+}
+
+
+// jQuery UI
+
+.ui-slider {
+  border: 1px solid #d3d3d3 !important;
+  background-color: #DDE5F0 !important;
+
+  .ui-slider-handle,
+  .ui-slider-hover,
+  .ui-slider-focus {
+    box-shadow: none !important;
+    background-color: $white !important;
+    border-radius: 50% !important;
+    border: 1px solid #d3d3d3 !important;
+    outline: 0;
+  }
+
+  .ui-slider-range {
+    background-color: $blue;
+  }
+
+
+}

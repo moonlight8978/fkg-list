@@ -11,6 +11,7 @@ class Gallery extends React.Component {
 
     this.state = {
       fkgs: null,
+      loading: true,
     }
 
     this.handleAdd = this.handleAdd.bind(this)
@@ -18,7 +19,7 @@ class Gallery extends React.Component {
 
   componentDidMount() {
     FKGApi.all()
-      .then((response) => this.setState({ fkgs: response.data }))
+      .then((response) => this.setState({ fkgs: response.data, loading: false }))
       .catch(error => console.log(error))
   }
 
@@ -33,6 +34,7 @@ class Gallery extends React.Component {
         items={this.state.fkgs}
         ListItem={AddableFKGItem}
         onAction={this.handleAdd}
+        loading={this.state.loading}
       />
     )
   }

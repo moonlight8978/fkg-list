@@ -4,6 +4,7 @@ import Header from './header'
 import Sidebar from './sidebar'
 import FKGList from '../fkg-list'
 import sort from '../../utils/sort'
+import filter from '../../utils/filter'
 
 import './filterable-list.css'
 
@@ -12,15 +13,23 @@ class FilterableList extends React.Component {
     super(props)
 
     this.state = {
-      keyword: '',
       items: null,
       itemNames: null,
-      filter: {
-        attribute: '',
-        minStar: 2,
-        maxStar: 6,
-      },
-      sortBy: 'id',
+      loading: true,
+
+      keyword: '',
+
+      sortBy: '',
+
+      redAttr: true,
+      blueAttr: true,
+      yellowAttr: true,
+      purpleAttr: true,
+
+      minStar: 2,
+      maxStar: 6,
+
+      obtainBy: '',
     }
 
     this.handleValueChange = this.handleValueChange.bind(this)
@@ -30,37 +39,50 @@ class FilterableList extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.items === null) {
-      return null
+      return { loading: nextProps.loading }
     }
     const itemNames = nextProps.items.map((item) => item.name)
-    return { items: nextProps.items, itemNames }
+    return { items: nextProps.items, itemNames, loading: nextProps.loading }
   }
 
-  handleValueChange(property, newValue) {
-    this.setState({ [`${property}`]: newValue })
+  handleValueChange(property, event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({ [`${property}`]: value })
   }
 
-  handleStarChange(min, max) {
-    this.setState({
-      filter: {
-        ...this.state.filter,
-        minStar: min,
-        maxStar: max,
-      },
-    })
+  handleStarChange(minStar, maxStar) {
+    this.setState({ minStar, maxStar })
   }
 
   handleSubmit(event) {
     event.preventDefault()
 
-    this.setState({ items: null })
-    setTimeout(() => {
-      this.setState({ items: this.props.items })
-    }, 3000)
+    const {
+      sortBy, redAttr, blueAttr, yellowAttr, purpleAttr,
+      minStar, maxStar, obtainBy
+    } = this.state
+
+    console.log({
+      sortBy, redAttr, blueAttr, yellowAttr, purpleAttr,
+      minStar, maxStar, obtainBy
+    });
+    // this.setState({ loading: true })
+    // setTimeout(() => {
+    //   let items = this.state.items.slice()
+    //   items.sort(function(first, second) {
+    //     return second.stats.total - first.stats.total
+    //   })
+    //
+    //   this.setState({
+    //     items,
+    //     loading: false
+    //   })
+    // }, 3000)
   }
 
   render() {
-    const { filter, sortBy, items, keyword, itemNames } = this.state
+    const { items, itemNames, loading, keyword, ...rest } = this.state
     const { ListItem, onAction } = this.props
 
     return (
@@ -72,22 +94,22 @@ class FilterableList extends React.Component {
           onSubmit={this.handleSubmit}
         />
 
-        <div className="row">
-          <div className="col-3">
+        <div className="row" id="wrapper">
+          <div className="col-md-3">
             <Sidebar
-              {...filter}
-              sortBy={sortBy}
+              {...rest}
               onStarChange={this.handleStarChange}
               onValueChange={this.handleValueChange}
               onSubmit={this.handleSubmit}
             />
           </div>
 
-          <div className="col-9">
+          <div className="col-md-9">
             <FKGList
               fkgs={items}
               ListItem={ListItem}
               onAction={onAction}
+              loading={loading}
             />
           </div>
         </div>

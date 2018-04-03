@@ -1,0 +1,12 @@
+@import "styles/color";
+
+.loading_container {
+  background-color: $white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  img {
+    display: block;
+    margin: auto;
+  }
+}
