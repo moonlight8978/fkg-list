@@ -1,7 +1,4 @@
 .loading_container {
-  background-color: #fff;
-  padding-top: 2rem;
-  padding-bottom: 2rem; }
-  .loading_container img {
-    display: block;
-    margin: auto; }
+  text-align: center; }
+  .loading_container svg {
+    font-size: 50px; }

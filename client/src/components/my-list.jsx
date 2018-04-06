@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { RemoveableFKGItem } from './fkg-item'
+import FKGItem from './fkg-item'
+import FKGList from './fkg-list'
 import FilterableList from './filterable-list'
 
 import { MyListApi } from '../api'
@@ -36,13 +37,27 @@ class MyList extends React.Component {
     console.log(`Removed FKG No.${target.id}`)
   }
 
+  renderList = (fkgs, loading) => (
+    <FKGList
+      fkgs={fkgs}
+      loading={loading}
+      renderItem={(fkg) => (
+        <FKGItem fkg={fkg}
+          context="Remove"
+          onClick={this.handleRemove}
+        />
+      )}
+    />
+  )
+
   render() {
+    const { fkgs, loading } = this.state
+
     return (
       <FilterableList
-        items={this.state.fkgs}
-        ListItem={RemoveableFKGItem}
-        onAction={this.handleRemove}
-        loading={this.state.loading}
+        fkgs={fkgs}
+        loading={loading}
+        renderList={this.renderList}
       />
     )
   }

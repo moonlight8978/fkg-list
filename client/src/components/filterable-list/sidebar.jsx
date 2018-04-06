@@ -10,14 +10,17 @@ class Sidebar extends React.PureComponent {
 
   componentDidMount() {
     this.$starRange = $(this.starRange.current)
-    const { minStar, maxStar, onStarChange } = this.props
+    const { minStar, maxStar, onValueChange } = this.props
 
     this.$starRange.slider({
       range: true,
       min: 2,
       max: 6,
       values: [ minStar, maxStar ],
-      slide: (event, ui) => onStarChange(ui.values[0], ui.values[1]),
+      slide: (event, ui) => {
+        onValueChange('minStar', ui.values[0])
+        onValueChange('maxStar', ui.values[1])
+      },
     })
   }
 
@@ -44,10 +47,12 @@ class Sidebar extends React.PureComponent {
             <select
               className="form-control"
               value={sortBy}
-              onChange={event => onValueChange('sortBy', event)}
+              onChange={event => onValueChange('sortBy', event.target.value)}
             >
-              <option value="">Select value</option>
               <option value="id">ID</option>
+              <option value="name">Name</option>
+              <option value="star">Rarity</option>
+              <option value="stats.total">Total stats</option>
               <option value="stats.hp">HP</option>
               <option value="stats.attack">Attack</option>
               <option value="stats.defense">Defense</option>
@@ -68,7 +73,7 @@ class Sidebar extends React.PureComponent {
                 className="custom-control-input"
                 id="redAttr"
                 checked={redAttr}
-                onChange={event => onValueChange('redAttr', event)}
+                onChange={event => onValueChange('redAttr', event.target.checked)}
               />
               <label className="custom-control-label" htmlFor="redAttr">Red</label>
             </div>
@@ -78,7 +83,7 @@ class Sidebar extends React.PureComponent {
                 className="custom-control-input"
                 id="blueAttr"
                 checked={blueAttr}
-                onChange={event => onValueChange('blueAttr', event)}
+                onChange={event => onValueChange('blueAttr', event.target.checked)}
               />
               <label className="custom-control-label" htmlFor="blueAttr">Blue</label>
             </div>
@@ -88,7 +93,7 @@ class Sidebar extends React.PureComponent {
                 className="custom-control-input"
                 id="yellowAttr"
                 checked={yellowAttr}
-                onChange={event => onValueChange('yellowAttr', event)}
+                onChange={event => onValueChange('yellowAttr', event.target.checked)}
               />
               <label className="custom-control-label" htmlFor="yellowAttr">Yellow</label>
             </div>
@@ -98,7 +103,7 @@ class Sidebar extends React.PureComponent {
                 className="custom-control-input"
                 id="purpleAttr"
                 checked={purpleAttr}
-                onChange={event => onValueChange('purpleAttr', event)}
+                onChange={event => onValueChange('purpleAttr', event.target.checked)}
               />
               <label className="custom-control-label" htmlFor="purpleAttr">Purple</label>
             </div>
@@ -123,7 +128,7 @@ class Sidebar extends React.PureComponent {
             <select
               className="form-control"
               value={obtainBy}
-              onChange={event => onValueChange('obtainBy', event)}
+              onChange={event => onValueChange('obtainBy', event.target.value)}
             >
               <option value="">Select value</option>
               <option value="gacha">プレミアムガチャ</option>

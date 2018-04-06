@@ -1,7 +1,8 @@
 import React from 'react'
 
 import FilterableList from './filterable-list'
-import { AddableFKGItem } from './fkg-item'
+import FKGItem from './fkg-item'
+import FKGList from './fkg-list'
 
 import { FKGApi, MyListApi } from '../api'
 
@@ -28,13 +29,27 @@ class Gallery extends React.Component {
     console.log(`Added FKG No.${fkg.id}`)
   }
 
+  renderList = (fkgs, loading) => (
+    <FKGList
+      fkgs={fkgs}
+      loading={loading}
+      renderItem={(fkg) => (
+        <FKGItem fkg={fkg}
+          context="Add"
+          onClick={this.handleAdd}
+        />
+      )}
+    />
+  )
+
   render() {
+    const { fkgs, loading } = this.state
+
     return (
       <FilterableList
-        items={this.state.fkgs}
-        ListItem={AddableFKGItem}
-        onAction={this.handleAdd}
-        loading={this.state.loading}
+        fkgs={fkgs}
+        loading={loading}
+        renderList={this.renderList}
       />
     )
   }

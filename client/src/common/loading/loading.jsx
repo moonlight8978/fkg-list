@@ -1,7 +1,5 @@
 import React from 'react'
 
-import loadingGif from './loading.gif'
-
 import './loading.css'
 
 function withLoading(FKGList) {
@@ -11,7 +9,7 @@ function withLoading(FKGList) {
     } else {
       return (
         <div className="loading_container">
-          <img src={loadingGif} alt="Loading" />
+          <i className="fas fa-spinner fa-pulse"></i>
         </div>
       )
     }

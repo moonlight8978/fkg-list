@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import fontawesome from '@fortawesome/fontawesome'
+import solid from '@fortawesome/fontawesome-free-solid'
 
 import App from './app'
 
@@ -13,4 +15,5 @@ import 'jquery-ui/themes/base/all.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'animate.css/animate.min.css'
 
+fontawesome.library.add(solid)
 ReactDOM.render(<App />, document.getElementById('root'))

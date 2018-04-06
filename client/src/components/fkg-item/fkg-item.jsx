@@ -1,6 +1,5 @@
 import React from 'react'
 
-import actionable from './actionable'
 import Image from '../../common/image'
 import FKGStat from './fkg-stat'
 import FKGSkills from './fkg-skills'
@@ -53,79 +52,85 @@ class FKGItem extends React.PureComponent {
   }
 
   render() {
-    const { fkg } = this.props
+    const { fkg, onClick, context } = this.props
     const { imageIndex, skillPanel } = this.state
     const attributeIcon = icon[fkg.attribute]
 
     return (
-      <div className="fkg-item">
-        <div className="fkg-item_main-info-col">
-          <div className="fkg-item_img-col">
-            <div onClick={this.changeImage}>
-              <Image src={fkg.images[imageIndex]} name={fkg.name} />
-            </div>
-            <div className="fkg-item_total-stats">{fkg.stats.total || '???'}</div>
-          </div>
-
-          <div className="fkg-item_info-col">
-            <div className="fkg-item_info-header">
-              <div className="fkg-item_attribute">
-                <Image src={attributeIcon} name={fkg.raw.attribute} />
+      <div className="actionable_dropdown dropdown">
+        <div>
+          <div className="fkg-item">
+            <div className="fkg-item_main-info-col">
+              <div className="fkg-item_img-col">
+                <div onClick={this.changeImage}>
+                  <Image src={fkg.images[imageIndex]} name={fkg.name} />
+                </div>
+                <div className="fkg-item_total-stats">{fkg.stats.total || '???'}</div>
               </div>
 
-              <div className="fkg-item_name">
-                <strong>{fkg.name}</strong>
+              <div className="fkg-item_info-col">
+                <div className="fkg-item_info-header">
+                  <div className="fkg-item_attribute">
+                    <Image src={attributeIcon} name={fkg.raw.attribute} />
+                  </div>
+
+                  <div className="fkg-item_name">
+                    <strong>{fkg.name}</strong>
+                    <br />
+                    [バーション]
+                  </div>
+                </div>
+
+                <div className="fkg-item_stats-group">
+                  <FKGStat property="hp">
+                    {fkg.stats.hp || '???'}
+                  </FKGStat>
+
+                  <FKGStat property="attack">
+                    {fkg.stats.attack || '???'}
+                  </FKGStat>
+
+                  <FKGStat property="defense">
+                    {fkg.stats.defense || '???'}
+                  </FKGStat>
+
+                  <FKGStat property="speed">
+                    {fkg.stats.speed || '???'}
+                  </FKGStat>
+                </div>
+              </div>
+            </div>
+
+            <div className="fkg-item_skills-col">
+              <FKGSkills type="skill" show={skillPanel === 0} onClick={this.toggleSkillPanel}>
+                {fkg.skill.name}
                 <br />
-                [バーション]
-              </div>
-            </div>
+                {fkg.skill.triggerRate}
+                <br />
+                {fkg.skill.description}
+              </FKGSkills>
 
-            <div className="fkg-item_stats-group">
-              <FKGStat property="hp">
-                {fkg.stats.hp || '???'}
-              </FKGStat>
-
-              <FKGStat property="attack">
-                {fkg.stats.attack || '???'}
-              </FKGStat>
-
-              <FKGStat property="defense">
-                {fkg.stats.defense || '???'}
-              </FKGStat>
-
-              <FKGStat property="speed">
-                {fkg.stats.speed || '???'}
-              </FKGStat>
+              <FKGSkills type="ability" show={skillPanel === 1} onClick={this.toggleSkillPanel}>
+                <ol style={{ margin: 0, paddingLeft: '20px' }}>
+                  {fkg.abilities && fkg.abilities.map((ability, index) => (
+                    <li className="fkg-item-ability" key={index}>{ability}</li>
+                  ))}
+                </ol>
+              </FKGSkills>
             </div>
           </div>
         </div>
 
-        <div className="fkg-item_skills-col">
-          <FKGSkills type="skill" show={skillPanel === 0} onClick={this.toggleSkillPanel}>
-            {fkg.skill.name}
-            <br />
-            {fkg.skill.triggerRate}
-            <br />
-            {fkg.skill.description}
-          </FKGSkills>
+        <button className="dropdown-toggle" data-toggle="dropdown" type="button"></button>
 
-          <FKGSkills type="ability" show={skillPanel === 1} onClick={this.toggleSkillPanel}>
-            <ol style={{ margin: 0, paddingLeft: '20px' }}>
-              {fkg.abilities && fkg.abilities.map((ability, index) => (
-                <li className="fkg-item-ability" key={index}>{ability}</li>
-              ))}
-            </ol>
-          </FKGSkills>
+        <div className="dropdown-menu dropdown-menu-right">
+          <button type="button" className="dropdown-item" onClick={() => onClick(fkg)} >
+            {context} {fkg.name}
+          </button>
         </div>
       </div>
     )
   }
 }
 
-const RemoveableFKGItem = actionable(FKGItem, 'remove')
-const AddableFKGItem = actionable(FKGItem, 'add')
-
-export {
-  AddableFKGItem,
-  RemoveableFKGItem,
-}
+export default FKGItem

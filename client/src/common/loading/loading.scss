@@ -1,12 +1,9 @@
 @import "styles/color";
 
 .loading_container {
-  background-color: $white;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  text-align: center;
 
-  img {
-    display: block;
-    margin: auto;
+  svg {
+    font-size: 50px;
   }
 }

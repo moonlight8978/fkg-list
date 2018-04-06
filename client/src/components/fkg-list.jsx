@@ -2,7 +2,6 @@ import React from 'react'
 
 import withLoading from '../common/loading'
 import { Box, BoxItem } from '../common/box'
-import loadingGif from './loading.gif'
 
 class FKGList extends React.Component {
   state = {
@@ -37,9 +36,9 @@ class FKGList extends React.Component {
   render() {
     console.log("list was rendered")
     const perPage = 20
-    const { fkgs, ListItem, onAction } = this.props
+    const { fkgs, renderItem } = this.props
     const { page } = this.state
-    const end = page * perPage - 1
+    const end = page * perPage
     const lastPage = Math.ceil(fkgs.length / perPage)
 
     const paginatedFKGs = fkgs.slice(0, end)
@@ -49,16 +48,14 @@ class FKGList extends React.Component {
       <Box hasItems>
         {paginatedFKGs.map((fkg) =>
           <BoxItem actionable key={fkg.id}>
-            <ListItem
-              fkg={fkg}
-              onAction={onAction}
-            />
+            {renderItem(fkg)}
           </BoxItem>
         )}
+
         {(page !== lastPage) && (
           <BoxItem key="loading">
-            <button className="show-more btn" onClick={this.increasePage.bind(this)}>
-              <img className="img-fluid" src={loadingGif} alt="loading"/>
+            <button className="show-more btn p-0" onClick={this.increasePage.bind(this)}>
+              <i className="fas fa-spinner fa-pulse"></i>
               <span>Show more</span>
             </button>
           </BoxItem>

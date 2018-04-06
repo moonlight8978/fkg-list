@@ -1,6 +1,19 @@
 @import 'styles/color';
 @import "styles/responsive";
 
+.actionable_dropdown {
+  position: relative;
+
+  .dropdown-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    background-color: transparent;
+  }
+}
+
+
 .fkg-item {
   display: flex;
   flex-wrap: wrap;

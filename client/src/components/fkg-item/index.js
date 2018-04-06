@@ -1,6 +1,3 @@
-import { AddableFKGItem, RemoveableFKGItem } from './fkg-item'
+import FKGItem from './fkg-item'
 
-export {
-  AddableFKGItem,
-  RemoveableFKGItem
-}
+export default FKGItem
