@@ -1,7 +1,10 @@
 import React from 'react'
+import MediaQuery from 'react-responsive'
 
 import Header from './header'
 import Sidebar from './sidebar'
+import Nav from './nav'
+import NavBottom from '../../layout/nav-bottom'
 import sort from '../../utils/sort'
 import filter from '../../utils/filter'
 
@@ -69,26 +72,36 @@ class FilterableList extends React.Component {
 
     return (
       <div>
-        <Header
-          keyword={keyword}
-          itemNames={itemNames}
-          onValueChange={this.handleValueChange}
-          onSubmit={this.handleSubmit}
-        />
+        <MediaQuery query="(min-width: 992px)">
+          <Header
+            keyword={keyword}
+            itemNames={itemNames}
+            onValueChange={this.handleValueChange}
+            onSubmit={this.handleSubmit}
+          />
+        </MediaQuery>
 
         <div className="row" id="wrapper">
-          <div className="col-md-3">
-            <Sidebar
-              {...rest}
-              onValueChange={this.handleValueChange}
-              onSubmit={this.handleSubmit}
-            />
-          </div>
+          <MediaQuery query="(min-width: 992px)">
+            <div className="col-lg-3">
+              <Sidebar
+                {...rest}
+                onValueChange={this.handleValueChange}
+                onSubmit={this.handleSubmit}
+              />
+            </div>
+          </MediaQuery>
 
-          <div className="col-md-9">
+          <div className="col-12 col-lg-9">
             {renderList(fkgs, loading)}
           </div>
         </div>
+        
+        <MediaQuery query="(max-width: 991px)">
+          <NavBottom
+            render={(props) => <Nav {...props} onSubmit={this.handleSubmit} />}
+          />
+        </MediaQuery>
       </div>
     )
   }

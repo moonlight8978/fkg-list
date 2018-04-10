@@ -1,0 +1,18 @@
+@import "styles/responsive";
+@import "styles/color";
+@import "styles/font";
+
+.nav-bottom {
+  position: fixed;
+  top: calc(100% - 40px);
+  z-index: 888;
+  width: 100%;
+  background-color: $gray;
+  transition: all .5s ease;
+  height: 100vh;
+  transform: translateZ(0);
+
+  &.active {
+    top: 0;
+  }
+}

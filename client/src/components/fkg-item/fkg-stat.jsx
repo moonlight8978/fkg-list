@@ -13,8 +13,9 @@ function FKGStat({ property, children }) {
 
   return (
     <div className={wrapperClass}>
-      <span>{title}</span>
-      <div>{children}</div>
+      <div>
+        {children}
+      </div>
     </div>
   )
 }

@@ -90,12 +90,12 @@ class FKGItem extends React.PureComponent {
                     {fkg.stats.attack || '???'}
                   </FKGStat>
 
-                  <FKGStat property="defense">
-                    {fkg.stats.defense || '???'}
-                  </FKGStat>
-
                   <FKGStat property="speed">
                     {fkg.stats.speed || '???'}
+                  </FKGStat>
+
+                  <FKGStat property="defense">
+                    {fkg.stats.defense || '???'}
                   </FKGStat>
                 </div>
               </div>

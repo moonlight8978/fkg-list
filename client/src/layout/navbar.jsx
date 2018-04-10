@@ -10,7 +10,7 @@ import './navbar.css';
 function Navbar() {
   return (
     <div className="navbar-outer">
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-sm">
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img src={logo} alt={appName} />

@@ -1,15 +1,18 @@
 .box {
-  background-color: #fff;
   padding: 1rem;
   border: 1px solid #e6ecf0; }
   .box.has-items {
     padding: 0; }
-
-.box-item {
-  padding: 1rem; }
-  .box-item:not(:last-child) {
-    border-bottom: 1px solid #e6ecf0; }
-  .box-item.box-item-action {
-    transition: background-color 0.15s ease; }
-    .box-item.box-item-action:hover {
-      background-color: #f5f8fa; }
+  .box .box-item {
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem; }
+    @media (min-width: 576px) {
+      .box .box-item {
+        margin-bottom: 0; } }
+    .box .box-item:not(:last-child) {
+      border-bottom: 1px solid #e6ecf0; }
+    .box .box-item.box-item-action {
+      transition: background-color 0.15s ease; }
+      .box .box-item.box-item-action:hover {
+        background-color: #f5f8fa; }

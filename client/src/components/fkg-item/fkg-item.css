@@ -12,24 +12,35 @@
   flex-wrap: wrap; }
 
 .fkg-item_main-info-col {
-  display: flex; }
+  display: flex;
+  width: 100%; }
   @media (min-width: 768px) {
     .fkg-item_main-info-col {
       flex: 0 0 45%; } }
+  @media (min-width: 1200px) {
+    .fkg-item_main-info-col {
+      flex: 0 0 40%; } }
   .fkg-item_main-info-col .fkg-item_img-col {
     flex: 0 0 75px; }
   .fkg-item_main-info-col .fkg-item_info-col {
     padding: 0 24px 0 12px;
     flex: 0 0 calc(100% - 75px); }
 
-@media (min-width: 768px) {
-  .fkg-item_skills-col {
-    flex: 0 0 55%; } }
-
-.fkg-item_skills-col .fkg-item_panels {
-  display: none; }
-  .fkg-item_skills-col .fkg-item_panels.active {
-    display: block; }
+.fkg-item_skills-col {
+  margin-top: 16px;
+  width: 100%; }
+  @media (min-width: 768px) {
+    .fkg-item_skills-col {
+      margin-top: 0;
+      flex: 0 0 55%; } }
+  @media (min-width: 1200px) {
+    .fkg-item_skills-col {
+      margin-top: 0;
+      flex: 0 0 60%; } }
+  .fkg-item_skills-col .fkg-item_panels {
+    display: none; }
+    .fkg-item_skills-col .fkg-item_panels.active {
+      display: block; }
 
 .fkg-item_total-stats {
   margin-top: 8px;
@@ -43,7 +54,7 @@
 .fkg-item_info-header {
   display: flex;
   align-items: center;
-  margin-bottom: 6px; }
+  margin-bottom: 8px; }
   .fkg-item_info-header .fkg-item_attribute {
     width: 30px; }
   .fkg-item_info-header .fkg-item_name {
@@ -57,34 +68,22 @@
 
 .fkg-item_stat {
   flex: 0 0 50%;
-  padding-bottom: 8px; }
-  .fkg-item_stat span {
-    width: 100px;
-    text-align: center;
-    display: block;
-    margin-bottom: 4px;
-    line-height: 1.5; }
+  margin-bottom: 8px; }
   .fkg-item_stat div {
-    width: 100px;
-    text-align: center;
-    padding: 4px 0;
-    color: #fff; }
-
-.fkg-item_hp div {
-  background-image: linear-gradient(to top, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0.2)); }
-
-.fkg-item_attack div {
-  background-image: linear-gradient(to top, rgba(255, 106, 0, 0.8), rgba(255, 106, 0, 0.8), rgba(255, 106, 0, 0.2)); }
-
-.fkg-item_defense div {
-  background-image: linear-gradient(to top, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0.2)); }
-
-.fkg-item_speed div {
-  background-image: linear-gradient(to top, rgba(127, 0, 255, 0.8), rgba(127, 0, 255, 0.8), rgba(127, 0, 255, 0.2)); }
-
-.fkg-item_attack *,
-.fkg-item_speed * {
-  margin-left: auto; }
+    padding-left: 24px;
+    padding-right: 8px;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    background-size: 14px;
+    margin-left: auto; }
+  .fkg-item_stat.fkg-item_hp div {
+    background-image: url("/assets/hp.png"); }
+  .fkg-item_stat.fkg-item_attack div {
+    background-image: url("/assets/attack.png"); }
+  .fkg-item_stat.fkg-item_defense div {
+    background-image: url("/assets/defense.png"); }
+  .fkg-item_stat.fkg-item_speed div {
+    background-image: url("/assets/speed.png"); }
 
 .fkg-item_skill-header {
   display: flex;

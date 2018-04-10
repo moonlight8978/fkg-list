@@ -1,0 +1,11 @@
+.nav-bottom {
+  position: fixed;
+  top: calc(100% - 40px);
+  z-index: 888;
+  width: 100%;
+  background-color: #e6ecf0;
+  transition: all .5s ease;
+  height: 100vh;
+  transform: translateZ(0); }
+  .nav-bottom.active {
+    top: 0; }
