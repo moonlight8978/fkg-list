@@ -3,6 +3,7 @@ import React from 'react'
 import { MyListApi } from '../api'
 import { Box, BoxItem } from '../common/box'
 import download from '../utils/download'
+import Layout from '../layout/layout'
 
 class Extra extends React.PureComponent {
   constructor(props) {
@@ -38,46 +39,48 @@ class Extra extends React.PureComponent {
     const importFileName = importFile ? importFile.name : 'Choose file'
 
     return (
-      <Box hasItems>
-        <BoxItem>
-          <h6>
-            Import MyList
-          </h6>
+      <Layout>
+        <Box hasItems>
+          <BoxItem>
+            <h6>
+              Import MyList
+            </h6>
 
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <div className="custom-file">
-                <input
-                  type="file"
-                  className="custom-file-input"
-                  onChange={this.handleImportFileChange}
-                />
-                <label
-                  className="custom-file-label"
-                  htmlFor="customFileLang"
-                >
-                  {importFileName}
-                </label>
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <div className="custom-file">
+                  <input
+                    type="file"
+                    className="custom-file-input"
+                    onChange={this.handleImportFileChange}
+                  />
+                  <label
+                    className="custom-file-label"
+                    htmlFor="customFileLang"
+                  >
+                    {importFileName}
+                  </label>
+                </div>
               </div>
-            </div>
 
-            <button className="btn btn-primary">Import</button>
-          </form>
-        </BoxItem>
+              <button className="btn btn-primary">Import</button>
+            </form>
+          </BoxItem>
 
-        <BoxItem>
-          <h6>
-            Export MyList
-          </h6>
+          <BoxItem>
+            <h6>
+              Export MyList
+            </h6>
 
-          <button
-            onClick={this.export}
-            className="btn btn-primary"
-          >
-            Export
-          </button>
-        </BoxItem>
-      </Box>
+            <button
+              onClick={this.export}
+              className="btn btn-primary"
+            >
+              Export
+            </button>
+          </BoxItem>
+        </Box>
+      </Layout>
     )
   }
 }

@@ -1,6 +1,11 @@
 import React from 'react'
 import $ from 'jquery'
 
+import purpleIcon from '../fkg-item/images/purple.png'
+import yellowIcon from '../fkg-item/images/yellow.png'
+import redIcon from '../fkg-item/images/red.png'
+import blueIcon from '../fkg-item/images/blue.png'
+
 class Sidebar extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -75,7 +80,10 @@ class Sidebar extends React.PureComponent {
                 checked={redAttr}
                 onChange={event => onValueChange('redAttr', event.target.checked)}
               />
-              <label className="custom-control-label" htmlFor="redAttr">Red</label>
+              <label className="custom-control-label" htmlFor="redAttr">
+                <img src={redIcon} attr="剣" />
+                Red
+              </label>
             </div>
             <div className="custom-control custom-checkbox">
               <input
@@ -85,7 +93,10 @@ class Sidebar extends React.PureComponent {
                 checked={blueAttr}
                 onChange={event => onValueChange('blueAttr', event.target.checked)}
               />
-              <label className="custom-control-label" htmlFor="blueAttr">Blue</label>
+              <label className="custom-control-label" htmlFor="blueAttr">
+                <img src={blueIcon} attr="剣" />
+                Blue
+              </label>
             </div>
             <div className="custom-control custom-checkbox">
               <input
@@ -95,7 +106,10 @@ class Sidebar extends React.PureComponent {
                 checked={yellowAttr}
                 onChange={event => onValueChange('yellowAttr', event.target.checked)}
               />
-              <label className="custom-control-label" htmlFor="yellowAttr">Yellow</label>
+              <label className="custom-control-label" htmlFor="yellowAttr">
+                <img src={yellowIcon} attr="剣" />
+                Yellow
+              </label>
             </div>
             <div className="custom-control custom-checkbox">
               <input
@@ -105,7 +119,10 @@ class Sidebar extends React.PureComponent {
                 checked={purpleAttr}
                 onChange={event => onValueChange('purpleAttr', event.target.checked)}
               />
-              <label className="custom-control-label" htmlFor="purpleAttr">Purple</label>
+              <label className="custom-control-label" htmlFor="purpleAttr">
+                <img src={purpleIcon} attr="剣" />
+                Purple
+              </label>
             </div>
           </div>
 

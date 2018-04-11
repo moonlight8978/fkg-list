@@ -5,8 +5,7 @@
     padding: 0; }
   .box .box-item {
     background-color: #fff;
-    padding: 1rem;
-    margin-bottom: 1rem; }
+    padding: 1rem; }
     @media (min-width: 576px) {
       .box .box-item {
         margin-bottom: 0; } }

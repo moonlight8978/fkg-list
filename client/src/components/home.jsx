@@ -1,14 +1,19 @@
 import React from 'react'
 
 import { Box, BoxItem } from '../common/box'
+import Layout from '../layout/layout'
 
 function Home() {
   return (
-    <Box hasItems>
-      <BoxItem>
-        Home 1
-      </BoxItem>
-    </Box>
+    <Layout>
+      <Box hasItems>
+        <BoxItem>
+          Simple FKG list view using
+          <span>&nbsp;</span>
+          <a href="https://reactjs.org/" alt="React">React</a>
+        </BoxItem>
+      </Box>
+    </Layout>
   )
 }
 

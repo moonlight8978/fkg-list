@@ -2,10 +2,20 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
 
 .navbar {
-  justify-content: space-between !important;
   padding: 0 !important;
   background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25); }
+  .navbar .navbar-collapse {
+    margin: auto; }
+  @media (min-width: 576px) {
+    .navbar {
+      justify-content: space-between !important; }
+      .navbar .navbar-collapse {
+        margin-left: auto;
+        margin-right: 0; } }
+  .navbar.navbar-expand > .container {
+    padding-left: 15px;
+    padding-right: 15px; }
 
 .navbar-brand {
   font-size: 16px !important; }
@@ -23,7 +33,7 @@
   flex-grow: 0 !important; }
 
 .nav-link {
-  padding: calc(.75rem + 2px) 1rem 0.75rem 1rem !important;
+  padding: calc(.75rem + 2px) 0.75rem 0.75rem 0.75rem !important;
   color: #66757f;
   border-bottom: 2px solid transparent;
   transition: all .3s ease;

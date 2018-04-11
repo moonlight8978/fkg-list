@@ -3,16 +3,69 @@
 @import "styles/font";
 
 .nav-bottom {
-  position: fixed;
-  top: calc(100% - 40px);
-  z-index: 888;
   width: 100%;
   background-color: $gray;
-  transition: all .5s ease;
-  height: 100vh;
-  transform: translateZ(0);
+  transition: all .3s ease;
+  position: absolute;
+  top: calc(100% - 45px);
+  left: 0;
+  z-index: 888;
+  height: 100%;
+  box-shadow: 0 1px 5px 1px #888;
+
+  .nav-bottom_keyword-group {
+    display: flex;
+
+    .form-control {
+      border: 0;
+      border-radius: 0;
+      font-size: $font-size-primary;
+      padding: 12px 1rem;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+    }
+
+    span,
+    svg {
+      display: none;
+    }
+  }
+
+  .nav-bottom_actions-and-filter {
+    width: 320px;
+    margin: auto;
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    .nav-bottom_actions {
+      padding: 1rem;
+      text-align: center;
+
+      .btn {
+        // background-color: transparent;
+        // color: $black;
+        // border: 0;
+        margin: 0 8px;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .nav-bottom_filter {
+      padding: 1rem;
+      border-top: 1px solid $border-color;
+    }
+  }
 
   &.active {
     top: 0;
+
+    .nav-bottom_actions-and-filter {
+      opacity: 1;
+    }
   }
 }

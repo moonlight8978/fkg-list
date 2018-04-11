@@ -2,7 +2,6 @@
 @import "styles/responsive";
 
 .box {
-
   padding: 1rem;
   border: 1px solid $gray;
 
@@ -13,7 +12,6 @@
   .box-item {
     background-color: $white;
     padding: 1rem;
-    margin-bottom: 1rem;
 
     @include responsive(sm) {
       margin-bottom: 0;
