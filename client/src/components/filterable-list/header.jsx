@@ -1,5 +1,6 @@
 import React from 'react'
-import $ from 'jquery'
+
+const $ = window.$
 
 class Header extends React.PureComponent {
   constructor(props) {

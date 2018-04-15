@@ -1,10 +1,11 @@
 import React from 'react'
-import $ from 'jquery'
 
 import purpleIcon from '../fkg-item/images/purple.png'
 import yellowIcon from '../fkg-item/images/yellow.png'
 import redIcon from '../fkg-item/images/red.png'
 import blueIcon from '../fkg-item/images/blue.png'
+
+const $ = window.$
 
 class Sidebar extends React.PureComponent {
   constructor(props) {

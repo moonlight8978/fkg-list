@@ -1,10 +1,10 @@
 import React from 'react'
 
-import lazyload from 'lazyload'
-
 import placeholder from './placeholder.png'
 
 import './image.css'
+
+const lazyload = window.lazyload
 
 class Image extends React.PureComponent {
   constructor(props) {
