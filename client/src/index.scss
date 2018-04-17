@@ -1,14 +1,19 @@
-@import "styles/color";
+@import "styles/variables";
 @import "styles/font";
+
+:focus {
+  outline: none;
+  box-shadow: none;
+}
 
 html {
   height: 100%;
 }
 
 body {
-  background-color: $gray !important;
-  font-size: 14px !important;
-  font-family: 'Roboto', 'メイリオ', 'Meiryo' !important;
+  background-color: $gray;
+  font-size: 14px;
+  font-family: 'Roboto', 'メイリオ', 'Meiryo';
   height: 100%;
 
   #root, .app-container {
@@ -24,13 +29,9 @@ body {
   }
 }
 
-.btn {
-  font-size: $font-size-primary !important;
-}
-
 .btn-edge {
-  padding: .5rem 1.5rem !important;
-  border-radius: 50px !important;
+  padding: .5rem 1.5rem;
+  border-radius: 50px;
 }
 
 .show-more {
@@ -67,19 +68,41 @@ body {
 }
 
 
+
+// Override Libs
+//
+//
+// Bootstrap
+.btn {
+  font-size: $font-size-primary;
+  box-shadow: none !important;
+}
+
+.form-control {
+  font-size: $font-size-primary;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+
+
+//
+//
 // jQuery UI
 
 .ui-slider {
-  border: 1px solid #d3d3d3 !important;
-  background-color: #DDE5F0 !important;
+  border: 1px solid #d3d3d3;
+  background-color: #DDE5F0;
 
   .ui-slider-handle,
   .ui-slider-hover,
   .ui-slider-focus {
-    box-shadow: none !important;
-    background-color: $white !important;
-    border-radius: 50% !important;
-    border: 1px solid #d3d3d3 !important;
+    box-shadow: none;
+    background-color: $white;
+    border-radius: 50%;
+    border: 1px solid #d3d3d3;
     outline: 0;
   }
 

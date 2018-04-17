@@ -1,8 +1,8 @@
 import React from 'react'
 
-import FilterableList from './filterable-list'
-import FKGItem from './fkg-item'
-import FKGList from './fkg-list'
+import FilterableList from '../components/filterable-list'
+import FKGItem from '../components/fkg-item'
+import FKGList from '../components/fkg-list'
 
 import { FKGApi, MyListApi } from '../api'
 

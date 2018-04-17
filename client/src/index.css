@@ -1,11 +1,15 @@
 @charset "UTF-8";
+:focus {
+  outline: none;
+  box-shadow: none; }
+
 html {
   height: 100%; }
 
 body {
-  background-color: #e6ecf0 !important;
-  font-size: 14px !important;
-  font-family: 'Roboto', 'メイリオ', 'Meiryo' !important;
+  background-color: #e6ecf0;
+  font-size: 14px;
+  font-family: 'Roboto', 'メイリオ', 'Meiryo';
   height: 100%; }
   body #root, body .app-container {
     height: 100%; }
@@ -14,12 +18,9 @@ body {
     body #root .page-content, body .app-container .page-content {
       padding-bottom: 1rem; }
 
-.btn {
-  font-size: 14px !important; }
-
 .btn-edge {
-  padding: .5rem 1.5rem !important;
-  border-radius: 50px !important; }
+  padding: .5rem 1.5rem;
+  border-radius: 50px; }
 
 .show-more {
   padding: 0;
@@ -39,16 +40,25 @@ body {
   #wrapper > * {
     padding: 0; } }
 
+.btn {
+  font-size: 14px;
+  box-shadow: none !important; }
+
+.form-control {
+  font-size: 14px; }
+  .form-control:focus {
+    box-shadow: none; }
+
 .ui-slider {
-  border: 1px solid #d3d3d3 !important;
-  background-color: #DDE5F0 !important; }
+  border: 1px solid #d3d3d3;
+  background-color: #DDE5F0; }
   .ui-slider .ui-slider-handle,
   .ui-slider .ui-slider-hover,
   .ui-slider .ui-slider-focus {
-    box-shadow: none !important;
-    background-color: #fff !important;
-    border-radius: 50% !important;
-    border: 1px solid #d3d3d3 !important;
+    box-shadow: none;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #d3d3d3;
     outline: 0; }
   .ui-slider .ui-slider-range {
     background-color: #007bff; }
