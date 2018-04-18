@@ -1,0 +1,19 @@
+.select-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .select-container * {
+    margin: 0 !important; }
+  .select-container strong {
+    flex: 0 0 auto; }
+  .select-container .form-control {
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 3px 16px 3px 0;
+    height: auto !important;
+    width: auto !important; }
+    .select-container .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 1px 0 0 #007bff; }

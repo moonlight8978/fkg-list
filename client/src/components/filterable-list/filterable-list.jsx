@@ -4,8 +4,10 @@ import MediaQuery from 'react-responsive'
 import Header from './header'
 import Sidebar from './sidebar'
 import Nav from './nav'
+import Layout from '../../layout/layout'
 import NavBottom from '../../layout/nav-bottom'
-import NavBar from '../../layout/navbar'
+import FKGList from '../fkg-list'
+import { BoxItem } from '../../common/box'
 import sort from '../../utils/sort'
 import filter from '../../utils/filter'
 
@@ -63,70 +65,68 @@ class FilterableList extends React.Component {
     setTimeout(() => {
       this.setState({ fkgs, itemNames, loading: false })
     }, 1000);
-
   }
 
   render() {
     const { fkgs, itemNames, loading, filter } = this.state
     const { keyword, ...rest } = filter
-    const { renderList } = this.props
+    const { renderItem } = this.props
 
     return (
-      <div className="app-container">
-        <div className="filterable-list_container">
-          <div className="filterable-list_listnav">
-            <NavBar />
+      <Layout hasNavBottom>
+        <MediaQuery query="(min-width: 992px)">
+          <Header
+            keyword={keyword}
+            itemNames={itemNames}
+            onValueChange={this.handleValueChange}
+            onSubmit={this.handleSubmit}
+          />
+        </MediaQuery>
 
-            <div className="container page-content">
-              <MediaQuery query="(min-width: 992px)">
-                <Header
-                  keyword={keyword}
-                  itemNames={itemNames}
+        <div className="row" id="wrapper">
+          <MediaQuery query="(min-width: 992px)">
+            <div className="col-lg-3">
+              <Sidebar
+                {...rest}
+                onValueChange={this.handleValueChange}
+                onSubmit={this.handleSubmit}
+              />
+            </div>
+          </MediaQuery>
+
+          <div className="col-12 col-lg-9">
+            <FKGList
+              loading={loading}
+              fkgs={fkgs}
+              render={fkgs => fkgs.map((fkg) => (
+                <BoxItem actionable key={fkg.id}>
+                  {renderItem(fkg)}
+                </BoxItem>
+              ))}
+            />
+          </div>
+        </div>
+
+        <NavBottom
+          render={(props) => (
+            <MediaQuery query="(max-width: 991px)">
+              <Nav
+                {...props}
+                keyword={keyword}
+                itemNames={itemNames}
+                onValueChange={this.handleValueChange}
+                onSubmit={this.handleSubmit}
+              >
+                <Sidebar
+                  {...rest}
                   onValueChange={this.handleValueChange}
                   onSubmit={this.handleSubmit}
                 />
-              </MediaQuery>
-
-              <div className="row" id="wrapper">
-                <MediaQuery query="(min-width: 992px)">
-                  <div className="col-lg-3">
-                    <Sidebar
-                      {...rest}
-                      onValueChange={this.handleValueChange}
-                      onSubmit={this.handleSubmit}
-                    />
-                  </div>
-                </MediaQuery>
-
-                <div className="col-12 col-lg-9">
-                  {renderList(fkgs, loading)}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <MediaQuery query="(max-width: 991px)">
-            <NavBottom
-              render={(props) => (
-                <Nav
-                  {...props}
-                  keyword={keyword}
-                  itemNames={itemNames}
-                  onValueChange={this.handleValueChange}
-                  onSubmit={this.handleSubmit}
-                  onSubmit={this.handleSubmit}
-                >
-                  <Sidebar
-                    {...rest}
-                    onValueChange={this.handleValueChange}
-                    onSubmit={this.handleSubmit}
-                  />
-                </Nav>
-              )}
-            />
-          </MediaQuery>
-        </div>
-      </div>
+              </Nav>
+            </MediaQuery>
+          )}
+        />
+      </Layout>
     )
   }
 }

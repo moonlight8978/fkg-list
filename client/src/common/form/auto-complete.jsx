@@ -5,7 +5,7 @@ import './auto-complete.css'
 
 const $ = window.$
 
-export default class AutoComplete extends React.PureComponent {
+class AutoComplete extends React.PureComponent {
   ref = React.createRef()
 
   componentDidMount() {
@@ -63,3 +63,5 @@ export default class AutoComplete extends React.PureComponent {
     )
   }
 }
+
+export default AutoComplete

@@ -10,8 +10,19 @@ class NavBottom extends React.PureComponent {
       active: false,
     }
 
+    this.el = document.createDocumentFragment()
+
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
+  }
+
+  componentDidMount() {
+    this.navBottomRoot = document.getElementById('nav-bottom-root')
+    this.navBottomRoot.appendChild(this.el)
+  }
+
+  componentWillUnmount() {
+    this.navBottomRoot.removeChild(this.el)
   }
 
   handleClose(event) {
@@ -25,10 +36,15 @@ class NavBottom extends React.PureComponent {
   render() {
     const { active } = this.state
 
+    const { render } = this.props
+
     return (
-      <nav className={classNames("nav-bottom", { active: active })}>
-        {this.props.render({ onClose: this.handleClose, onOpen: this.handleOpen })}
-      </nav>
+      ReactDOM.createPortal(
+        <nav className={classNames("nav-bottom", { active: active })}>
+          {render({ onClose: this.handleClose, onOpen: this.handleOpen })}
+        </nav>,
+        this.el,
+      )
     )
   }
 }

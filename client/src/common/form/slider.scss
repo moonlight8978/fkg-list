@@ -1,0 +1,46 @@
+@import "styles/variables";
+
+.slider-container {
+  .current-values {
+    display: flex;
+    align-items: center;
+    margin-bottom: $space-4;
+
+    .value {
+      background-color: $white;
+      padding: $space-2 $space-4;
+      border: 1px solid $border-in-gray;
+      line-height: 1;
+    }
+
+    .divider {
+      padding: 0 $space-4;
+    }
+  }
+
+  .ui-slider {
+    border: 1px solid $border-in-gray;
+    background-color: transparent;
+
+    .ui-slider-handle,
+    .ui-slider-hover,
+    .ui-slider-focus {
+      box-shadow: none;
+      background-color: $white;
+      border-radius: 50%;
+      border: 1px solid #d3d3d3;
+      outline: 0;
+    }
+
+    .ui-slider-range {
+      background-color: $blue;
+    }
+  }
+
+  .limits {
+    margin-top: $space-4;
+    display: flex;
+    justify-content: space-between;
+    line-height: 1;
+  }
+}

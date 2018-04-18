@@ -1,7 +1,12 @@
 import AutoComplete from './auto-complete'
-import Checkbox from './checkbox'
+import { Checkbox, CheckboxGroup } from './checkbox'
+import Select from './select'
+import Slider from './slider'
 
 export {
   AutoComplete,
-  Checkbox
+  Checkbox,
+  CheckboxGroup,
+  Select,
+  Slider,
 }

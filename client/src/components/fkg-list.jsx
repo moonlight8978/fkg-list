@@ -34,25 +34,19 @@ class FKGList extends React.Component {
   }
 
   render() {
-    console.log("list was rendered")
     const perPage = 20
-    const { fkgs, renderItem } = this.props
+    const { fkgs, render } = this.props
     const { page } = this.state
     const end = page * perPage
     const lastPage = Math.ceil(fkgs.length / perPage)
 
     const paginatedFKGs = fkgs.slice(0, end)
-    console.log(end, lastPage, paginatedFKGs);
 
     return (
       <Box hasItems>
-        {paginatedFKGs.map((fkg) =>
-          <BoxItem actionable key={fkg.id}>
-            {renderItem(fkg)}
-          </BoxItem>
-        )}
+        {render(paginatedFKGs)}
 
-        {(page !== lastPage) && (
+        {(page < lastPage) && (
           <BoxItem key="loading">
             <button className="show-more btn p-0" onClick={this.increasePage.bind(this)}>
               <i className="fas fa-spinner fa-pulse"></i>

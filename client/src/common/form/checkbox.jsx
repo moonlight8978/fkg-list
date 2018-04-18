@@ -3,7 +3,17 @@ import _ from 'lodash'
 
 import './checkbox.css'
 
-export default class Checkbox extends React.PureComponent {
+function CheckboxGroup({ className, children }) {
+  const groupClassNames = _.compact(['checkbox-group', className]).join(' ')
+
+  return (
+    <div className={groupClassNames}>
+      {children}
+    </div>
+  )
+}
+
+class Checkbox extends React.PureComponent {
   id = _.uniqueId('checkbox')
 
   render() {
@@ -32,3 +42,5 @@ export default class Checkbox extends React.PureComponent {
     )
   }
 }
+
+export { Checkbox, CheckboxGroup }
