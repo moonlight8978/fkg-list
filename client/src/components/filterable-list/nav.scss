@@ -1,8 +1,7 @@
 @import "styles/responsive";
 @import "styles/variables";
-@import "styles/font";
 
-.nav-bottom {
+.filter-nav-bottom {
   width: 100%;
   background-color: $gray;
   transition: all .3s ease;
@@ -37,7 +36,7 @@
     width: 320px;
     margin: auto;
     opacity: 0;
-    transition: opacity .3s ease;
+    transition: none;
 
     .nav-bottom_actions {
       padding: 1rem;
@@ -66,6 +65,8 @@
 
     .nav-bottom_actions-and-filter {
       opacity: 1;
+      transition: opacity 0.5s ease;
+      transition-delay: 0.3s;
     }
   }
 }

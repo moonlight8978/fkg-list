@@ -3,7 +3,7 @@ import React from 'react'
 import { MyListApi } from '../api'
 import { Box, BoxItem } from '../common/box'
 import download from '../utils/download'
-import Layout from '../layout/layout'
+import { Layout } from '../layout'
 
 class Extra extends React.PureComponent {
   constructor(props) {

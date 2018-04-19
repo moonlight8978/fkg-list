@@ -1,10 +1,9 @@
-import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React from 'react'
+import { NavLink, Link } from 'react-router-dom'
 
-import { appName } from './../const';
-import logo from './octopus.png';
+import { appName } from './../const'
 
-import './navbar.css';
+import './navbar.css'
 
 
 function Navbar() {
@@ -13,7 +12,7 @@ function Navbar() {
       <nav className="navbar navbar-expand">
         <div className="container">
           <Link className="navbar-brand d-none d-sm-block" to="/">
-            <img src={logo} alt={appName} />
+            <img src="assets/octopus.png" alt={appName} />
             <span>{appName}</span>
           </Link>
 
@@ -41,7 +40,7 @@ function Navbar() {
         </div>
       </nav>
     </div>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

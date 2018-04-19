@@ -1,25 +1,14 @@
 import React from 'react'
-import classNames from 'classnames'
 
-import abilityIcon from './images/ability.png'
-import skillIcon from './images/skill.png'
-
-const panel = {
-  'skill': { 'title': '戦闘スキル', icon: skillIcon },
-  'ability': { 'title': 'アビリティ', icon: abilityIcon },
-}
-
-function FKGSkills({ type, show, onClick, children }) {
-  const containerClass = classNames('fkg-item_panels', { 'active': show })
-
+function FKGSkills({ title, icon, onClick, children }) {
   return (
-    <div className={containerClass}>
+    <div className="fkg-item_panels">
       <div className="fkg-item_skill-header">
         <div className="fkg-item_panel-toggler" onClick={onClick}>
-          <img className="img-fluid" src={panel[type].icon} alt={panel[type].title} />
+          <img className="img-fluid" src={icon} alt={title} />
         </div>
         <div className="fkg-item_panel-title">
-          {panel[type].title}
+          {title}
         </div>
       </div>
 

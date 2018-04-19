@@ -1,20 +1,20 @@
 import axios from 'axios'
 
+const dataPath = 'data.json'
+
 const FKGApi = {
-  all() {
-    return axios.get('data.json')
+  async all() {
+    const response = await axios.get(dataPath)
+    return Promise.resolve(response.data)
   },
-  where(ids) {
-    return axios.get('data.json')
-      .then((response) => {
-        let filtered
-        if (ids.length > 0) {
-          filtered = response.data.filter(fkg => ids.indexOf(fkg.id) > -1)
-        } else {
-          filtered = []
-        }
-        return Promise.resolve(filtered)
-      })
+  async where(ids) {
+    const response = await axios.get(dataPath)
+    const filtered = ids.length > 0 ? response.data.filter(fkg => ids.indexOf(fkg.id) > -1) : []
+    return Promise.resolve(filtered)
+  },
+  async getNames() {
+    const response = await axios.get(dataPath)
+    return Promise.resolve(response.data.map(fkg => fkg.name))
   }
 }
 

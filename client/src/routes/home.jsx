@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Box, BoxItem } from '../common/box'
-import Layout from '../layout/layout'
+import { Layout } from '../layout'
 
 function Home() {
   return (

@@ -1,4 +1,4 @@
-.nav-bottom {
+.filter-nav-bottom {
   width: 100%;
   background-color: #e6ecf0;
   transition: all .3s ease;
@@ -8,34 +8,36 @@
   z-index: 888;
   height: 100%;
   box-shadow: 0 1px 5px 1px #888; }
-  .nav-bottom .nav-bottom_keyword-group {
+  .filter-nav-bottom .nav-bottom_keyword-group {
     display: flex; }
-    .nav-bottom .nav-bottom_keyword-group .form-control {
+    .filter-nav-bottom .nav-bottom_keyword-group .form-control {
       border: 0;
       border-radius: 0;
       font-size: 14px;
       padding: 12px 1rem; }
-    .nav-bottom .nav-bottom_keyword-group .form-control:focus {
+    .filter-nav-bottom .nav-bottom_keyword-group .form-control:focus {
       box-shadow: none; }
-    .nav-bottom .nav-bottom_keyword-group span,
-    .nav-bottom .nav-bottom_keyword-group svg {
+    .filter-nav-bottom .nav-bottom_keyword-group span,
+    .filter-nav-bottom .nav-bottom_keyword-group svg {
       display: none; }
-  .nav-bottom .nav-bottom_actions-and-filter {
+  .filter-nav-bottom .nav-bottom_actions-and-filter {
     width: 320px;
     margin: auto;
     opacity: 0;
-    transition: opacity .3s ease; }
-    .nav-bottom .nav-bottom_actions-and-filter .nav-bottom_actions {
+    transition: none; }
+    .filter-nav-bottom .nav-bottom_actions-and-filter .nav-bottom_actions {
       padding: 1rem;
       text-align: center; }
-      .nav-bottom .nav-bottom_actions-and-filter .nav-bottom_actions .btn {
+      .filter-nav-bottom .nav-bottom_actions-and-filter .nav-bottom_actions .btn {
         margin: 0 8px; }
-        .nav-bottom .nav-bottom_actions-and-filter .nav-bottom_actions .btn:focus {
+        .filter-nav-bottom .nav-bottom_actions-and-filter .nav-bottom_actions .btn:focus {
           box-shadow: none; }
-    .nav-bottom .nav-bottom_actions-and-filter .nav-bottom_filter {
+    .filter-nav-bottom .nav-bottom_actions-and-filter .nav-bottom_filter {
       padding: 1rem;
       border-top: 1px solid #ccc; }
-  .nav-bottom.active {
+  .filter-nav-bottom.active {
     top: 0; }
-    .nav-bottom.active .nav-bottom_actions-and-filter {
-      opacity: 1; }
+    .filter-nav-bottom.active .nav-bottom_actions-and-filter {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      transition-delay: 0.3s; }

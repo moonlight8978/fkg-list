@@ -22,3 +22,6 @@ yarn-error.log*
 
 # backup
 /backup
+
+# images
+/public/assets/fkg

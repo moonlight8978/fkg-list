@@ -11,8 +11,8 @@ class AutoComplete extends React.PureComponent {
   componentDidMount() {
     const { onChange } = this.props
 
-    this.$input = $(this.ref.current)
-    this.$input.autocomplete({
+    this.$el = $(this.ref.current)
+    this.$el.autocomplete({
       position: { my: "left top", at: "left bottom", collision: "none" },
       source: this.props.source,
       // change(event, ui) {
@@ -38,16 +38,22 @@ class AutoComplete extends React.PureComponent {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.source.length !== this.props.source.length) {
+      this.$el.autocomplete('option', 'source', this.props.source)
+    }
+  }
+
   componentWillUnmount() {
-    this.$input.autocomplete('destroy')
+    this.$el.autocomplete('destroy')
   }
 
   // componentDidUpdate(prevProps, prevState) {
-  //   this.$input.autocomplete("option", "source", this.props.source)
+  //   this.$el.autocomplete("option", "source", this.props.source)
   // }
 
   render() {
-    const { onChange, className, ...rest } = this.props
+    const { onChange, className, source, ...rest } = this.props
 
     const inputClassNames = _.compact(['form-control', 'autocomplete-control', className]).join(' ')
 

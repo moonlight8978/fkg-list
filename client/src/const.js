@@ -1,5 +1,5 @@
-const appName = 'FKGList';
+const appName = 'FKGList'
 
 export {
   appName,
-};
+}

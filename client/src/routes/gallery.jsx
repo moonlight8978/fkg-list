@@ -10,17 +10,18 @@ class Gallery extends React.Component {
     super(props)
 
     this.state = {
-      fkgs: null,
+      fkgs: [],
+      fkgNames: [],
       loading: true,
     }
 
     this.handleAdd = this.handleAdd.bind(this)
   }
 
-  componentDidMount() {
-    FKGApi.all()
-      .then((response) => this.setState({ fkgs: response.data, loading: false }))
-      .catch(error => console.log(error))
+  async componentDidMount() {
+    const [fkgs, fkgNames] = [await FKGApi.all(), await FKGApi.getNames()]
+
+    this.setState({ fkgs, fkgNames, loading: false })
   }
 
   handleAdd(fkg) {
@@ -30,18 +31,18 @@ class Gallery extends React.Component {
 
   renderItem = (fkg) => (
     <FKGItem fkg={fkg}
-      context="Add"
-      onClick={this.handleAdd}
+      renderDropdown={() => (
+        <button type="button" className="dropdown-item" onClick={() => this.handleAdd(fkg)} >
+          Add {fkg.name}
+        </button>
+      )}
     />
   )
 
   render() {
-    const { fkgs, loading } = this.state
-
     return (
       <FilterableList
-        fkgs={fkgs}
-        loading={loading}
+        {...this.state}
         renderItem={this.renderItem}
       />
     )

@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import classNames from 'classnames'
 
 class NavBottom extends React.PureComponent {
   constructor(props) {
@@ -10,7 +9,7 @@ class NavBottom extends React.PureComponent {
       active: false,
     }
 
-    this.el = document.createDocumentFragment()
+    this.el = document.createElement('div')
 
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -40,9 +39,7 @@ class NavBottom extends React.PureComponent {
 
     return (
       ReactDOM.createPortal(
-        <nav className={classNames("nav-bottom", { active: active })}>
-          {render({ onClose: this.handleClose, onOpen: this.handleOpen })}
-        </nav>,
+        render({ active, onClose: this.handleClose, onOpen: this.handleOpen }),
         this.el,
       )
     )

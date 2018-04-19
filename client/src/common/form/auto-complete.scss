@@ -15,12 +15,15 @@
   border: 0;
   border-radius: 0;
   box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  max-height: 27px * 5;
+  overflow: auto;
 
   .ui-menu-item-wrapper {
     padding-right: $space-4;
     padding-left: $space-4;
     color: $black;
     transition: all .1s ease;
+    font-size: $font-size-primary;
 
     &.ui-state-active {
       border: 0;

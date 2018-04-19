@@ -3,26 +3,24 @@ import React from 'react'
 import FKGItem from '../components/fkg-item'
 import FilterableList from '../components/filterable-list'
 
-import { MyListApi } from '../api'
+import { MyListApi, FKGApi } from '../api'
 
 class MyList extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      fkgs: null,
+      fkgs: [],
+      fkgNames: [],
       loading: true,
     }
 
     this.handleRemove = this.handleRemove.bind(this)
   }
 
-  componentDidMount() {
-    MyListApi.all()
-      .then(fkgs => {
-        console.log(fkgs);
-        this.setState({ fkgs, loading: false })
-      })
+  async componentDidMount() {
+    const [fkgs, fkgNames] = [await MyListApi.all(), await FKGApi.getNames()]
+    this.setState({ fkgs, fkgNames, loading: false })
   }
 
   handleRemove(target) {
@@ -38,18 +36,18 @@ class MyList extends React.Component {
 
   renderItem = (fkg) => (
     <FKGItem fkg={fkg}
-      context="Remove"
-      onClick={this.handleRemove}
+      renderDropdown={() => (
+        <button type="button" className="dropdown-item" onClick={() => this.handleRemove(fkg)} >
+          Remove {fkg.name}
+        </button>
+      )}
     />
   )
 
   render() {
-    const { fkgs, loading } = this.state
-
     return (
       <FilterableList
-        fkgs={fkgs}
-        loading={loading}
+        {...this.state}
         renderItem={this.renderItem}
       />
     )

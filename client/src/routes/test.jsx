@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Layout from '../layout/layout'
+import { Layout } from '../layout'
 import { AutoComplete, Checkbox, CheckboxGroup, Select, Slider } from '../common/form'
 
 function onChange(value) {

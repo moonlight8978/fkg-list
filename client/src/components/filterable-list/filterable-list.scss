@@ -2,58 +2,11 @@
 @import "styles/font";
 @import "styles/responsive";
 
-.filterable-list_container {
-  position: relative;
-  padding-bottom: 45px;
-  height: 100%;
-  overflow-y: hidden;
-
-  .filterable-list_listnav {
-    height: 100%;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar {
-      width: 0;
-    }
-
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
-      outline: 1px solid slategrey;
-    }
-  }
-
-  @include responsive(sm) {
-    .filterable-list_listnav::-webkit-scrollbar {
-      width: 4px;
-    }
-  }
-
-  @include responsive(lg) {
-    padding-bottom: 0;
-  }
-}
-
 .filterable-list_header {
   margin-bottom: 2rem;
 
   form {
     display: flex;
-  }
-
-  .form-control {
-    border: 0;
-    border-radius: 4px 0 0 4px;
-    padding: .75rem 1rem;
-    line-height: 1.5;
-    font-size: $font-size-primary;
-
-    &:focus {
-      box-shadow: 5px 5px 15px 2px rgba(0, 0, 0, 0.25);
-    }
   }
 
   .btn {
