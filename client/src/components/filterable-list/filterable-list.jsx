@@ -4,7 +4,7 @@ import MediaQuery from 'react-responsive'
 import Header from './header'
 import Filter from './filter'
 import Nav from './nav'
-import { Layout, NavBottom } from '../../layout'
+import { NavBottom } from '../../layout'
 import FKGList from '../fkg-list'
 import { BoxItem } from '../../common/box'
 import sort from '../../utils/sort'
@@ -59,8 +59,25 @@ class FilterableList extends React.Component {
     const { keyword, ...rest } = filter
     const { fkgNames, renderItem } = this.props
 
+    const renderNav = props => (
+      <MediaQuery query="(max-width: 992px)">
+        <Nav
+          {...props}
+          keyword={keyword}
+          fkgNames={fkgNames}
+          onValueChange={this.handleValueChange}
+          onSubmit={this.handleSubmit}
+        >
+          <Filter
+            {...rest}
+            onValueChange={this.handleValueChange}
+          />
+        </Nav>
+      </MediaQuery>
+    )
+
     return (
-      <Layout hasNavBottom>
+      <React.Fragment>
         <MediaQuery query="(min-width: 992px)">
           <Header
             keyword={keyword}
@@ -93,25 +110,8 @@ class FilterableList extends React.Component {
           </div>
         </div>
 
-        <NavBottom
-          render={(props) => (
-            <MediaQuery query="(max-width: 991px)">
-              <Nav
-                {...props}
-                keyword={keyword}
-                fkgNames={fkgNames}
-                onValueChange={this.handleValueChange}
-                onSubmit={this.handleSubmit}
-              >
-                <Filter
-                  {...rest}
-                  onValueChange={this.handleValueChange}
-                />
-              </Nav>
-            </MediaQuery>
-          )}
-        />
-      </Layout>
+        <NavBottom render={renderNav} />
+      </React.Fragment>
     )
   }
 }

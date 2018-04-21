@@ -28,10 +28,10 @@ class Extra extends React.PureComponent {
     download(url, fileName)
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
-    MyListApi.import(this.state.importFile)
-      .then((file) => console.log(file))
+    await MyListApi.import(this.state.importFile)
+    console.log('Success');
   }
 
   render() {

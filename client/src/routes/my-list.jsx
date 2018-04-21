@@ -2,6 +2,7 @@ import React from 'react'
 
 import FKGItem from '../components/fkg-item'
 import FilterableList from '../components/filterable-list'
+import { Layout } from '../layout'
 
 import { MyListApi, FKGApi } from '../api'
 
@@ -46,10 +47,12 @@ class MyList extends React.Component {
 
   render() {
     return (
-      <FilterableList
-        {...this.state}
-        renderItem={this.renderItem}
-      />
+      <Layout hasNavBottom>
+        <FilterableList
+          {...this.state}
+          renderItem={this.renderItem}
+        />
+      </Layout>
     )
   }
 }

@@ -1,14 +1,14 @@
 import FKGApi from './fkg-api'
 
 class MyListApi {
-  // Return API object, fetch myList from localStorage,
-  // if not exists, it creates a new array
-  // myList store fkg ids only
-  constructor() {
+  get myList() {
     const myListString = localStorage.getItem('myList')
-    this.myList = myListString ? JSON.parse(myListString) : []
+    return myListString ? JSON.parse(myListString) : []
   }
 
+  set myList(list) {
+    this.myList = list
+  }
   // Add a fkg to myList
   add(fkg) {
     const i = this.find(fkg.id)
@@ -66,7 +66,12 @@ class MyListApi {
   }
 
   // Import myList from input file
-  import(file) {
+  async import(file) {
+    const fkgIds = await this.read(file)
+    localStorage.setItem('myList', fkgIds)
+  }
+
+  read(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader()
       reader.onload = function(event) {
