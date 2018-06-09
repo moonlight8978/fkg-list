@@ -18,6 +18,7 @@ class FilterableList extends React.Component {
 
     this.state = {
       fkgs: [],
+      loading: true,
       filter: {
         keyword: '',
         sortBy: 'id',
@@ -34,9 +35,30 @@ class FilterableList extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { loading, fkgs } = nextProps
-    return { fkgs, loading }
+  static getDerivedStateFromProps(props, state) {
+    if (props.count !== state.prevCount) {
+      return {
+        prevCount: props.count
+      }
+    }
+
+    return null
+  }
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.prevCount !== this.state.prevCount) {
+      const fkgs = await this.props.fetchData(this.state.filter)
+      this.setState({ fkgs })
+    }
+  }
+
+  async fetchData() {
+    const fkgs = await this.props.fetchData(this.state.filter)
+    this.setState({ fkgs, loading: false })
   }
 
   handleValueChange(key, value) {
@@ -45,13 +67,12 @@ class FilterableList extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log(this.state.filter)
-    this.setState({ loading: true })
-    let filtered = filter(this.props.fkgs, this.state.filter)
-    const fkgs = sort(filtered, this.state.filter)
-    setTimeout(() => {
-      this.setState({ fkgs, loading: false })
-    }, 1000);
+    this.setState({ loading: true }, () => {
+      setTimeout(async () => {
+        const fkgs = await this.props.fetchData(this.state.filter)
+        this.setState({ fkgs, loading: false })
+      }, 1000);
+    })
   }
 
   render() {

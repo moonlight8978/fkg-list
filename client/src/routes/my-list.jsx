@@ -11,27 +11,22 @@ class MyList extends React.Component {
     super(props)
 
     this.state = {
-      fkgs: [],
-      fkgNames: [],
-      loading: true,
+      // To track the list's change
+      count: 0
     }
 
     this.handleRemove = this.handleRemove.bind(this)
+    this.fetchData = this.fetchData.bind(this)
   }
 
-  async componentDidMount() {
-    const [fkgs, fkgNames] = [await MyListApi.all(), await FKGApi.getNames()]
-    this.setState({ fkgs, fkgNames, loading: false })
+  async fetchData(conditions = null) {
+    console.log(conditions);
+    return await MyListApi.all(conditions)
   }
 
   handleRemove(target) {
     MyListApi.remove(target)
-    const i = this.state.fkgs.findIndex(e => e.id === target.id)
-    let fkgs = this.state.fkgs.slice()
-    if (i > -1) {
-      fkgs.splice(i, 1)
-      this.setState({ fkgs })
-    }
+    this.setState({ count: this.state.count + 1 })
     console.log(`Removed FKG No.${target.id}`)
   }
 
@@ -51,6 +46,7 @@ class MyList extends React.Component {
         <FilterableList
           {...this.state}
           renderItem={this.renderItem}
+          fetchData={this.fetchData}
         />
       </Layout>
     )
