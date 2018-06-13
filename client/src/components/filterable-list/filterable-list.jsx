@@ -7,8 +7,6 @@ import Nav from './nav'
 import { NavBottom } from '../../layout'
 import FKGList from '../fkg-list'
 import { BoxItem } from '../../common/box'
-import sort from '../../utils/sort'
-import filter from '../../utils/filter'
 
 import './filterable-list.css'
 
@@ -22,6 +20,7 @@ class FilterableList extends React.Component {
       filter: {
         keyword: '',
         sortBy: 'id',
+        reverseSort: false,
         redAttr: true,
         blueAttr: true,
         yellowAttr: true,

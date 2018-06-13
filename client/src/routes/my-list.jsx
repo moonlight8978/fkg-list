@@ -4,7 +4,7 @@ import FKGItem from '../components/fkg-item'
 import FilterableList from '../components/filterable-list'
 import { Layout } from '../layout'
 
-import { MyListApi, FKGApi } from '../api'
+import { MyListApi } from '../api'
 
 class MyList extends React.Component {
   constructor(props) {
