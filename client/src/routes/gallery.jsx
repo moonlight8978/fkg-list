@@ -10,20 +10,19 @@ class Gallery extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      fkgs: [],
-      fkgNames: [],
-      loading: true,
-    }
-
     this.handleAdd = this.handleAdd.bind(this)
+    this.fetchData = this.fetchData.bind(this)
   }
 
-  async componentDidMount() {
-    const [fkgs, fkgNames] = [await FKGApi.all(), await FKGApi.getNames()]
-
-    this.setState({ fkgs, fkgNames, loading: false })
+  async fetchData(conditions = null) {
+    return await FKGApi.all(conditions)
   }
+
+  // async componentDidMount() {
+  //   const [fkgs, fkgNames] = [await FKGApi.all(), await FKGApi.getNames()]
+  //
+  //   this.setState({ fkgs, fkgNames, loading: false })
+  // }
 
   handleAdd(fkg) {
     MyListApi.add(fkg)
@@ -44,7 +43,7 @@ class Gallery extends React.Component {
     return (
       <Layout hasNavBottom>
         <FilterableList
-          {...this.state}
+          fetchData={this.fetchData}
           renderItem={this.renderItem}
         />
       </Layout>

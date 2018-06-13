@@ -43,7 +43,8 @@ class FKGItem extends React.PureComponent {
             <div className="fkg-item_main-info-col">
               <div className="fkg-item_img-col">
                 <div onClick={this.changeImage}>
-                  <Image src={`assets/fkg/${fkg.id}_${imageIndex}.jpg`} name={fkg.name} />
+                  {/* <Image src={`assets/fkg/${fkg.id}_${imageIndex}.jpg`} name={fkg.name} /> */}
+                  <Image src={fkg.images[imageIndex]} name={fkg.name} />
                 </div>
                 <div className="fkg-item_total-stats">{fkg.stats.total || '???'}</div>
               </div>

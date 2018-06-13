@@ -3,7 +3,7 @@ import StringUtils from './string'
 const PREMIUM_GACHA = 'プレミアムガチャ 6%'
 const NORMAL_GACHA = 'ノーマルノーマルガチャ'
 
-function filter(fkgs, { obtainBy, keyword, minStar, maxStar, ...attrs }) {
+function filter(fkgs, { obtainBy, keyword, star, ...attrs }) {
   const attributes = setupAttributes(attrs)
 
   const filterAlgorithm = fkg => {
@@ -11,7 +11,7 @@ function filter(fkgs, { obtainBy, keyword, minStar, maxStar, ...attrs }) {
       return false
     }
 
-    if (fkg.star < minStar || fkg.star > maxStar) {
+    if (fkg.star < star[0] || fkg.star > star[1]) {
       return false
     }
 

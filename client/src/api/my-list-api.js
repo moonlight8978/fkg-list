@@ -1,14 +1,21 @@
 import FKGApi from './fkg-api'
+import FileUtils from '../utils/file-utils'
 
-class MyListApi {
+import sort from '../utils/sort'
+import filter from '../utils/filter'
+
+const MyListApi = {
+  // ids getter, takes data from localStorage if exist, else returns empty array
   get myList() {
     const myListString = localStorage.getItem('myList')
     return myListString ? JSON.parse(myListString) : []
-  }
+  },
 
-  set myList(list) {
-    this.myList = list
-  }
+  // Set new ids
+  set myList(myNewList) {
+    this._myList = myNewList
+  },
+
   // Add a fkg to myList
   add(fkg) {
     const i = this.find(fkg.id)
@@ -17,7 +24,7 @@ class MyListApi {
       newList.push(fkg.id)
       this.store(newList)
     }
-  }
+  },
 
   // Remove a fkg from myList
   remove(fkg) {
@@ -27,63 +34,53 @@ class MyListApi {
       newList.splice(i, 1)
       this.store(newList)
     }
-  }
+  },
 
   // Save new list to localStorage
   store(newList) {
-    this.myList = newList
-    const myListString = JSON.stringify(this.myList)
+    this._myList = newList
+    const myListString = JSON.stringify(this._myList)
     localStorage.setItem('myList', myListString)
-  }
+  },
 
   // Use FKGApi to fetch myList fkgs' data
-  all() {
-    return FKGApi.where(this.myList)
-  }
+  async all(conditions = null) {
+    const data = await FKGApi.where(this.myList)
+
+    if (conditions) {
+      let filtered = filter(data, conditions)
+      const fkgs = sort(filtered, conditions)
+      return Promise.resolve(fkgs)
+    } else {
+      return Promise.resolve(data)
+    }
+  },
 
   // Find fkg in myList
   find(fkgId) {
     return this.myList.findIndex((el) => el === fkgId)
-  }
+  },
 
   cloneMyList() {
     return this.myList.slice()
-  }
+  },
 
   // Export myList into file, return url, fileName
   export() {
-    const blob = new Blob(
-      [JSON.stringify(this.myList)],
-      { type: 'application/json' }
-    )
-    const url = URL.createObjectURL(blob)
+    const { url } = FileUtils.createBlob(JSON.stringify(this.myList), 'application/json')
     const now = new Date()
     const fileName = `FKGList-MyList-${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}-${now.getHours()}${now.getMinutes()}${now.getSeconds()}.json`
 
     return {
-      blob, url, fileName
+      url, fileName
     }
-  }
+  },
 
   // Import myList from input file
   async import(file) {
-    const fkgIds = await this.read(file)
+    const fkgIds = await FileUtils.read(file)
     localStorage.setItem('myList', fkgIds)
-  }
-
-  read(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onload = function(event) {
-        this.myList = event.target.result
-        resolve(event.target.result)
-      }
-      reader.onerror = function(event) {
-        reject(0)
-      }
-      reader.readAsText(file, 'UTF-8')
-    })
   }
 }
 
-export default new MyListApi()
+export default MyListApi

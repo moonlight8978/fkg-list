@@ -2,7 +2,7 @@ import React from 'react'
 
 import { MyListApi } from '../api'
 import { Box, BoxItem } from '../common/box'
-import download from '../utils/download'
+import FileUtils from '../utils/file-utils'
 import { Layout } from '../layout'
 
 class Extra extends React.PureComponent {
@@ -25,7 +25,7 @@ class Extra extends React.PureComponent {
 
   export(event) {
     const { url, fileName } = MyListApi.export()
-    download(url, fileName)
+    FileUtils.download(url, fileName)
   }
 
   async handleSubmit(event) {

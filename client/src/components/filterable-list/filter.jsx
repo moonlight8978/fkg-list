@@ -21,7 +21,7 @@ const obtainByModels = [
 
 function Filter({
   sortBy, onValueChange, redAttr, blueAttr, yellowAttr, purpleAttr,
-  star, obtainBy
+  star, obtainBy, reverseSort
 }) {
 
   return (
@@ -34,6 +34,13 @@ function Filter({
         >
           SORT BY
         </Select>
+
+        <Checkbox
+          onChange={value => onValueChange('reverseSort', value)}
+          checked={reverseSort}
+        >
+          Reverse sort
+        </Checkbox>
       </div>
 
       <div className="group">
