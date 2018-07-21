@@ -17,9 +17,8 @@ function parseFKG($, row, star) {
   fkg.images = []
   $row.find('td:nth-child(2) img')
     .each(function(index) {
-      fkg.images.push($(this).data('original'))
+      fkg.images.push($(this).attr('src'))
     })
-
   fkg.attribute = $row.children('td:nth-child(3)').text()
 
   fkg.name = $row.find('td:nth-child(4) a').text()

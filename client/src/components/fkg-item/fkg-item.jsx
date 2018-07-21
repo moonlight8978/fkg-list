@@ -18,8 +18,11 @@ class FKGItem extends React.PureComponent {
     this.toggleSkillPanel = this.toggleSkillPanel.bind(this)
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return { imageIndex: nextProps.fkg.images.length - 1 }
+  static getDerivedStateFromProps(props, state) {
+	if (state.imageIndex !== undefined) {
+		return null
+	}
+    return { imageIndex: props.fkg.images.length - 1 }
   }
 
   changeImage(event) {

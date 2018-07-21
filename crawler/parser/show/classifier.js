@@ -7,7 +7,7 @@ const VERSION_HEADER = '衣装'
 const ATTRIBUTE_HEADER = '属性'
 const LOVE_HEADER = '好きな物'
 const NATION_HEADER = '所属国家'
-const BASIC_STATS_HEADER = '前'
+const BASIC_STATS_HEADER = /(前|進化前)/
 const SKILL_HEADER = /^戦闘スキル$/
 const STATS_HEADER = /(^昇華・咲$)|(^昇華・咲\(開花\)$)/
 const ABILITIES_HEADER = /(^昇華アビリティ$)|(^昇華アビリティ\(開花\)$)|(^昇華$)/
@@ -41,7 +41,7 @@ function classify($, row) {
   $header = $($row.children('th[rowspan="2"]')[0])
   const isSpeed =
     $header.length > 0 &&
-    $header.text() === BASIC_STATS_HEADER
+    $header.text().match(BASIC_STATS_HEADER)
 
   const isStats =
     $header.length > 0 &&
