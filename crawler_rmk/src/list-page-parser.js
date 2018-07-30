@@ -9,9 +9,18 @@ const ROWS_SELECTOR = '#sortabletable1 tbody tr'
 class ListPageParser extends PageParser {
   perform() {
     const $units = this.getUnits()
-    // const units = Array.from($units).map(unitDOM => this.parseUnit($(unitDOM)))
-    const units = this.parseUnit($(this.getUnits().first()))
-    console.log(units)
+    const units = Array.from($units)
+      .map((unitDOM, index) => {
+        console.log(`Row ${index + 1}`)
+        return this.parseUnit($(unitDOM))
+      })
+      .filter(unit => unit !== undefined)
+
+    return units
+
+    // for debugging
+    // const unit = this.parseUnit($(this.getUnits().first()))
+    // return unit
   }
 
   getUnits() {

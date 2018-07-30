@@ -2,7 +2,7 @@ const $ = require('cheerio')
 
 const HTMLUtils = {
   getText(html) {
-    return $('<div/>').html(html).text().trim();
+    return $('<div/>').html(html).text().trim()
   }
 }
 

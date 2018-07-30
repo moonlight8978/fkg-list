@@ -1,5 +1,7 @@
 const _ = require('lodash')
 
+const StringUtils = require('../../utils/string-utils')
+
 const statDelim = /↓/
 
 const statRegex = [
@@ -14,12 +16,12 @@ const StatParser = {
     const bloomingStatsText = text.split(statDelim).last()
 
     statRegex.forEach((regex, index) => {
-      const match = regex.exec(bloomingStatsText)
-      bloomingStats[index] = parseInt(match[1])
+      const matches = regex.exec(bloomingStatsText)
+      bloomingStats[index] = matches ? matches[1] : null
     })
 
     const [basic, maxLevel, bonus] = bloomingStats
-    return maxLevel + bonus
+    return StringUtils.sum([maxLevel, bonus])
   }
 }
 

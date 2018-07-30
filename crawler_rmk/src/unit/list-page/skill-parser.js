@@ -2,7 +2,7 @@ const $ = require('cheerio')
 
 const HTMLUtils = require('../../utils/html-utils')
 
-const { brHTML } = require('../constants')
+const brHTML = '<br class="spacer">'
 
 const SkillParser = {
   parse(skillHTML) {

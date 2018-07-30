@@ -10,6 +10,15 @@
       return this[0]
     }
   }
+
+  if (!String.prototype.toInt) {
+    String.prototype.toInt = function() {
+      if (/^\d+$/.test(this)) {
+        return parseInt(this)
+      }
+      return null
+    }
+  }
 })()
 
 module.exports = 1

@@ -2,8 +2,8 @@ const fs = require('fs')
 
 const Logger = {
   debug(text) {
-    const now = Date.now()
-    const fileName = `log-${now}.txt`
+    const currentTimestamp = Date.now()
+    const fileName = `log-${currentTimestamp}.txt`
     fs.writeFileSync(`tmp/${fileName}`, text)
   }
 }

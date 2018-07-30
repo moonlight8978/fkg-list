@@ -1,11 +1,12 @@
 const $ = require('cheerio')
-const _ = require('lodash')
 
 const HTMLUtils = require('../../utils/html-utils')
+const StringUtils = require('../../utils/string-utils')
 const Logger = require('../../utils/logger')
 
-const { brRegex } = require('../constants')
-
+const brRegex = /<br class="spacer">/g
+const noteRegex = /※/g
+const multipleNewLinesRegex = /\s{3,}/g
 // ↓
 const downSymbol = /&#x2193;/g
 // (進化後+)
@@ -17,39 +18,53 @@ const noAbilitiesRegex = /^なし/
 const AbilitiesParser = {
   parse(abilitiesHTML) {
     const stages = this.splitIntoStages(abilitiesHTML)
-    const abilities = stages.map(stageHTML => stageHTML && this.decodeAbilities(stageHTML))
-    return _.compact(abilities)
+    const stageAbilitiesTexts = stages
+      .map(stageAbilitiesHTML => (
+        stageAbilitiesHTML && this.decodeStageAbilities(stageAbilitiesHTML)
+      ))
+      .filter(stageAbilitiesText => stageAbilitiesText !== undefined)
+
+    return stageAbilitiesTexts
+      .map(stageAbilitiesText => this.splitStageAbilities(stageAbilitiesText))
+      .last()
   },
 
   splitIntoStages(abilitiesHTML) {
-    let firstStage, secondStage, thirdStage, rest, matches
+    let firstStage, secondStage, thirdStage, rest
 
-    matches = abilitiesHTML.match(secondStageDelim)
-    if (matches) {
-      [firstStage, rest] = abilitiesHTML.split(matches[0])
-    } else {
-      firstStage = abilitiesHTML
+    [firstStage, rest] = StringUtils.split(abilitiesHTML, secondStageDelim)
+    if (rest) {
+      [secondStage, thirdStage] = StringUtils.split(rest, thirdStageDelim)
     }
 
-    matches = abilitiesHTML.match(thirdStageDelim)
-    if (matches) {
-      [secondStage, thirdStage] = rest.split(matches[0])
-    } else {
-      secondStage = rest
+    if (secondStage) {
+      secondStage = `${firstStage}\n${secondStage}`
     }
 
     return [firstStage, secondStage, thirdStage]
   },
 
-  decodeAbilities(html) {
+  decodeStageAbilities(html) {
     const withoutSpecialSymbols = html.replace(downSymbol, '')
-    const withNewLine = withoutSpecialSymbols.replace(brRegex, '\n')
+    const withNewLine = withoutSpecialSymbols
+      .replace(brRegex, '\n')
+      .replace(multipleNewLinesRegex, '\n\n')
     const abilitiesText = HTMLUtils.getText(withNewLine)
 
     if (noAbilitiesRegex.test(abilitiesText)) {
       return undefined
     }
     return abilitiesText
+  },
+
+  splitStageAbilities(abilitiesText) {
+    const abilities = abilitiesText.split('\n\n')
+    return abilities
+      .map(ability => ability
+        .replace(/\s*/g, '')
+        .replace(noteRegex, "\n※")
+      )
+      .filter(ability => !noAbilitiesRegex.test(ability))
   }
 }
 
