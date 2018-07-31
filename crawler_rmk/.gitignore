@@ -2,7 +2,7 @@
 /node_modules
 
 # build files, crawled files
-/build/*.json/
+/build/*.json
 /build/*/*.html
 /build/*/*.jpg
 /build/*/*.png

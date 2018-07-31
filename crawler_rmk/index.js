@@ -53,9 +53,9 @@ COMMANDS:
 function run() {
   switch (getCommand()) {
     case CRAWL_COMMAND:
-      return execCrawling()
+      return execCrawl()
     case PARSE_COMMAND:
-      return execParsing()
+      return execParse()
     case HELP_COMMAND:
       return execHelp()
     default:
