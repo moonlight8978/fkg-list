@@ -16,7 +16,7 @@
       if (/^\d+$/.test(this)) {
         return parseInt(this)
       }
-      return null
+      return 0
     }
   }
 })()

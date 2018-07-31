@@ -1,8 +1,11 @@
 # dependencies
 /node_modules
 
-# build files
-/build
-
-# crawled files
-/src/html
+# build files, crawled files
+/build/*.json/
+/build/*/*.html
+/build/*/*.jpg
+/build/*/*.png
+/build/*/*.jpeg
+!/build/.keep
+!/build/*queue.*

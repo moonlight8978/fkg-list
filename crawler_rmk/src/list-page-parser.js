@@ -14,7 +14,7 @@ class ListPageParser extends PageParser {
         console.log(`Row ${index + 1}`)
         return this.parseUnit($(unitDOM))
       })
-      .filter(unit => unit !== undefined)
+      .filter(unit => unit)
 
     return units
 

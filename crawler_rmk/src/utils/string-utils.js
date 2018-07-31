@@ -13,17 +13,20 @@ const StringUtils = {
   },
 
   sum(strings) {
-    const isValidNumber = string => string && numberRegex.test(string)
+    let sum = 0
+
+    const isValidNumber = string => (
+      string && numberRegex.test(string) && parseInt(string) > 0
+    )
     const areAllNumber = strings.every(isValidNumber)
 
     if (areAllNumber) {
-      const sum = strings.reduce((accumulator, currentValue) => (
+      sum = strings.reduce((accumulator, currentValue) => (
         accumulator + parseInt(currentValue)
       ), 0)
-      return sum
     }
 
-    return null
+    return sum
   }
 }
 

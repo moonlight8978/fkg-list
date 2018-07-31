@@ -3,9 +3,9 @@ const $ = require('cheerio')
 const HTMLUtils = require('../../utils/html-utils')
 const StringUtils = require('../../utils/string-utils')
 const Logger = require('../../utils/logger')
+const AbilityNewLineFixer = require('../commons/ability-new-line-fixer')
 
 const brRegex = /<br class="spacer">/g
-const noteRegex = /※/g
 const multipleNewLinesRegex = /\s{3,}/g
 // ↓
 const downSymbol = /&#x2193;/g
@@ -22,7 +22,7 @@ const AbilitiesParser = {
       .map(stageAbilitiesHTML => (
         stageAbilitiesHTML && this.decodeStageAbilities(stageAbilitiesHTML)
       ))
-      .filter(stageAbilitiesText => stageAbilitiesText !== undefined)
+      .filter(stageAbilitiesText => stageAbilitiesText)
 
     return stageAbilitiesTexts
       .map(stageAbilitiesText => this.splitStageAbilities(stageAbilitiesText))
@@ -52,7 +52,7 @@ const AbilitiesParser = {
     const abilitiesText = HTMLUtils.getText(withNewLine)
 
     if (noAbilitiesRegex.test(abilitiesText)) {
-      return undefined
+      return null
     }
     return abilitiesText
   },
@@ -60,10 +60,7 @@ const AbilitiesParser = {
   splitStageAbilities(abilitiesText) {
     const abilities = abilitiesText.split('\n\n')
     return abilities
-      .map(ability => ability
-        .replace(/\s*/g, '')
-        .replace(noteRegex, "\n※")
-      )
+      .map(ability => AbilityNewLineFixer.perform(ability))
       .filter(ability => !noAbilitiesRegex.test(ability))
   }
 }
