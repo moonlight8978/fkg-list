@@ -39,6 +39,8 @@ class FKGItem extends React.PureComponent {
     const { fkg, renderDropdown } = this.props
     const { imageIndex, skillPanel } = this.state
 
+    const imageSrc = `assets/images/${fkg.id}_${imageIndex}`
+
     return (
       <div className="actionable_dropdown dropdown">
         <div>
@@ -46,8 +48,8 @@ class FKGItem extends React.PureComponent {
             <div className="fkg-item_main-info-col">
               <div className="fkg-item_img-col">
                 <div onClick={this.changeImage}>
-                  {/* <Image src={`assets/fkg/${fkg.id}_${imageIndex}.jpg`} name={fkg.name} /> */}
-                  <Image src={fkg.images[imageIndex]} name={fkg.name} />
+                  <Image src={imageSrc} name={fkg.name} />
+                  {/* <Image src={fkg.images[imageIndex]} name={fkg.name} /> */}
                 </div>
                 <div className="fkg-item_total-stats">{fkg.stats.total || '???'}</div>
               </div>
@@ -55,7 +57,8 @@ class FKGItem extends React.PureComponent {
               <div className="fkg-item_info-col">
                 <div className="fkg-item_info-header">
                   <div className="fkg-item_attribute">
-                    <Image src={`assets/${fkg.attribute}.png`} name={fkg.raw.attribute} />
+                    {/* TODO fix raw attribute */}
+                    <Image src={`assets/${fkg.attribute}.png`} name={"RawAttribute"} />
                   </div>
 
                   <div className="fkg-item_name">
@@ -75,7 +78,7 @@ class FKGItem extends React.PureComponent {
                   </FKGStat>
 
                   <FKGStat property="speed">
-                    {fkg.stats.speed || '???'}
+                    {fkg.speed || '???'}
                   </FKGStat>
 
                   <FKGStat property="defense">

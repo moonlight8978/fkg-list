@@ -50,14 +50,13 @@ class FilterableList extends React.Component {
 
   async componentDidUpdate(prevProps, prevState) {
     if (prevState.prevCount !== this.state.prevCount) {
-      const fkgs = await this.props.fetchData(this.state.filter)
-      this.setState({ fkgs })
+      this.fetchData()
     }
   }
 
-  async fetchData() {
+  async fetchData(loadingStatusWhenFinish = false) {
     const fkgs = await this.props.fetchData(this.state.filter)
-    this.setState({ fkgs, loading: false })
+    this.setState({ fkgs, loading: loadingStatusWhenFinish })
   }
 
   handleValueChange(key, value) {
@@ -68,9 +67,8 @@ class FilterableList extends React.Component {
     event.preventDefault()
     this.setState({ loading: true }, () => {
       setTimeout(async () => {
-        const fkgs = await this.props.fetchData(this.state.filter)
-        this.setState({ fkgs, loading: false })
-      }, 1000);
+        this.fetchData()
+      }, 1000)
     })
   }
 

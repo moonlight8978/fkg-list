@@ -1,19 +1,17 @@
 {
-  "name": "fkg-list-crawler",
-  "version": "1.1.0",
-  "description": "Crawler for FKGList",
+  "name": "crawler_rmk",
+  "version": "1.0.0",
+  "description": "Crawl data from http://フラワーナイトガール.攻略wiki.com",
   "main": "index.js",
-  "author": "_moon",
+  "author": "moonlight8978",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
-    "crawler": "^1.1.2",
-    "http-server": "^0.11.1"
+    "crawler": "^1.1.4",
+    "lodash": "^4.17.10",
+    "request": "^2.88.0"
   },
   "scripts": {
-    "test": "http-server ./ -o -c-1",
-    "build": "node index.js",
-    "crawl": "node crawler.js"
+    "start": "node index.js"
   }
 }
