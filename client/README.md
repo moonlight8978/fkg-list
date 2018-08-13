@@ -24,7 +24,7 @@ A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/pl
 // client/src/components/fkg-item/fkg-item.jsx
 
 // ...codes
-<Image src={`assets/fkg/${fkg.id}_${imageIndex}.jpg`} name={fkg.name} />
+<Image src={imageSrc} name={fkg.name} />
 {/* <Image src={fkg.images[imageIndex]} name={fkg.name} /> */}
 // ...codes
 ```
@@ -38,6 +38,7 @@ A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/pl
 * Re-master stylesheet.
 * Optimize code (FKGList/FKGItem components).
 * Infinite-scrolling instead of clicking "Show more" button.
+* Mapping unit properties (attribute, nation, ...) to japanese text
 
 ##### Setup
 

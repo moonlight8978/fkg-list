@@ -18,18 +18,12 @@ class Gallery extends React.Component {
     return await FKGApi.all(conditions)
   }
 
-  // async componentDidMount() {
-  //   const [fkgs, fkgNames] = [await FKGApi.all(), await FKGApi.getNames()]
-  //
-  //   this.setState({ fkgs, fkgNames, loading: false })
-  // }
-
   handleAdd(fkg) {
     MyListApi.add(fkg)
     console.log(`Added FKG No.${fkg.id}`)
   }
 
-  renderItem = (fkg) => (
+  renderItem = fkg => (
     <FKGItem fkg={fkg}
       renderDropdown={() => (
         <button type="button" className="dropdown-item" onClick={() => this.handleAdd(fkg)} >

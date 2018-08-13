@@ -10,7 +10,7 @@ const sortModels = [
   { label: 'HP', value: 'stats.hp' },
   { label: 'Attack', value: 'stats.attack' },
   { label: 'Defense', value: 'stats.defense' },
-  { label: 'Speed', value: 'stats.speed' },
+  { label: 'Speed', value: 'speed' },
 ]
 
 const obtainByModels = [

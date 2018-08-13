@@ -1,0 +1,10 @@
+# dependencies
+/node_modules
+
+# build files, crawled files
+/build/*.json
+/build/*/*.html
+/build/images/*
+!/build/images/.keep
+!/build/.keep
+!/build/*queue.*
