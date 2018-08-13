@@ -7,7 +7,7 @@ const FileUtils = require('./utils/file-utils')
 const Unit = require('./unit/unit')
 const UnitFromUnitPage = require('./unit/unit-from-unit-page')
 
-function parse(parsingTypes, outputDir) {
+function parse(parsingTypes, output) {
   const [originalUnits, upgradedUnits] = parsingTypes.map(({ type, dir }) => {
     const files = FileUtils.readDir(dir)
     const units = files.map(file => {
@@ -21,7 +21,7 @@ function parse(parsingTypes, outputDir) {
 
   const fixedUpgradedUnits = fixRarityUpgradeableUnit(originalUnits, upgradedUnits)
 
-  writeJSON(originalUnits.concat(fixedUpgradedUnits), outputDir)
+  writeJSON(originalUnits.concat(fixedUpgradedUnits), output)
 
   // for debugging
   // const parser1 = PageParserFactory.newParser('list', 'build/lists/★★★★★★.html')
@@ -40,10 +40,9 @@ function fixRarityUpgradeableUnit(originalUnits, upgradedUnits) {
   })
 }
 
-function writeJSON(data, outputDir) {
-  const des = path.join(outputDir, 'data.json')
+function writeJSON(data, output) {
   const json = JSON.stringify(data, null, 4)
-  fs.writeFileSync(des, json)
+  fs.writeFileSync(output, json)
 }
 
 module.exports = parse

@@ -8,7 +8,8 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "crawler": "^1.1.4",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "request": "^2.88.0"
   },
   "scripts": {
     "start": "node index.js"

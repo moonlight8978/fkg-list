@@ -4,6 +4,7 @@ global.BUILD_DIR = 'build'
 
 const crawl = require('./src/crawler')
 const parse = require('./src/parser')
+const downloadImages = require('./src/images-downloader')
 
 const queues = [
   { type: 'unit', queuePath: path.join(BUILD_DIR, 'units_queue.txt') },
@@ -14,7 +15,7 @@ const parsingTypes = [
   { type: 'list', dir: path.join(BUILD_DIR, 'lists') },
   { type: 'unit', dir: path.join(BUILD_DIR, 'units') },
 ]
-const parsingOutput = BUILD_DIR
+const parsingOutput = path.join(BUILD_DIR, 'data.json')
 
 const CRAWL_COMMAND = 'crawl'
 const PARSE_COMMAND = 'parse'
@@ -27,6 +28,10 @@ function execCrawl() {
 
 function execParse() {
   parse(parsingTypes, parsingOutput)
+}
+
+function execDownloadImages() {
+  downloadImages(parsingOutput)
 }
 
 function execHelp() {
@@ -56,6 +61,8 @@ function run() {
       return execCrawl()
     case PARSE_COMMAND:
       return execParse()
+    case DOWNLOAD_IMAGES_COMMAND:
+      return execDownloadImages()
     case HELP_COMMAND:
       return execHelp()
     default:
