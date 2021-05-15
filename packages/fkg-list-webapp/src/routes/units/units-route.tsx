@@ -1,64 +1,48 @@
 import { useEffect, useState } from 'react'
-import axios, { AxiosResponse } from 'axios'
-import { Unit } from 'fkg-list-types'
+import { useHistory, useLocation } from 'react-router'
+import { Formik } from 'formik'
 
-interface FlowerKnightGirl extends Unit.Simple {
-  id: string
-}
+import Layout from '../../components/layout'
+import { routePaths } from '../../config/route-defs'
+import { FlowerKnightGirl, FormData } from '../../types'
+import { UnitApi } from '../../api/unit-api'
 
-const attributeText = (value: Unit.Attribute): string => {
-  switch (value) {
-    case Unit.Attribute.blue:
-      return '打'
+import { fromQuery, initialValues, toQuery } from './units.form'
+import FilterForm from './components/filter-form'
+import { attributeText, favoriteText, totalStats } from './units.utils'
 
-    case Unit.Attribute.red:
-      return '斬'
-
-    case Unit.Attribute.yellow:
-      return '突'
-
-    default:
-      return '魔'
-  }
-}
-
-const favoriteText = (value: Unit.Favorite): string => {
-  switch (value) {
-    case Unit.Favorite.cake:
-      return 'ケーキ'
-
-    case Unit.Favorite.book:
-      return '本'
-
-    case Unit.Favorite.doll:
-      return 'ぬいぐるみ'
-
-    default:
-      return '宝石'
-  }
-}
-
-const totalStats = (unit: FlowerKnightGirl) => unit.hp + unit.attack + unit.defense
-
-function App() {
+export default function UnitsRoute() {
+  const { search } = useLocation()
+  const history = useHistory()
   const [units, setUnits] = useState<FlowerKnightGirl[]>([])
+  const [formInitialValues, setFormInitialValues] = useState<FormData.FilterUnits>(initialValues)
 
   useEffect(() => {
     async function fetchUnits() {
-      const response = await axios.get<any, AxiosResponse<Unit.Simple[]>>('/units-simple.json')
-      const responseUnits = response.data.map((unit) => ({ ...unit, id: `${unit.code}-${unit.star}` }))
-      // .filter((unit) => unit.attribute === 2 && unit.star === 5)
-      // responseUnits.sort((firstUnit, secondUnit) => {
-      //   return totalStats(secondUnit) - totalStats(firstUnit)
-      // })
-      setUnits(responseUnits)
+      const form = await fromQuery(search)
+      setFormInitialValues(form)
+      const response = await UnitApi.fetchAll(form)
+      setUnits(response)
     }
 
     fetchUnits()
-  }, [])
+  }, [search])
 
   return (
-    <div className="container">
+    <Layout>
+      <Formik
+        initialValues={formInitialValues}
+        onSubmit={(form) => {
+          history.push({
+            pathname: routePaths.units,
+            search: toQuery(form),
+          })
+        }}
+        enableReinitialize
+      >
+        <FilterForm />
+      </Formik>
+
       <table className="table table-striped">
         <thead>
           <tr>
@@ -89,8 +73,6 @@ function App() {
           ))}
         </tbody>
       </table>
-    </div>
+    </Layout>
   )
 }
-
-export default App
