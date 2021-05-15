@@ -1,3 +1,0 @@
-```shell
-$ yarn start help
-```

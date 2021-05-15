@@ -1,0 +1,27 @@
+{
+  "name": "fkg-list-types",
+  "version": "2.0.0",
+  "description": "Shared types for fkg-list",
+  "author": "_MoonLight_ <moonlight8978@gmail.com>",
+  "homepage": "https://github.com/moonlight8978/fkg-list#readme",
+  "license": "MIT",
+  "main": "build/fkg-list-types.js",
+  "types": "build/fkg-list-types.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonlight8978/fkg-list.git"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "bugs": {
+    "url": "https://github.com/moonlight8978/fkg-list/issues"
+  }
+}

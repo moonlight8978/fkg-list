@@ -1,5 +1,6 @@
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+**/tmp/*
+**/.tmp/*
+!**/.tmp/.gitkeep
+!**/tmp/.gitkeep
 
-wslbridge.exe.stackdump
+**/node_modules/

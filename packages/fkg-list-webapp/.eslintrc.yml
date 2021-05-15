@@ -1,0 +1,20 @@
+env:
+  browser: true
+extends:
+  - '../../.eslintrc.yml'
+  - 'plugin:react/recommended'
+plugins:
+  - react
+rules:
+  react/jsx-filename-extension:
+    - error
+    - extensions:
+        - '.js'
+        - '.jsx'
+        - '.ts'
+        - '.tsx'
+  react/jsx-props-no-spreading: 'off'
+  react/static-property-placement:
+    - error
+    - static public field
+  react/react-in-jsx-scope: 'off'
