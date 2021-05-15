@@ -25,5 +25,10 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "start": "lerna run --scope fkg-list-webapp start",
+    "install": "lerna bootstrap",
+    "postinstall": "lerna run --scope fkg-list-types build && lerna run --scope fkg-list-crawler start"
+  }
 }

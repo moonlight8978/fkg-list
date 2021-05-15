@@ -17,3 +17,4 @@ rules:
   react/static-property-placement:
     - error
     - static public field
+  react/react-in-jsx-scope: 'off'
