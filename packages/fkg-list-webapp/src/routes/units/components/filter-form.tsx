@@ -22,7 +22,7 @@ const getSelectValue = (value: any[]) => {
   }
 }
 
-export default function FilterForm() {
+export function FilterForm() {
   const { handleChange, values } = useFormikContext<FormData.FilterUnits>()
 
   return (

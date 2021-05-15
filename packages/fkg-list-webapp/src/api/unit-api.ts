@@ -23,7 +23,7 @@ class Api {
     }
 
     if (filter.keyword) {
-      units = units.filter((unit) => unit.name.includes(filter.keyword) || unit.id.includes(filter.keyword))
+      units = units.filter((unit) => unit.name.includes(filter.keyword) || unit.code.includes(filter.keyword))
     }
 
     units.sort((firstUnit, secondUnit) => {
