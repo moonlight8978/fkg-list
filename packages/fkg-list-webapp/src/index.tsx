@@ -5,6 +5,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+import './index.css'
 import App from './App'
 // import reportWebVitals from './reportWebVitals'
 
