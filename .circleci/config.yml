@@ -15,7 +15,13 @@ jobs:
           pkg-manager: yarn
 
       - run:
-          name: build
+          name: config github identity
+          command: |
+            git config --global user.email moonlight8978@gmail.com
+            git config --global user.name _MoonLight_
+
+      - run:
+          name: deploy to github pages
           command: yarn deploy
 
 workflows:
