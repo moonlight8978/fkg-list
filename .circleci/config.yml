@@ -9,6 +9,10 @@ jobs:
       - image: cimg/node:15.1
 
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - 'b3:e8:3a:75:9d:0e:74:c6:e1:ca:5e:c5:24:81:d5:3a'
+
       - checkout
 
       - node/install-packages:
