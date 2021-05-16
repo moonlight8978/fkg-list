@@ -34,4 +34,4 @@ workflows:
       - build-and-release:
           filters:
             branches:
-              only: circleci-project-setup
+              only: master
