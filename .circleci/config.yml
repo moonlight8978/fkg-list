@@ -15,6 +15,10 @@ jobs:
 
       - checkout
 
+      - restore_cache:
+          keys:
+            - crawler-data-v1
+
       - node/install-packages:
           pkg-manager: yarn
 
@@ -28,10 +32,15 @@ jobs:
           name: deploy to github pages
           command: yarn deploy
 
+      - save_cache:
+          key: crawler-data-v1
+          paths:
+            - packages/fkg-list-crawler/tmp
+
 workflows:
   release:
     jobs:
       - build-and-release:
           filters:
             branches:
-              only: master
+              only: circleci-project-setup
