@@ -27,8 +27,13 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "lerna run --scope fkg-list-webapp start",
     "install": "lerna bootstrap",
-    "postinstall": "lerna run --scope fkg-list-types build && lerna run --scope fkg-list-crawler start"
+    "postinstall": "yarn build:types",
+    "build:types": "lerna run --scope fkg-list-types build && lerna link",
+    "start:crawler": "lerna run --scope fkg-list-crawler start",
+    "start:webapp": "lerna run --scope fkg-list-webapp start",
+    "prestart:webapp": "yarn start:crawler",
+    "lint:check": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "pretty": "prettier --write --loglevel silent '**/*.{json,yml,yaml,js,jsx,ts,tsx}'"
   }
 }

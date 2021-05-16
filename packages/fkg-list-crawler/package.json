@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "start": "ts-node --transpile-only ./src/index.ts",
+    "start": "ts-node --transpile-only ./index.ts",
     "debug": "node --inspect='0.0.0.0:9229' --inspect-brk ./node_modules/.bin/ts-node --transpile-only ./src/index.ts"
   },
   "dependencies": {
