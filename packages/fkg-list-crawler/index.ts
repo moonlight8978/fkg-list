@@ -1,3 +1,3 @@
 import { crawl, simplePreset } from './src'
 
-crawl(simplePreset)
+crawl(simplePreset).catch(console.error)

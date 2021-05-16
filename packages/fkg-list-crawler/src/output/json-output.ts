@@ -3,7 +3,7 @@ import path from 'path'
 
 import { Output } from '../types'
 
-const defaultOutputPath = path.join(process.cwd(), 'tmp', 'units-simple.json')
+const defaultOutputPath = path.join(__dirname, '..', '..', 'tmp', 'units-simple.json')
 
 export class JsonOutput<T extends any[]> implements Output<T> {
   constructor(private outputPath = defaultOutputPath) {}

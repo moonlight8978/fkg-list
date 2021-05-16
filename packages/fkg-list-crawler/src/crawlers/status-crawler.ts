@@ -8,7 +8,7 @@ import { cache as cacheUtils } from '../utils/cache'
 
 type Cache = undefined | null | { hash: string }
 
-const getPageFilePath = (hash: string) => path.join(process.cwd(), 'tmp', `unit-status-list-${hash}.html`)
+const getPageFilePath = (hash: string) => path.join(__dirname, '..', '..', 'tmp', `unit-status-list-${hash}.html`)
 
 export class StatusCrawler implements Crawler<StatusCrawlerOutput, Cache> {
   public cacheKey = 'StatusCrawler'
