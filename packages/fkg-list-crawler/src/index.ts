@@ -12,6 +12,7 @@ import {
   SimpleDetailsMiddlewareAttributes,
   SimpleParserOutput,
 } from './types'
+import { ImageUrlsMiddleware } from './middlewares/image-urls-middleware'
 
 interface CrawlPreset<CrawlData, ParserOutput, MiddlewaresAppliedOutput extends ParserOutput> {
   crawler: Crawler<CrawlDatum<CrawlData>>
@@ -46,6 +47,6 @@ export const createCrawlPreset = <T, U, V extends U>(preset: CrawlPreset<T, U, V
 export const simplePreset = createCrawlPreset({
   crawler: new StatusCrawler(),
   parser: new SimpleParser(),
-  middlewares: [new SimpleDetailsMiddleware<SimpleParserOutput>()],
+  middlewares: [new SimpleDetailsMiddleware<SimpleParserOutput>(), new ImageUrlsMiddleware<SimpleParserOutput>()],
   output: new JsonOutput<Array<SimpleParserOutput & SimpleDetailsMiddlewareAttributes>>(),
 })
