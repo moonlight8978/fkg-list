@@ -43,7 +43,7 @@ class Api {
     if (!this.cache) {
       const units = await client.request<Unit.Simple[]>({
         method: 'get',
-        url: '/units-simple.json',
+        url: '/fkg-list/units-simple.json',
       })
 
       this.cache = units.map((unit) => ({
