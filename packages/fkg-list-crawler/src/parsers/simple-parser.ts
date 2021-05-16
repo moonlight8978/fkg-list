@@ -21,7 +21,6 @@ const parseAttribute = (colValue: string): Unit.Attribute => {
       throw new Error(`unsupport attribute ${colValue}`)
   }
 }
-
 const parseStar = (colValue: string): Unit.Star => {
   const starMatch = colValue.match(/\d+/)
   if (!starMatch) {

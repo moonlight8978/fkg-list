@@ -1,8 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 
+import { Output } from '../types'
+
 const defaultOutputPath = path.join(process.cwd(), 'tmp', 'units-simple.json')
 
-export const jsonOutput = (units: any[], outputPath = defaultOutputPath) => {
-  fs.writeFileSync(outputPath, JSON.stringify(units))
+export class JsonOutput<T extends any[]> implements Output<T> {
+  constructor(private outputPath = defaultOutputPath) {}
+
+  async execute(units: any[]) {
+    fs.writeFileSync(this.outputPath, JSON.stringify(units))
+  }
 }

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+
 import axios from 'axios'
 
 import { Crawler, StatusCrawlerOutput } from '../types'
@@ -9,28 +10,21 @@ type Cache = undefined | null | { hash: string }
 
 const getPageFilePath = (hash: string) => path.join(process.cwd(), 'tmp', `unit-status-list-${hash}.html`)
 
-export class StatusCrawler implements Crawler<StatusCrawlerOutput> {
-  public static cacheKey = 'StatusCrawler'
+export class StatusCrawler implements Crawler<StatusCrawlerOutput, Cache> {
+  public cacheKey = 'StatusCrawler'
 
-  protected hash: string
+  protected hash: string = new Date().getTime().toString()
 
-  constructor(protected cache: Cache) {
-    if (cache) {
-      this.hash = cache.hash
-    } else {
-      this.hash = new Date().getTime().toString()
-      cacheUtils.write(StatusCrawler.cacheKey, { hash: this.hash })
-    }
-  }
-
-  async execute() {
-    const html = await this.getHtml()
+  async execute(cache: Cache) {
+    const hash = cache?.hash ?? this.hash
+    cacheUtils.write(this.cacheKey, { hash })
+    const html = await this.getHtml(hash)
 
     return [{ data: html, metadata: {} }]
   }
 
-  private async getHtml() {
-    const pageFilePath = getPageFilePath(this.hash)
+  private async getHtml(hash: string) {
+    const pageFilePath = getPageFilePath(hash)
 
     if (fs.existsSync(pageFilePath)) {
       return fs.readFileSync(pageFilePath).toString()
