@@ -1,6 +1,7 @@
 {
   "name": "fkg-list-webapp",
-  "version": "0.1.0",
+  "version": "2.0.0",
+  "homepage": "https://moonlight8978.github.io/fkg-list/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
