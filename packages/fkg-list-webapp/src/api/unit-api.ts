@@ -28,9 +28,11 @@ class Api {
 
     units.sort((firstUnit, secondUnit) => {
       if (filter.sortDirection === SortDirection.ascending) {
+        // @ts-expect-error
         return firstUnit[filter.sortKey] - secondUnit[filter.sortKey]
       }
 
+      // @ts-expect-error
       return secondUnit[filter.sortKey] - firstUnit[filter.sortKey]
     })
 

@@ -16,9 +16,12 @@ jobs:
 
       - run:
           name: build
-          command: yarn build:webapp
+          command: yarn deploy
 
 workflows:
   release:
     jobs:
-      - build-and-release
+      - build-and-release:
+          filters:
+            branches:
+              only: circleci-project-setup
