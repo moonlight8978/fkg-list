@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "install": "lerna bootstrap",
-    "postinstall": "yarn build:types",
+    "postinstall": "lerna link",
     "build:types": "lerna run --scope fkg-list-types build && lerna link",
     "prebuild:webapp": "yarn start:crawler",
     "build:webapp": "lerna run --scope fkg-list-webapp build",

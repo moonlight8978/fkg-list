@@ -19,7 +19,8 @@
     "url": "git+https://github.com/moonlight8978/fkg-list.git"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "postinstall": "yarn build"
   },
   "bugs": {
     "url": "https://github.com/moonlight8978/fkg-list/issues"
