@@ -44,6 +44,7 @@ export class LibraryCrawler implements Crawler<LibraryCrawlerOutput, Cache> {
       return fs.readFileSync(filePath).toString()
     }
 
+    console.log(`--- LibraryCrawler: Downloading ${url}`)
     const response = await axios.get(url)
     fs.writeFileSync(filePath, response.data)
     return response.data

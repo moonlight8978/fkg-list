@@ -17,7 +17,9 @@ export namespace FormData {
   }
 }
 
-export interface FlowerKnightGirl extends Unit.Simple, Unit.SimpleDetails, Unit.ImageUrls {
+export interface ApiFlowerKnightGirl extends Unit.Simple, Unit.SimpleDetails, Unit.ImageUrls {}
+
+export interface FlowerKnightGirl extends ApiFlowerKnightGirl {
   id: string
   totalStats: number
 }

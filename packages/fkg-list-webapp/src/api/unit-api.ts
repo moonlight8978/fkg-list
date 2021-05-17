@@ -1,6 +1,4 @@
-import { Unit } from 'fkg-list-types'
-
-import { FlowerKnightGirl, FormData, SortDirection } from '../types'
+import { ApiFlowerKnightGirl, FlowerKnightGirl, FormData, SortDirection } from '../types'
 
 import { client } from './client'
 
@@ -41,7 +39,7 @@ class Api {
 
   private async fetchUnits() {
     if (!this.cache) {
-      const units = await client.request<Unit.Simple[]>({
+      const units = await client.request<ApiFlowerKnightGirl[]>({
         method: 'get',
         url: '/units-simple.json',
       })
