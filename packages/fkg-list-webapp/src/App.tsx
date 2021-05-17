@@ -5,7 +5,7 @@ import UnitsRoute from './routes/units'
 
 export default function App() {
   return (
-    <Router basename="/">
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/about">
           <AboutRoute />
