@@ -25,11 +25,12 @@ export class LibraryCrawler implements Crawler<LibraryCrawlerOutput, Cache> {
         'https://xn--eckq7fg8cygsa1a1je.xn--wiki-4i9hs14f.com/index.php?%E2%98%85%E2%98%85%E2%98%85%E2%98%85',
         'https://xn--eckq7fg8cygsa1a1je.xn--wiki-4i9hs14f.com/index.php?%E2%98%85%E2%98%85%E2%98%85',
         'https://xn--eckq7fg8cygsa1a1je.xn--wiki-4i9hs14f.com/index.php?%E2%98%85%E2%98%85',
-      ].map((url) => {
+      ].map((url, index) => {
         return this.getHtml(url, hash).then((html) => ({
           data: html,
           metadata: {
             url,
+            star: 6 - index,
           },
         }))
       })
