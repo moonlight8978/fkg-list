@@ -42,10 +42,5 @@
     "deploy:local": "npx serve packages/fkg-list-webapp/build",
     "predeploy": "yarn build:webapp",
     "deploy": "yarn deploy:github"
-  },
-  "dependencies": {
-    "fkg-list-crawler": "file:packages/fkg-list-crawler",
-    "fkg-list-types": "file:packages/fkg-list-types",
-    "fkg-list-webapp": "file:packages/fkg-list-webapp"
   }
 }

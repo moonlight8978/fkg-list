@@ -22,7 +22,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
     "classnames": "^2.3.1",
-    "fkg-list-types": "file:../fkg-list-types",
+    "fkg-list-types": "^2.0.0",
     "formik": "^2.2.6",
     "lodash": "^4.17.21",
     "query-string": "^7.0.0",
