@@ -68,12 +68,13 @@ workflows:
       - build-and-release:
           filters:
             branches:
-              only: master
+              only: main
   build:
     jobs:
       - build:
           filters:
             branches:
               ignore:
-                - master
+                - main
+                - develop
                 - /v*/

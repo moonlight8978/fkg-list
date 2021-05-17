@@ -1,5 +1,7 @@
 # FKG List
 
+[![CircleCI](https://circleci.com/gh/moonlight8978/fkg-list/tree/main.svg?style=svg)](https://circleci.com/gh/moonlight8978/fkg-list/?branch=main)
+
 A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/play/flower/) using [React](http://reactjs.org/).
 
 ### Folders
