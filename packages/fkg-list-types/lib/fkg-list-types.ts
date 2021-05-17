@@ -53,6 +53,33 @@ export namespace Unit {
     jewel = 4,
   }
 
+  export enum Family {
+    /**
+     * ウィンターローズ
+     */
+    winterRose = 1,
+    /**
+     * バナナオーシャン
+     */
+    bananaOcean = 2,
+    /**
+     * ブロッサムヒル
+     */
+    blossomHill = 3,
+    /**
+     * ベルガモットバレー
+     */
+    bergamotValley = 4,
+    /**
+     * リリィウッド
+     */
+    lilywood = 5,
+    /**
+     * ロータスレイク
+     */
+    lotusLake = 6,
+  }
+
   export type Star = 2 | 3 | 4 | 5 | 6
 
   export interface Simple {
@@ -67,20 +94,39 @@ export namespace Unit {
     favorite: Favorite
   }
 
-  export interface Full {
-    code: string
-    name: string
-    images: [Image, Image, Image]
-    star: Star
-    isUpgradeable: boolean
+  export interface SimpleDetails {
     enhancement: Enhancement
-    attribute: Attribute
-    hp: number
-    attack: number
-    defense: number
+    family: Family
+    upgradability: Upgradability
     speed: number
-    family: string
-    favorite: Favorite
+  }
+
+  export enum Upgradability {
+    none = 0,
+    /**
+     * 昇華
+     */
+    promoteToSixStars = 1,
+  }
+
+  export interface Skills {
     skills: string[]
   }
+
+  // export interface Full {
+  //   code: string
+  //   name: string
+  //   images: [Image, Image, Image]
+  //   star: Star
+
+  //   enhancement: Enhancement
+  //   attribute: Attribute
+  //   hp: number
+  //   attack: number
+  //   defense: number
+  //   speed: number
+  //   family: string
+  //   favorite: Favorite
+  //   skills: string[]
+  // }
 }

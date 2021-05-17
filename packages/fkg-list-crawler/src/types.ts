@@ -5,18 +5,26 @@ export interface CrawlDatum<Data, Metadata = {}> {
   metadata: Metadata
 }
 
-export interface Crawler<Output extends CrawlDatum<any>> {
-  execute: () => Promise<Output[]>
+export interface Crawler<Output extends CrawlDatum<any>, Cache = any> {
+  cacheKey: string
+
+  execute: (cache: Cache) => Promise<Output[]>
 }
 
 export interface Parser<CrawlerOutput extends CrawlDatum<any>, Output> {
   execute: (data: CrawlerOutput[]) => Output[]
 }
 
-export interface Middleware<ParserOutput, Output> {
-  execute: (data: ParserOutput[]) => Promise<Output[]>
+export interface Middleware<ParserOutput, AdditionalAttributes extends Record<string, any>> {
+  execute: (data: ParserOutput[], cache: any) => Promise<(ParserOutput & AdditionalAttributes)[]>
+}
+
+export interface Output<Data extends any[]> {
+  execute: (data: Data) => Promise<void>
 }
 
 export type StatusCrawlerOutput = CrawlDatum<string>
 
 export type SimpleParserOutput = Unit.Simple
+
+export type SimpleDetailsMiddlewareAttributes = Unit.SimpleDetails
