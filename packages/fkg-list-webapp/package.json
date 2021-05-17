@@ -1,6 +1,6 @@
 {
   "name": "fkg-list-webapp",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -34,11 +34,13 @@
     "yup": "^0.32.9"
   },
   "scripts": {
+    "prestart": "yarn copy:resources",
     "start": "react-scripts start",
+    "prebuild": "yarn copy:resources",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prestart": "cp ../fkg-list-crawler/tmp/units-simple.json ./public"
+    "copy:resources": "cp ../fkg-list-crawler/tmp/units-simple.json ./public"
   },
   "eslintConfig": {
     "extends": [
@@ -61,7 +63,8 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.9",
-    "@types/yup": "^0.29.11"
+    "@types/yup": "^0.29.11",
+    "gh-pages": "^3.1.0"
   },
   "resolutions": {
     "styled-components": "^5"

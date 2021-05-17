@@ -14,6 +14,7 @@ export class Client {
 }
 
 const httpClient = axios.create({
+  baseURL: process.env.PUBLIC_URL,
   timeout: 15000,
   headers: {
     Accept: 'application/json',

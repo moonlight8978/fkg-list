@@ -5,6 +5,7 @@ import { Unit } from 'fkg-list-types'
 
 import { FormData, SortDirection } from '../../types'
 
+// @ts-expect-error
 export const validationSchema: SchemaOf<FormData.FilterUnits> = object({
   keyword: string().required(),
   star: array()
@@ -48,6 +49,7 @@ export const fromQuery = async (query: string): Promise<FormData.FilterUnits> =>
       const errors = yupToFormErrors<FormData.FilterUnits>(yupErrors)
       return Object.fromEntries(
         Object.entries(initialValues).map(([attr, value]) => {
+          // @ts-expect-error
           if (errors[attr]) {
             return [attr, value]
           }

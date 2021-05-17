@@ -1,0 +1,46 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+
+jobs:
+  build-and-release:
+    docker:
+      - image: cimg/node:15.1
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - 'b3:e8:3a:75:9d:0e:74:c6:e1:ca:5e:c5:24:81:d5:3a'
+
+      - checkout
+
+      - restore_cache:
+          keys:
+            - crawler-data-v1
+
+      - node/install-packages:
+          pkg-manager: yarn
+
+      - run:
+          name: config github identity
+          command: |
+            git config --global user.email moonlight8978@gmail.com
+            git config --global user.name _MoonLight_
+
+      - run:
+          name: deploy to github pages
+          command: yarn deploy
+
+      - save_cache:
+          key: crawler-data-v1
+          paths:
+            - packages/fkg-list-crawler/tmp
+
+workflows:
+  release:
+    jobs:
+      - build-and-release:
+          filters:
+            branches:
+              only: master

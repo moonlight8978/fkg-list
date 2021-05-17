@@ -2,13 +2,41 @@
 
 A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/play/flower/) using [React](http://reactjs.org/).
 
-##### Folders
+### Folders
 
-* `client`: Main project.
-* `crawler`: Data crawler/generator for client.
-* The rest are not important.
+- `packages/fkg-list-webapp`: React Webapp.
+- `packages/fkg-list-crawler`: Data (JSON) crawler/generator for client.
+  ```txt
+  Crawler => Parser => Middleware(s) => Output
+  ```
+- The rest are not important.
 
-##### Links
+### Development
 
-* Data: Crawl from [Japanese wiki](http://xn--eckq7fg8cygsa1a1je.xn--wiki-4i9hs14f.com/)
-* Game: [here](http://pc-play.games.dmm.com/play/flower/)
+```bash
+node -v
+# => node -v
+
+yarn -v
+# => 1.22.10
+```
+
+```bash
+cp packages/fkg-list-webapp/.env packages/fkg-list-webapp/.env.production.local
+```
+
+```bash
+yarn install
+
+yarn start:webapp
+open localhost:3000 # For MacOS, or just type http://localhost:3000 on browser
+
+yarn build:webapp
+yarn deploy:local
+open localhost:5000 # For MacOS, or just type http://localhost:5000 on browser
+```
+
+### Links
+
+- Data: Crawl from [Japanese wiki](http://フラワーナイトガール.攻略wiki.com/)
+- Game: [here](http://pc-play.games.dmm.com/play/flower/)
