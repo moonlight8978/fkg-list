@@ -15,7 +15,7 @@ A simple character list for [Flower Knight Girl](http://pc-play.games.dmm.com/pl
 
 ```bash
 node -v
-# => node -v
+# => v14.17.0
 
 yarn -v
 # => 1.22.10
