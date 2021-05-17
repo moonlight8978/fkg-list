@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useFormikContext } from 'formik'
+import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 import { routePaths } from '../../../config/route-defs'
@@ -8,9 +9,10 @@ import { toQuery } from '../units.form'
 
 interface Props {
   sortKey: string
+  children: ReactNode
 }
 
-export function SortIcon({ sortKey }: Props) {
+export function SortableCol({ sortKey, children }: Props) {
   const { values } = useFormikContext<FormData.FilterUnits>()
 
   return (
@@ -24,7 +26,9 @@ export function SortIcon({ sortKey }: Props) {
           sortKey,
         }),
       }}
+      className="text-decoration-none"
     >
+      <span className="link-dark">{children}</span>
       <FontAwesomeIcon icon="sort" className="ms-2" />
     </Link>
   )

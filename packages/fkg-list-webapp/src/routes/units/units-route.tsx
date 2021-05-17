@@ -10,7 +10,7 @@ import { UnitApi } from '../../api/unit-api'
 import { fromQuery, initialValues, toQuery } from './units.form'
 import { FilterForm } from './components/filter-form'
 import { UnitList } from './components/unit-list'
-import { SortIcon } from './components/sort-icon'
+import { SortableCol } from './components/sortable-col'
 
 export default function UnitsRoute() {
   const { search } = useLocation()
@@ -47,15 +47,14 @@ export default function UnitsRoute() {
             <thead>
               <tr>
                 <th scope="col">
-                  #
-                  <SortIcon sortKey="code" />
+                  <SortableCol sortKey="code">#</SortableCol>
                 </th>
+                <th scope="col">アバター</th>
                 <th scope="col">名前</th>
                 <th scope="col">属性</th>
                 <th scope="col">レア度</th>
                 <th scope="col">
-                  総合力
-                  <SortIcon sortKey="totalStats" />
+                  <SortableCol sortKey="totalStats">総合力</SortableCol>
                 </th>
                 <th scope="col">HP</th>
                 <th scope="col">攻撃力</th>
