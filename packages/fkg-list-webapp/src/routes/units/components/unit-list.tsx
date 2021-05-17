@@ -1,5 +1,7 @@
 import { memo } from 'react'
+import styled from 'styled-components'
 
+import LazyImage from '../../../components/lazy-image'
 import { FlowerKnightGirl } from '../../../types'
 import { attributeText, favoriteText, totalStats } from '../units.utils'
 
@@ -7,10 +9,35 @@ interface UnitListItemProps {
   unit: FlowerKnightGirl
 }
 
+const UnitImage = styled(LazyImage)`
+  width: 50px;
+`
+
+const unitImageAlt = (index: number) => {
+  switch (index) {
+    case 0:
+      return '進化前'
+    case 1:
+      return '進化後'
+    default:
+      return '開花後'
+  }
+}
+
 const UnitListItem = memo(function UnitListItem({ unit }: UnitListItemProps) {
   return (
     <tr key={unit.id}>
       <td>{unit.code}</td>
+      <td>
+        {unit.images.map((image, index) => (
+          <UnitImage
+            key={image.url}
+            src={image.url}
+            placeholderSrc="https://via.placeholder.com/50x50"
+            alt={unitImageAlt(index)}
+          />
+        ))}
+      </td>
       <td>{unit.name}</td>
       <td>{attributeText(unit.attribute)}</td>
       <td>★{unit.star}</td>

@@ -82,10 +82,17 @@ export namespace Unit {
 
   export type Star = 2 | 3 | 4 | 5 | 6
 
+  export enum Upgradability {
+    none = 0,
+    /**
+     * 昇華
+     */
+    promoteToSixStars = 1,
+  }
+
   export interface Simple {
     code: string
     name: string
-    images: [Image, Image, Image]
     attribute: Attribute
     star: Star
     hp: number
@@ -101,12 +108,8 @@ export namespace Unit {
     speed: number
   }
 
-  export enum Upgradability {
-    none = 0,
-    /**
-     * 昇華
-     */
-    promoteToSixStars = 1,
+  export interface ImageUrls {
+    images: Image[]
   }
 
   export interface Skills {
