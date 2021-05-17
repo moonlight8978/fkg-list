@@ -5,7 +5,7 @@ import UnitsRoute from './routes/units'
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/">
       <Switch>
         <Route path="/about">
           <AboutRoute />
