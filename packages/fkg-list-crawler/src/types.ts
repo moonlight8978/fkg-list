@@ -28,3 +28,7 @@ export type StatusCrawlerOutput = CrawlDatum<string>
 export type SimpleParserOutput = Unit.Simple
 
 export type SimpleDetailsMiddlewareAttributes = Unit.SimpleDetails
+
+export type LibraryCrawlerOutput = CrawlDatum<string, { url: string; star: number }>
+
+export type BaseUnit = Pick<Unit.Simple, 'code' | 'star'>

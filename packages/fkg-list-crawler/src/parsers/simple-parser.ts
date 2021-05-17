@@ -67,7 +67,6 @@ const parseRow = (row: Cheerio<Element>): SimpleParserOutput => {
     attack: parseStat(row.find('td:nth-child(9)').text()),
     defense: parseStat(row.find('td:nth-child(10)').text()),
     favorite: parseFavorite(row.find('td:nth-child(14)').text()),
-    images: [{ url: '' }, { url: '' }, { url: '' }],
   }
 }
 

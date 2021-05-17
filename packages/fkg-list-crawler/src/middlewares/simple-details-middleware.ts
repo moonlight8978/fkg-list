@@ -2,10 +2,8 @@ import cheerio, { Cheerio, Element } from 'cheerio'
 import { Unit } from 'fkg-list-types'
 
 import { StatusCrawler } from '../crawlers/status-crawler'
-import { Middleware, SimpleDetailsMiddlewareAttributes } from '../types'
+import { BaseUnit, Middleware, SimpleDetailsMiddlewareAttributes } from '../types'
 import { cache } from '../utils/cache'
-
-type BaseUnit = Pick<Unit.Simple, 'code' | 'star'>
 
 const parseFamily = (colValue: string): Unit.Family => {
   switch (colValue) {

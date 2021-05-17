@@ -1,3 +1,8 @@
 import { crawl, simplePreset } from './src'
 
-crawl(simplePreset).catch(console.error)
+crawl(simplePreset)
+  .then(() => console.log('ok'))
+  .catch((error) => {
+    console.log(error)
+    throw error
+  })
