@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "install": "lerna bootstrap",
-    "postinstall": "lerna link",
+    "postinstall": "yarn build:types",
     "build:types": "lerna run --scope fkg-list-types build && lerna link",
     "prebuild:webapp": "yarn start:crawler",
     "build:webapp": "lerna run --scope fkg-list-webapp build",
@@ -42,5 +42,10 @@
     "deploy:local": "npx serve packages/fkg-list-webapp/build",
     "predeploy": "yarn build:webapp",
     "deploy": "yarn deploy:github"
+  },
+  "dependencies": {
+    "fkg-list-crawler": "file:packages/fkg-list-crawler",
+    "fkg-list-types": "file:packages/fkg-list-types",
+    "fkg-list-webapp": "file:packages/fkg-list-webapp"
   }
 }

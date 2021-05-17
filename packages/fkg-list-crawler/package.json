@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.9",
-    "fkg-list-types": "^2.0.0",
+    "fkg-list-types": "file:../fkg-list-types",
     "ts-node": "^9.1.1"
   }
 }
