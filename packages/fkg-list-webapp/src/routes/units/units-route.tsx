@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router'
 import { Formik } from 'formik'
+import { forceCheck } from 'react-lazyload'
 
 import Layout from '../../components/layout'
 import { routePaths } from '../../config/route-defs'
@@ -28,6 +29,10 @@ export default function UnitsRoute() {
 
     fetchUnits()
   }, [search, setUnits])
+
+  useEffect(() => {
+    forceCheck()
+  }, [units])
 
   return (
     <Layout>
