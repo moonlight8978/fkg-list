@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './index.css'
-import App from './App'
+import App from './app'
 // import reportWebVitals from './reportWebVitals'
 
-library.add(fab, fas)
+library.add(fas)
 
 ReactDOM.render(
   <React.StrictMode>

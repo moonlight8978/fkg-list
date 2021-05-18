@@ -42,6 +42,9 @@ class Api {
       const units = await client.request<ApiFlowerKnightGirl[]>({
         method: 'get',
         url: '/units-simple.json',
+        params: {
+          timestamp: new Date().getTime().toString(),
+        },
       })
 
       this.cache = units.map((unit) => ({
