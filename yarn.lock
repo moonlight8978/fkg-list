@@ -2773,6 +2773,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-lazyload@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@types/react-lazyload/-/react-lazyload-3.1.0.tgz#97b167266afbc75f432eca01c50555adae21c5a4"
+  integrity sha512-JnVJb+6cUrIk4Fo/zc/4NuFtm0h3XeNlN4Gt++WEHGeUDtlhnF1lXRz0WoqNmh5gH3oyeYOJXIZ8MoPL9ehp0g==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^5.1.7":
   version "5.1.7"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.7.tgz#a126d9ea76079ffbbdb0d9225073eb5797ab7271"
@@ -2788,6 +2795,13 @@
   integrity sha512-LAJpqYUaCTMT2anZheoidiIymt8MuX286zoVFPM3DVb23aQBH0mAkFvzpd4LKqiolV8bBtZWT5Qp7hClCNDENw==
   dependencies:
     "@types/history" "*"
+    "@types/react" "*"
+
+"@types/react-table@^7.7.0":
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/@types/react-table/-/react-table-7.7.0.tgz#cb441a03af7303efd570b816b5ed0ea4d35ce705"
+  integrity sha512-xx2PJO9a0FEY7s96KWmadrhWNGxkNZgMnoKbXKPepqzz4FHKVds1tPDqWOU7NpP+dAsRli/wn0ysZ4MxWZI4Nw==
+  dependencies:
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^17.0.5":
@@ -3831,6 +3845,11 @@ babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
   integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
+
+baconjs@^3.0.17:
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/baconjs/-/baconjs-3.0.17.tgz#c70d09ffef6a46bde0c2e0c562d7e59fed9c3f99"
+  integrity sha512-XwhawE4gmO+NhMKZYmUSidk8ZjDhx5pfp9k/s5HM25S+k/YKajsakFOxbmUU1L9zbh1SarPbCobBuHhCMPFbCA==
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -6487,6 +6506,11 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
+faker@^5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/faker/-/faker-5.5.3.tgz#c57974ee484431b25205c2c8dc09fda861e51e0e"
+  integrity sha512-wLTv2a28wjUyWkbnX7u/ABZBkUkIF2fCd73V6P2oFqEGEktDfzWx4UxrSqtPRw0xPRAcjeAOIiJWqZm3pP4u3g==
+
 fast-deep-equal@^3.1.1:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
@@ -6681,55 +6705,6 @@ find-up@^3.0.0:
   integrity sha512-1yD6RmLI1XBfxugvORwlck6f75tYL+iR0jqwsOrOxMZyGYqUuDhJ0l4AXdO1iX/FTs9cBAMEk1gWSEx1kSbylg==
   dependencies:
     locate-path "^3.0.0"
-
-"fkg-list-crawler@file:packages/fkg-list-crawler":
-  version "2.0.0"
-  dependencies:
-    axios "^0.21.1"
-    cheerio "^1.0.0-rc.9"
-    fkg-list-types "file:../../../.cache/yarn/v6/npm-fkg-list-crawler-2.0.0-5f108dd8-a63c-4dbe-9c49-7b6e7667104c-1621240506324/node_modules/fkg-list-types"
-    ts-node "^9.1.1"
-
-"fkg-list-types@file:packages/fkg-list-types":
-  version "2.0.0"
-
-"fkg-list-webapp@file:packages/fkg-list-webapp":
-  version "2.0.0"
-  dependencies:
-    "@fortawesome/fontawesome-svg-core" "^1.2.35"
-    "@fortawesome/free-brands-svg-icons" "^5.15.3"
-    "@fortawesome/free-regular-svg-icons" "^5.15.3"
-    "@fortawesome/free-solid-svg-icons" "^5.15.3"
-    "@fortawesome/react-fontawesome" "^0.1.14"
-    "@testing-library/jest-dom" "^5.12.0"
-    "@testing-library/react" "^11.2.7"
-    "@testing-library/user-event" "^13.1.9"
-    "@types/jest" "^26.0.23"
-    "@types/node" "^15.3.0"
-    "@types/query-string" "^6.3.0"
-    "@types/react" "^17.0.5"
-    "@types/react-dom" "^17.0.5"
-    "@types/react-router-dom" "^5.1.7"
-    "@types/styled-components" "^5.1.9"
-    "@types/yup" "^0.29.11"
-    animate.css "^4.1.1"
-    axios "^0.21.1"
-    bootstrap "^5.0.1"
-    classnames "^2.3.1"
-    fkg-list-types "file:../../../.cache/yarn/v6/npm-fkg-list-webapp-2.0.0-9d48e46f-b2c6-4a63-b81b-2d922e7a9b4c-1621240506336/node_modules/fkg-list-types"
-    formik "^2.2.6"
-    lodash "^4.17.21"
-    query-string "^7.0.0"
-    react "^17.0.2"
-    react-dom "^17.0.2"
-    react-responsive "^8.2.0"
-    react-router-dom "^5.2.0"
-    react-scripts "4.0.3"
-    styled-components "^5.3.0"
-    typescript "^4.2.4"
-    vanilla-lazyload "^17.3.1"
-    web-vitals "^1.1.2"
-    yup "^0.32.9"
 
 flat-cache@^3.0.4:
   version "3.0.4"
@@ -11770,6 +11745,11 @@ react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+
+react-lazyload@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.2.0.tgz#497bd06a6dbd7015e3376e1137a67dc47d2dd021"
+  integrity sha512-zJlrG8QyVZz4+xkYZH5v1w3YaP5wEFaYSUWC4CT9UXfK75IfRAIEdnyIUF+dXr3kX2MOtL1lUaZmaQZqrETwgw==
 
 react-refresh@^0.8.3:
   version "0.8.3"

@@ -2,9 +2,16 @@
   "name": "fkg-list-types",
   "version": "2.1.0",
   "description": "Shared types for fkg-list",
-  "author": "_MoonLight_ <moonlight8978@gmail.com>",
   "homepage": "https://github.com/moonlight8978/fkg-list#readme",
+  "bugs": {
+    "url": "https://github.com/moonlight8978/fkg-list/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonlight8978/fkg-list.git"
+  },
   "license": "MIT",
+  "author": "_MoonLight_ <moonlight8978@gmail.com>",
   "main": "build/fkg-list-types.js",
   "types": "build/fkg-list-types.d.ts",
   "directories": {
@@ -14,15 +21,8 @@
   "files": [
     "lib"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/moonlight8978/fkg-list.git"
-  },
   "scripts": {
     "build": "tsc",
     "postinstall": "yarn build"
-  },
-  "bugs": {
-    "url": "https://github.com/moonlight8978/fkg-list/issues"
   }
 }
