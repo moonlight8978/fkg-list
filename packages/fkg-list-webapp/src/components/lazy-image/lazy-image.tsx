@@ -1,10 +1,8 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { HTMLProps, useEffect } from 'react'
-import LazyLoad from 'vanilla-lazyload'
 import classnames from 'classnames'
 
-if (!document.lazyLoadInstance) {
-  document.lazyLoadInstance = new LazyLoad()
-}
+import lazyloader from './lazy-loader'
 
 interface Props extends HTMLProps<HTMLImageElement> {
   placeholderSrc: string
@@ -12,9 +10,9 @@ interface Props extends HTMLProps<HTMLImageElement> {
 
 export default function LazyImage({ src, placeholderSrc, className, ...props }: Props) {
   useEffect(() => {
-    document.lazyLoadInstance.update()
+    lazyloader.update()
   }, [])
 
-  // eslint-disable-next-line jsx-a11y/alt-text
+  // @ts-expect-error
   return <img {...props} src={placeholderSrc} data-src={src} className={classnames('lazy', className)} />
 }

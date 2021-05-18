@@ -2,6 +2,7 @@ import { memo } from 'react'
 import styled from 'styled-components'
 
 import LazyImage from '../../../components/lazy-image'
+import LazyLoad from '../../../components/lazy-load'
 import { FlowerKnightGirl } from '../../../types'
 import { attributeText, favoriteText, totalStats } from '../units.utils'
 
@@ -26,7 +27,7 @@ const unitImageAlt = (index: number) => {
 
 const UnitListItem = memo(function UnitListItem({ unit }: UnitListItemProps) {
   return (
-    <tr key={unit.id}>
+    <LazyLoad>
       <td>{unit.code}</td>
       <td>
         {unit.images.map((image, index) => (
@@ -46,7 +47,7 @@ const UnitListItem = memo(function UnitListItem({ unit }: UnitListItemProps) {
       <td>{unit.attack}</td>
       <td>{unit.defense}</td>
       <td>{favoriteText(unit.favorite)}</td>
-    </tr>
+    </LazyLoad>
   )
 })
 
