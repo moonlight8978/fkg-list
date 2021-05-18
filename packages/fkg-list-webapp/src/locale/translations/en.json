@@ -1,0 +1,44 @@
+{
+  "layout.brand": "FKG LIST",
+  "layout.units": "Characters",
+  "layout.about": "About",
+  "layout.language": "Language",
+
+  "language.ja": "日本語",
+  "language.en": "English",
+
+  "unit.favorite.book": "Book",
+  "unit.favorite.cake": "Cake",
+  "unit.favorite.doll": "Doll",
+  "unit.favorite.jewel": "Jewel",
+
+  "unit.attribute.blue": "打 (Blue)",
+  "unit.attribute.red": "斬 (Red)",
+  "unit.attribute.yellow": "突 (Yellow)",
+  "unit.attribute.violet": "魔 (Violet)",
+
+  "unit.rarity.value": "★{value}",
+
+  "unit.images.0": "進化前",
+  "unit.images.1": "進化後",
+  "unit.images.2": "開花後",
+
+  "unit.images": "Avatar",
+  "unit.code": "#",
+  "unit.name": "Name",
+  "unit.attribute": "Attribute",
+  "unit.rarity": "Rarity",
+  "unit.totalStats": "Total Stats",
+  "unit.hp": "HP",
+  "unit.attack": "Attack",
+  "unit.defense": "Defense",
+  "unit.favorite": "Favorite",
+
+  "routes.units.keyword": "Keyword",
+  "routes.units.keyword.placeholder": "Search by ID or Name",
+  "routes.units.selectAll": "All",
+  "routes.units.submit": "Filter",
+  "routes.units.title": "FKG List - Characters",
+
+  "routes.about.title": "FKG List - About"
+}
