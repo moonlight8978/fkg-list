@@ -11,5 +11,5 @@
     "declarationDir": "build",
     "declaration": true
   },
-  "exclude": ["build/"]
+  "exclude": ["**/*.test.ts", "build/"]
 }

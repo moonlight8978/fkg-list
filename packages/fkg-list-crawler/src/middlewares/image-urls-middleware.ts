@@ -39,7 +39,10 @@ export class ImageUrlsMiddleware<T extends BaseUnit> implements Middleware<T, Un
       const additionalAttributes = imageUrlsByUnitId.get(this.getUnitKey(unit))
 
       if (!additionalAttributes) {
-        throw new Error(`--- ImageUrlsMiddleware: No attributes found for unit ${this.getUnitKey(unit)}`)
+        return {
+          ...unit,
+          images: [],
+        }
       }
 
       return {

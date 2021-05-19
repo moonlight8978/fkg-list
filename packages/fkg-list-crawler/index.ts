@@ -1,8 +1,13 @@
+import { LogLevel } from 'fkg-list-shared'
+
 import { crawl, simplePreset } from './src'
+import { logger } from './src/utils/logger'
+
+logger.level = LogLevel.debug
 
 crawl(simplePreset)
-  .then(() => console.log('ok'))
+  .then(() => logger.debug('ok'))
   .catch((error) => {
-    console.log(error)
+    logger.debug(error)
     throw error
   })

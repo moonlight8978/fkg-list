@@ -1,11 +1,6 @@
-import fs from 'fs'
-import path from 'path'
-
-import axios from 'axios'
-
 import { Crawler, LibraryCrawlerOutput } from '../types'
-import { hashing } from '../utils/hashing'
 import { cache as cacheUtils } from '../utils/cache'
+import { downloader } from '../utils/download'
 
 type Cache = { hash: string }
 
@@ -26,7 +21,7 @@ export class LibraryCrawler implements Crawler<LibraryCrawlerOutput, Cache> {
         'https://xn--eckq7fg8cygsa1a1je.xn--wiki-4i9hs14f.com/index.php?%E2%98%85%E2%98%85%E2%98%85',
         'https://xn--eckq7fg8cygsa1a1je.xn--wiki-4i9hs14f.com/index.php?%E2%98%85%E2%98%85',
       ].map((url, index) => {
-        return this.getHtml(url, hash).then((html) => ({
+        return downloader.execute(url, hash).then((html) => ({
           data: html,
           metadata: {
             url,
@@ -35,18 +30,5 @@ export class LibraryCrawler implements Crawler<LibraryCrawlerOutput, Cache> {
         }))
       })
     )
-  }
-
-  private async getHtml(url: string, hash: string) {
-    const filePath = path.join(__dirname, '..', '..', 'tmp', `${hashing.md5(url)}-${hash}.html`)
-
-    if (fs.existsSync(filePath)) {
-      return fs.readFileSync(filePath).toString()
-    }
-
-    console.log(`--- LibraryCrawler: Downloading ${url}`)
-    const response = await axios.get(url)
-    fs.writeFileSync(filePath, response.data)
-    return response.data
   }
 }
