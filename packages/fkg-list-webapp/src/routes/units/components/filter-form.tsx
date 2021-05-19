@@ -33,7 +33,7 @@ export function FilterForm() {
   return (
     <Form className="mt-4">
       <div className="mb-3 row">
-        <KeywordLabel htmlFor="keyword" className="col col-form-label flex-grow-0 word-break-keep-all">
+        <KeywordLabel htmlFor="keyword" className="col col-form-label flex-grow-0">
           <FormattedMessage id="routes.units.keyword" />
         </KeywordLabel>
 
