@@ -1,0 +1,33 @@
+{
+  "name": "fkg-list-shared",
+  "version": "2.1.1",
+  "description": "> TODO: description",
+  "author": "_MoonLight_ <moonlight8978@gmail.com>",
+  "homepage": "https://github.com/moonlight8978/fkg-list#readme",
+  "license": "MIT",
+  "main": "build/fkg-list-shared.js",
+  "types": "build/fkg-list-shared.d.js",
+  "directories": {
+    "lib": "lib",
+    "test": "**/__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonlight8978/fkg-list.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "bugs": {
+    "url": "https://github.com/moonlight8978/fkg-list/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6"
+  }
+}

@@ -22,7 +22,6 @@
     "lib"
   ],
   "scripts": {
-    "build": "tsc",
-    "postinstall": "yarn build"
+    "build": "tsc"
   }
 }

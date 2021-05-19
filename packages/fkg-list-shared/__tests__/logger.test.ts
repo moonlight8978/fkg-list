@@ -1,4 +1,4 @@
-import { createLogger, LogLevel } from '..'
+import { createLogger, LogLevel } from '../lib/logger'
 
 const driver = {
   level: LogLevel.debug,

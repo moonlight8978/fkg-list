@@ -42,6 +42,7 @@
     "axios": "^0.21.1",
     "baconjs": "^3.0.17",
     "classnames": "^2.3.1",
+    "fkg-list-shared": "^2.1.1",
     "formik": "^2.2.6",
     "lodash": "^4.17.21",
     "query-string": "^7.0.0",
