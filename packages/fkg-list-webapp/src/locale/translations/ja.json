@@ -1,0 +1,44 @@
+{
+  "layout.brand": "FKG LIST",
+  "layout.units": "キャラ",
+  "layout.about": "サービスについて",
+  "layout.language": "言語",
+
+  "language.ja": "日本語",
+  "language.en": "English",
+
+  "unit.favorite.book": "本",
+  "unit.favorite.cake": "ケーキ",
+  "unit.favorite.doll": "ぬいぐるみ",
+  "unit.favorite.jewel": "宝石",
+
+  "unit.attribute.blue": "打",
+  "unit.attribute.red": "斬",
+  "unit.attribute.yellow": "突",
+  "unit.attribute.violet": "魔",
+
+  "unit.rarity.value": "★{value}",
+
+  "unit.images.0": "進化前",
+  "unit.images.1": "進化後",
+  "unit.images.2": "開花後",
+
+  "unit.images": "アバター",
+  "unit.code": "#",
+  "unit.name": "名前",
+  "unit.attribute": "属性",
+  "unit.rarity": "レア度",
+  "unit.totalStats": "総合力",
+  "unit.hp": "HP",
+  "unit.attack": "攻撃力",
+  "unit.defense": "防御力",
+  "unit.favorite": "好きな物",
+
+  "routes.units.keyword": "キーワード",
+  "routes.units.keyword.placeholder": "IDまたは名前で検索",
+  "routes.units.selectAll": "全て",
+  "routes.units.submit": "絞り込む",
+  "routes.units.title": "FKG List - キャラ",
+
+  "routes.about.title": "FKG List - サービスについて"
+}

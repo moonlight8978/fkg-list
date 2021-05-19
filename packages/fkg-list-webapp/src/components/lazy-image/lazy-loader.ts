@@ -1,11 +1,13 @@
 import LazyLoad from 'vanilla-lazyload'
 import { Bus } from 'baconjs'
 
+import { logger } from '../../utils/logger'
+
 const lazyLoadInstance = new LazyLoad()
 
 const queue = new Bus<string>()
 queue.debounce(100).subscribe(() => {
-  console.log('loading images')
+  logger.info('loading images')
   lazyLoadInstance.update()
 })
 

@@ -2,7 +2,7 @@
   "name": "fkg-list",
   "version": "1.0.0",
   "private": true,
-  "description": "フラワーナイトガールのユニット一覧",
+  "description": "フラワーナイトガールキャラクター一覧",
   "repository": "https://github.com/moonlight8978/fkg-list.git",
   "license": "MIT",
   "author": "_MoonLight_ <moonlight8978@gmail.com>",

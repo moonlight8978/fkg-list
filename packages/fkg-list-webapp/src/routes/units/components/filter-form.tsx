@@ -1,10 +1,10 @@
 import { Unit } from 'fkg-list-types'
 import { Field, Form, useFormikContext } from 'formik'
 import { toString } from 'lodash'
+import { FormattedMessage, useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { FormData } from '../../../types'
-import { attributeText, favoriteText } from '../units.utils'
 
 const Select = styled.select`
   min-width: 200px;
@@ -22,39 +22,35 @@ const getSelectValue = (value: any[]) => {
   }
 }
 
+const KeywordLabel = styled.label`
+  word-break: keep-all;
+`
+
 export function FilterForm() {
   const { handleChange, values } = useFormikContext<FormData.FilterUnits>()
+  const intl = useIntl()
 
   return (
     <Form className="mt-4">
       <div className="mb-3 row">
-        <label htmlFor="keyword" className="col col-form-label flex-grow-0">
-          Keyword
-        </label>
+        <KeywordLabel htmlFor="keyword" className="col col-form-label flex-grow-0">
+          <FormattedMessage id="routes.units.keyword" />
+        </KeywordLabel>
 
         <div className="col">
-          <Field type="text" className="form-control" name="keyword" placeholder="Unit ID or Name" />
+          <Field
+            type="text"
+            className="form-control"
+            name="keyword"
+            placeholder={intl.formatMessage({ id: 'routes.units.keyword.placeholder' })}
+          />
         </div>
       </div>
-      {/* <div className="form-check form-check-inline">
-        <Field type="checkbox" name="star" value={Unit.Attribute.blue} className="form-check-input" />
-        <label className="form-check-label">{attributeText(Unit.Attribute.blue)}</label>
-      </div>
-      <div className="form-check form-check-inline">
-        <Field type="checkbox" name="star" value={Unit.Attribute.red} className="form-check-input" />
-        <label className="form-check-label">{attributeText(Unit.Attribute.red)}</label>
-      </div>
-      <div className="form-check form-check-inline">
-        <Field type="checkbox" name="star" value={Unit.Attribute.yellow} className="form-check-input" />
-        <label className="form-check-label">{attributeText(Unit.Attribute.yellow)}</label>
-      </div>
-      <div className="form-check form-check-inline">
-        <Field type="checkbox" name="star" value={Unit.Attribute.violet} className="form-check-input" />
-        <label className="form-check-label">{attributeText(Unit.Attribute.violet)}</label>
-      </div> */}
       <div className="row">
         <div className="col-4 text-center">
-          <label className="mx-auto">レアリティー</label>
+          <label className="mx-auto">
+            <FormattedMessage id="unit.rarity" />
+          </label>
           <Select
             className="form-select w-auto mx-auto"
             multiple
@@ -62,17 +58,19 @@ export function FilterForm() {
             onChange={handleChange('star')}
             {...getSelectValue(values.star)}
           >
-            <option value="">すべて</option>
-            <option value="2">★2</option>
-            <option value="3">★3</option>
-            <option value="4">★4</option>
-            <option value="5">★5</option>
-            <option value="6">★6</option>
+            <option value="">{intl.formatMessage({ id: 'routes.units.selectAll' })}</option>
+            {[2, 3, 4, 5, 6].map((rarity) => (
+              <option value={rarity} key={rarity.toString()}>
+                {intl.formatMessage({ id: 'unit.rarity.value' }, { value: rarity })}
+              </option>
+            ))}
           </Select>
         </div>
 
         <div className="col-4 text-center">
-          <label className="mx-auto">属性</label>
+          <label className="mx-auto">
+            <FormattedMessage id="unit.attribute" />
+          </label>
           <Select
             className="form-select w-auto mx-auto"
             multiple
@@ -80,16 +78,21 @@ export function FilterForm() {
             onChange={handleChange('attribute')}
             {...getSelectValue(values.attribute)}
           >
-            <option value="">すべて</option>
-            <option value={Unit.Attribute.blue}>{attributeText(Unit.Attribute.blue)}</option>
-            <option value={Unit.Attribute.red}>{attributeText(Unit.Attribute.red)}</option>
-            <option value={Unit.Attribute.yellow}>{attributeText(Unit.Attribute.yellow)}</option>
-            <option value={Unit.Attribute.violet}>{attributeText(Unit.Attribute.violet)}</option>
+            <option value="">{intl.formatMessage({ id: 'routes.units.selectAll' })}</option>
+            {[Unit.Attribute.blue, Unit.Attribute.red, Unit.Attribute.violet, Unit.Attribute.yellow].map(
+              (attribute) => (
+                <option value={attribute} key={attribute.toString()}>
+                  {intl.formatMessage({ id: `unit.attribute.${Unit.Attribute[attribute]}` })}
+                </option>
+              )
+            )}
           </Select>
         </div>
 
         <div className="col-4 text-center">
-          <label className="mx-auto">好きな物</label>
+          <label className="mx-auto">
+            <FormattedMessage id="unit.favorite" />
+          </label>
           <Select
             className="form-select w-auto mx-auto"
             multiple
@@ -97,18 +100,19 @@ export function FilterForm() {
             onChange={handleChange('favorite')}
             {...getSelectValue(values.favorite)}
           >
-            <option value="">すべて</option>
-            <option value={Unit.Favorite.book}>{favoriteText(Unit.Favorite.book)}</option>
-            <option value={Unit.Favorite.cake}>{favoriteText(Unit.Favorite.cake)}</option>
-            <option value={Unit.Favorite.doll}>{favoriteText(Unit.Favorite.doll)}</option>
-            <option value={Unit.Favorite.jewel}>{favoriteText(Unit.Favorite.jewel)}</option>
+            <option value="">{intl.formatMessage({ id: 'routes.units.selectAll' })}</option>
+            {[Unit.Favorite.book, Unit.Favorite.cake, Unit.Favorite.doll, Unit.Favorite.jewel].map((favorite) => (
+              <option value={favorite} key={favorite.toString()}>
+                {intl.formatMessage({ id: `unit.favorite.${Unit.Favorite[favorite]}` })}
+              </option>
+            ))}
           </Select>
         </div>
       </div>
 
       <div className="text-center my-4">
         <button type="submit" className="btn btn-primary">
-          Filter
+          <FormattedMessage id="routes.units.submit" />
         </button>
       </div>
     </Form>

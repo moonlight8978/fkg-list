@@ -1,10 +1,11 @@
+import { Unit } from 'fkg-list-types'
 import { memo } from 'react'
+import { FormattedMessage, useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import LazyImage from '../../../components/lazy-image'
 import LazyLoad from '../../../components/lazy-load'
 import { FlowerKnightGirl } from '../../../types'
-import { attributeText, favoriteText, totalStats } from '../units.utils'
 
 interface UnitListItemProps {
   unit: FlowerKnightGirl
@@ -14,18 +15,9 @@ const UnitImage = styled(LazyImage)`
   width: 50px;
 `
 
-const unitImageAlt = (index: number) => {
-  switch (index) {
-    case 0:
-      return '進化前'
-    case 1:
-      return '進化後'
-    default:
-      return '開花後'
-  }
-}
-
 const UnitListItem = memo(function UnitListItem({ unit }: UnitListItemProps) {
+  const intl = useIntl()
+
   return (
     <LazyLoad>
       <td>{unit.code}</td>
@@ -35,18 +27,24 @@ const UnitListItem = memo(function UnitListItem({ unit }: UnitListItemProps) {
             key={image.url}
             src={image.url}
             placeholderSrc="https://via.placeholder.com/50x50"
-            alt={unitImageAlt(index)}
+            alt={intl.formatMessage({ id: `unit.images.${index}` })}
           />
         ))}
       </td>
       <td>{unit.name}</td>
-      <td>{attributeText(unit.attribute)}</td>
-      <td>★{unit.star}</td>
-      <td>{totalStats(unit)}</td>
+      <td>
+        <FormattedMessage id={`unit.attribute.${Unit.Attribute[unit.attribute]}`} />
+      </td>
+      <td>
+        <FormattedMessage id="unit.rarity.value" values={{ value: unit.star }} />
+      </td>
+      <td>{unit.totalStats}</td>
       <td>{unit.hp}</td>
       <td>{unit.attack}</td>
       <td>{unit.defense}</td>
-      <td>{favoriteText(unit.favorite)}</td>
+      <td>
+        <FormattedMessage id={`unit.favorite.${Unit.Favorite[unit.favorite]}`} />
+      </td>
     </LazyLoad>
   )
 })

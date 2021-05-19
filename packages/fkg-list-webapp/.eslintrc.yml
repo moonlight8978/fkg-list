@@ -1,10 +1,15 @@
 env:
   browser: true
+  jest: true
+globals:
+  JSX: true
 extends:
   - '../../.eslintrc.yml'
   - 'plugin:react/recommended'
+  - plugin:react-hooks/recommended
 plugins:
   - react
+  - formatjs
 rules:
   react/jsx-filename-extension:
     - error
@@ -18,4 +23,6 @@ rules:
     - error
     - static public field
   react/react-in-jsx-scope: 'off'
+  react/require-default-props: 'off'
   jsx-a11y/label-has-associated-control: 'off'
+  'formatjs/no-offset': 'error'

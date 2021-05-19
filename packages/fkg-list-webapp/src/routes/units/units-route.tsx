@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router'
 import { Formik } from 'formik'
 import { forceCheck } from 'react-lazyload'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import Layout from '../../components/layout'
 import { routePaths } from '../../config/route-defs'
 import { FlowerKnightGirl, FormData } from '../../types'
 import { UnitApi } from '../../api/unit-api'
+import { useTitle } from '../../utils/page-title'
 
 import { fromQuery, initialValues, toQuery } from './units.form'
 import { FilterForm } from './components/filter-form'
@@ -18,6 +20,9 @@ export default function UnitsRoute() {
   const history = useHistory()
   const [units, setUnits] = useState<FlowerKnightGirl[]>([])
   const [formInitialValues, setFormInitialValues] = useState<FormData.FilterUnits>(initialValues)
+  const intl = useIntl()
+
+  useTitle(intl.formatMessage({ id: 'routes.units.title' }))
 
   useEffect(() => {
     async function fetchUnits() {
@@ -52,19 +57,39 @@ export default function UnitsRoute() {
             <thead>
               <tr>
                 <th scope="col">
-                  <SortableCol sortKey="code">#</SortableCol>
+                  <SortableCol sortKey="code">
+                    <FormattedMessage id="unit.code" />
+                  </SortableCol>
                 </th>
-                <th scope="col">アバター</th>
-                <th scope="col">名前</th>
-                <th scope="col">属性</th>
-                <th scope="col">レア度</th>
                 <th scope="col">
-                  <SortableCol sortKey="totalStats">総合力</SortableCol>
+                  <FormattedMessage id="unit.images" />
                 </th>
-                <th scope="col">HP</th>
-                <th scope="col">攻撃力</th>
-                <th scope="col">防御力</th>
-                <th scope="col">好きな物</th>
+                <th scope="col">
+                  <FormattedMessage id="unit.name" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="unit.attribute" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="unit.rarity" />
+                </th>
+                <th scope="col">
+                  <SortableCol sortKey="totalStats">
+                    <FormattedMessage id="unit.totalStats" />
+                  </SortableCol>
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="unit.hp" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="unit.attack" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="unit.defense" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="unit.favorite" />
+                </th>
               </tr>
             </thead>
             <tbody>
