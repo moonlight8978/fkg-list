@@ -6,6 +6,7 @@ import AboutRoute from './routes/about'
 import UnitsRoute from './routes/units'
 import { loadTranslations, useLanguage } from './locale'
 import { RemoteData, useRemoteData } from './components/remote-data'
+import { env } from './config/env'
 
 export default function App() {
   const [language] = useLanguage()
@@ -15,7 +16,7 @@ export default function App() {
 
   const render = () => (
     <IntlProvider locale={language} messages={messages}>
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router basename={env.basePath}>
         <Switch>
           <Route path="/about">
             <AboutRoute />

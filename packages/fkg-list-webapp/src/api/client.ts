@@ -1,5 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 
+import { env } from '../config/env'
+
 export class Client {
   client: AxiosInstance
 
@@ -14,7 +16,7 @@ export class Client {
 }
 
 const httpClient = axios.create({
-  baseURL: process.env.PUBLIC_URL,
+  baseURL: env.basePath,
   timeout: 15000,
   headers: {
     Accept: 'application/json',

@@ -1,9 +1,6 @@
 import { LogLevel } from 'fkg-list-shared'
 
 import { logger } from '../../utils/logger'
+import { env } from '../env'
 
-if (process.env.NODE_ENV === 'development') {
-  logger.level = LogLevel.debug
-} else {
-  logger.level = LogLevel.info
-}
+logger.level = env.isDevelopment ? LogLevel.debug : LogLevel.info
