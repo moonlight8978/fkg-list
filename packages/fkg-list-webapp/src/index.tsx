@@ -6,13 +6,20 @@ import './index.css'
 import 'animate.css/animate.min.css'
 import App from './app'
 import { LanguageContext } from './locale'
+import { ErrorBoundary } from './components/error-boundary'
+import { nullNotifier, sentryNotifier } from './utils/error-notifier'
+import { env } from './config/env'
 // import reportWebVitals from './reportWebVitals'
+
+const errorNotifier = env.isProduction ? sentryNotifier : nullNotifier
 
 ReactDOM.render(
   <React.StrictMode>
-    <LanguageContext.PersistedProvider>
-      <App />
-    </LanguageContext.PersistedProvider>
+    <ErrorBoundary notifier={errorNotifier}>
+      <LanguageContext.PersistedProvider>
+        <App />
+      </LanguageContext.PersistedProvider>
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
 )
