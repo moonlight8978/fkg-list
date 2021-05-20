@@ -23,7 +23,7 @@
     "pretty": "prettier --write --loglevel silent '**/*.{json,yml,yaml,js,jsx,ts,tsx}'",
     "deploy:github": "gh-pages --dist packages/fkg-list-webapp/build --branch v2",
     "deploy:local": "npx serve packages/fkg-list-webapp/build",
-    "predeploy": "GENERATE_SOURCEMAP=false yarn build:webapp",
+    "predeploy": "GENERATE_SOURCEMAP=false REACT_APP_COMMIT_ID=$(git rev-parse HEAD) lerna run --scope fkg-list-webapp build",
     "deploy": "yarn deploy:github",
     "test": "lerna exec --scope fkg-list-crawler --scope fkg-list-shared 'yarn test'",
     "update:version": "./scripts/change-version.sh",
