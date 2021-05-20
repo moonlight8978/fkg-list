@@ -23,6 +23,20 @@
   "unit.images.1": "進化後",
   "unit.images.2": "開花後",
 
+  "unit.family.bananaOcean": "バナナオーシャン",
+  "unit.family.bergamotValley": "ベルガモットバレー",
+  "unit.family.blossomHill": "ブロッサムヒル",
+  "unit.family.lilywood": "リリィウッド",
+  "unit.family.lotusLake": "ロータスレイク",
+  "unit.family.winterRose": "ウィンターローズ",
+
+  "unit.enhancement.threeSteps": "開花(能力のみ)",
+  "unit.enhancement.threeStepsWithArt": "開花",
+  "unit.enhancement.twoSteps": "進化後のみ",
+
+  "unit.upgradability.none": "なし",
+  "unit.upgradability.promoteToSixStars": "昇華",
+
   "unit.images": "アバター",
   "unit.code": "#",
   "unit.name": "名前",
@@ -33,11 +47,15 @@
   "unit.attack": "攻撃力",
   "unit.defense": "防御力",
   "unit.favorite": "好きな物",
+  "unit.family": "国家",
+  "unit.enhancement": "開花",
+  "unit.upgradability": "昇華",
 
   "routes.units.keyword": "キーワード",
   "routes.units.keyword.placeholder": "IDまたは名前で検索",
   "routes.units.selectAll": "全て",
   "routes.units.submit": "絞り込む",
+  "routes.units.reset": "リセット",
   "routes.units.title": "FKG List - キャラ",
 
   "routes.about.title": "FKG List - サービスについて"

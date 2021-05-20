@@ -46,8 +46,11 @@ jobs:
             git config --global user.name _MoonLight_
 
       - run:
-          name: deploy to github pages
-          command: yarn deploy
+          name: build webapp, upload source map to error tracking service, then deploy
+          command: |
+            yarn build:webapp
+            yarn upload:webapp:sourcemaps
+            yarn deploy:github
 
       - save-crawler-cache
 

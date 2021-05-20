@@ -1,4 +1,3 @@
-import { ILazyLoadInstance } from 'vanilla-lazyload'
 import { Unit } from 'fkg-list-types'
 
 export enum SortDirection {
@@ -14,6 +13,9 @@ export namespace FormData {
     sortDirection: SortDirection
     favorite: Unit.Favorite[]
     attribute: Unit.Attribute[]
+    family: Unit.Family[]
+    enhancement: Unit.Enhancement[]
+    upgradability: Unit.Upgradability[]
   }
 }
 
@@ -22,10 +24,4 @@ export interface ApiFlowerKnightGirl extends Unit.Simple, Unit.SimpleDetails, Un
 export interface FlowerKnightGirl extends ApiFlowerKnightGirl {
   id: string
   totalStats: number
-}
-
-declare global {
-  export interface Document {
-    lazyLoadInstance: ILazyLoadInstance
-  }
 }

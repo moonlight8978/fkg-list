@@ -9,17 +9,20 @@ class Api {
   async fetchAll(filter: FormData.FilterUnits) {
     let units = await this.fetchUnits()
 
-    if (filter.star.length > 0) {
-      units = units.filter((unit) => filter.star.includes(unit.star))
-    }
+    const fieldsToFilter: Array<keyof FormData.FilterUnits> = [
+      'star',
+      'attribute',
+      'family',
+      'enhancement',
+      'upgradability',
+    ]
 
-    if (filter.attribute.length > 0) {
-      units = units.filter((unit) => filter.attribute.includes(unit.attribute))
-    }
-
-    if (filter.favorite.length > 0) {
-      units = units.filter((unit) => filter.favorite.includes(unit.favorite))
-    }
+    fieldsToFilter.forEach((field) => {
+      if (filter[field].length > 0) {
+        // @ts-expect-error
+        units = units.filter((unit) => filter[field].includes(unit[field]))
+      }
+    })
 
     if (filter.keyword) {
       units = units.filter((unit) => unit.name.includes(filter.keyword) || unit.code.includes(filter.keyword))

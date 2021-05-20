@@ -1,24 +1,28 @@
 import { array, number, object, SchemaOf, string } from 'yup'
 import queryString from 'query-string'
 import { validateYupSchema, yupToFormErrors } from 'formik'
-import { Unit } from 'fkg-list-types'
 
 import { FormData, SortDirection } from '../../types'
+import {
+  familyValues,
+  enhancementValues,
+  upgradabilityValues,
+  favoriteValues,
+  attributeValues,
+  rarityValues,
+} from '../../domain/unit'
 
 // @ts-expect-error
 export const validationSchema: SchemaOf<FormData.FilterUnits> = object({
   keyword: string().required(),
-  star: array()
-    .of(number().oneOf([2, 3, 4, 5, 6]))
-    .required(),
+  star: array().of(number().oneOf(rarityValues)).required(),
   sortKey: string().required().oneOf(['totalStats', 'code', 'star', 'attack', 'defense', 'hp']),
   sortDirection: string().oneOf([SortDirection.ascending, SortDirection.descending]).required(),
-  attribute: array()
-    .of(number().oneOf([Unit.Attribute.blue, Unit.Attribute.red, Unit.Attribute.violet, Unit.Attribute.yellow]))
-    .required(),
-  favorite: array()
-    .of(number().oneOf([Unit.Favorite.book, Unit.Favorite.cake, Unit.Favorite.doll, Unit.Favorite.jewel]))
-    .required(),
+  attribute: array().of(number().oneOf(attributeValues)).required(),
+  favorite: array().of(number().oneOf(favoriteValues)).required(),
+  family: array().of(number().oneOf(familyValues)).required(),
+  enhancement: array().of(number().oneOf(enhancementValues)).required(),
+  upgradability: array().of(number().oneOf(upgradabilityValues)).required(),
 })
 
 export const initialValues: FormData.FilterUnits = {
@@ -28,6 +32,9 @@ export const initialValues: FormData.FilterUnits = {
   sortDirection: SortDirection.ascending,
   sortKey: 'totalStats',
   star: [],
+  family: [],
+  enhancement: [],
+  upgradability: [],
 }
 
 export const fromQuery = async (query: string): Promise<FormData.FilterUnits> => {
@@ -39,13 +46,16 @@ export const fromQuery = async (query: string): Promise<FormData.FilterUnits> =>
     sortDirection: params.order,
     favorite: params.favorite && [params.favorite].flat(),
     attribute: params.attribute && [params.attribute].flat(),
+    upgradability: params.upgradability && [params.upgradability].flat(),
+    family: params.family && [params.family].flat(),
+    enhancement: params.enhancement && [params.enhancement].flat(),
   }
 
   return validateYupSchema(form, validationSchema)
     .then(() => {
       return validationSchema.cast(form) as any
     })
-    .catch((yupErrors, ...args) => {
+    .catch((yupErrors) => {
       const errors = yupToFormErrors<FormData.FilterUnits>(yupErrors)
       return Object.fromEntries(
         Object.entries(initialValues).map(([attr, value]) => {
@@ -68,6 +78,9 @@ export const toQuery = (form: FormData.FilterUnits) => {
     order: form.sortDirection,
     favorite: form.favorite,
     attribute: form.attribute,
+    enhancement: form.enhancement,
+    upgradability: form.upgradability,
+    family: form.family,
   }
   return queryString.stringify(params)
 }
