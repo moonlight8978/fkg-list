@@ -5,9 +5,13 @@ import styled from 'styled-components'
 
 import { FormData } from '../../../types'
 import { attributeColor } from '../../../domain/unit'
+import { breakpoints } from '../../../config/bootstrap'
 
 const Select = styled.select`
-  min-width: 200px;
+  min-width: 120px;
+  @media (min-width: ${breakpoints.md}) {
+    min-width: 200px;
+  }
 `
 
 const getSelectValue = (value: any[]) => {
@@ -47,7 +51,7 @@ export function FilterForm() {
         </div>
       </div>
       <div className="row">
-        <div className="col-4 text-center">
+        <div className="col-6 col-sm-4 text-center">
           <label className="mx-auto">
             <FormattedMessage id="unit.rarity" />
           </label>
@@ -67,7 +71,7 @@ export function FilterForm() {
           </Select>
         </div>
 
-        <div className="col-4 text-center">
+        <div className="col-6 col-sm-4 text-center">
           <label className="mx-auto">
             <FormattedMessage id="unit.attribute" />
           </label>
@@ -89,7 +93,7 @@ export function FilterForm() {
           </Select>
         </div>
 
-        <div className="col-4 text-center">
+        <div className="col-6 col-sm-4 offset-3 offset-sm-0 text-center mt-3 mt-sm-0">
           <label className="mx-auto">
             <FormattedMessage id="unit.favorite" />
           </label>
