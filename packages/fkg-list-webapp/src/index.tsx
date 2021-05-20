@@ -1,22 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { LogLevel } from 'fkg-list-shared'
 
+import './config/initializers'
 import './index.css'
 import App from './app'
 import { LanguageContext } from './locale'
-import { logger } from './utils/logger'
 // import reportWebVitals from './reportWebVitals'
-
-if (process.env.NODE_ENV === 'development') {
-  logger.level = LogLevel.debug
-} else {
-  logger.level = LogLevel.info
-}
-
-library.add(fas)
 
 ReactDOM.render(
   <React.StrictMode>

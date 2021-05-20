@@ -1,6 +1,5 @@
 import { Unit } from 'fkg-list-types'
 import { Field, Form, useFormikContext } from 'formik'
-import { toString } from 'lodash'
 import { FormattedMessage, useIntl } from 'react-intl'
 import styled from 'styled-components'
 
@@ -13,7 +12,7 @@ const Select = styled.select`
 const getSelectValue = (value: any[]) => {
   if (value.length > 0) {
     return {
-      value: value.map(toString),
+      value: value.map((v) => v.toString()),
     }
   }
 
