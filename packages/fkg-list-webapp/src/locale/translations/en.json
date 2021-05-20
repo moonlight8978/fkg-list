@@ -19,9 +19,23 @@
 
   "unit.rarity.value": "★{value}",
 
-  "unit.images.0": "進化前",
-  "unit.images.1": "進化後",
-  "unit.images.2": "開花後",
+  "unit.images.0": "Before evolution",
+  "unit.images.1": "After evolution",
+  "unit.images.2": "After blossom",
+
+  "unit.family.bananaOcean": "Banana Ocean",
+  "unit.family.bergamotValley": "Bergamot Valley",
+  "unit.family.blossomHill": "Blossom Hill",
+  "unit.family.lilywood": "Lilywood",
+  "unit.family.lotusLake": "Lotus Lake",
+  "unit.family.winterRose": "Winter Rose",
+
+  "unit.enhancement.threeSteps": "Blossom (Power only)",
+  "unit.enhancement.threeStepsWithArt": "Blossom",
+  "unit.enhancement.twoSteps": "Evolution only",
+
+  "unit.upgradability.none": "None",
+  "unit.upgradability.promoteToSixStars": "Upgrade to ★6",
 
   "unit.images": "Avatar",
   "unit.code": "#",
@@ -33,11 +47,15 @@
   "unit.attack": "Attack",
   "unit.defense": "Defense",
   "unit.favorite": "Favorite",
+  "unit.family": "Family",
+  "unit.enhancement": "Enhancement",
+  "unit.upgradability": "Upgrade",
 
   "routes.units.keyword": "Keyword",
   "routes.units.keyword.placeholder": "Search by ID or Name",
   "routes.units.selectAll": "All",
   "routes.units.submit": "Filter",
+  "routes.units.reset": "Reset",
   "routes.units.title": "FKG List - Characters",
 
   "routes.about.title": "FKG List - About"

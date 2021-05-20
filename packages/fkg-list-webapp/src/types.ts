@@ -13,6 +13,9 @@ export namespace FormData {
     sortDirection: SortDirection
     favorite: Unit.Favorite[]
     attribute: Unit.Attribute[]
+    family: Unit.Family[]
+    enhancement: Unit.Enhancement[]
+    upgradability: Unit.Upgradability[]
   }
 }
 
