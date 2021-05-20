@@ -20,7 +20,7 @@ const KeywordLabel = styled.label`
   word-break: keep-all;
 `
 
-export function FilterForm() {
+export function FilterForm({ onReset }: { onReset: () => void }) {
   const { handleChange, values } = useFormikContext<FormData.FilterUnits>()
   const intl = useIntl()
 
@@ -121,7 +121,7 @@ export function FilterForm() {
       </div>
 
       <div className="text-center my-4">
-        <button type="button" className="btn btn-secondary me-3">
+        <button type="button" className="btn btn-secondary me-3" onClick={onReset}>
           <FormattedMessage id="routes.units.reset" />
         </button>
 

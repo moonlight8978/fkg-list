@@ -19,7 +19,7 @@ const getSelectValue = (value: any[]) => {
   }
 
   return {
-    defaultValue: [''],
+    value: [''],
   }
 }
 

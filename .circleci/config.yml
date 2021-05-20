@@ -50,7 +50,7 @@ jobs:
           command: |
             yarn build:webapp
             yarn upload:webapp:sourcemaps
-            yarn deploy:github
+            yarn deploy
 
       - save-crawler-cache
 
