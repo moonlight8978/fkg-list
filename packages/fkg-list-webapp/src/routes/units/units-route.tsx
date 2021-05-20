@@ -55,7 +55,14 @@ export default function UnitsRoute() {
         enableReinitialize
       >
         <>
-          <FilterForm />
+          <FilterForm
+            onReset={() =>
+              history.push({
+                pathname: routePaths.units,
+                search: toQuery(initialValues),
+              })
+            }
+          />
           <HorizontalScrollableTable>
             <table className="table table-striped">
               <thead>
