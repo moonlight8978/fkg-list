@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import './config/initializers'
 import './index.css'
+import 'animate.css/animate.min.css'
 import App from './app'
 import { LanguageContext } from './locale'
 // import reportWebVitals from './reportWebVitals'

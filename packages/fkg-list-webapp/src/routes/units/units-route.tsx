@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router'
 import { Formik } from 'formik'
-import { forceCheck } from 'react-lazyload'
+import { forceCheck as forceLazyload } from 'react-lazyload'
 import { FormattedMessage, useIntl } from 'react-intl'
 
 import Layout from '../../components/layout'
@@ -9,6 +9,8 @@ import { routePaths } from '../../config/route-defs'
 import { FlowerKnightGirl, FormData } from '../../types'
 import { UnitApi } from '../../api/unit-api'
 import { useTitle } from '../../utils/page-title'
+import { RemoteData, useRemoteData } from '../../components/remote-data'
+import { Loading } from '../../components/loading'
 
 import { fromQuery, initialValues, toQuery } from './units.form'
 import { FilterForm } from './components/filter-form'
@@ -18,25 +20,20 @@ import { SortableCol } from './components/sortable-col'
 export default function UnitsRoute() {
   const { search } = useLocation()
   const history = useHistory()
-  const [units, setUnits] = useState<FlowerKnightGirl[]>([])
   const [formInitialValues, setFormInitialValues] = useState<FormData.FilterUnits>(initialValues)
   const intl = useIntl()
 
   useTitle(intl.formatMessage({ id: 'routes.units.title' }))
 
-  useEffect(() => {
-    async function fetchUnits() {
-      const form = await fromQuery(search)
-      setFormInitialValues(form)
-      const response = await UnitApi.fetchAll(form)
-      setUnits(response)
-    }
-
-    fetchUnits()
-  }, [search, setUnits])
+  const fetchUnit = useCallback<() => Promise<FlowerKnightGirl[]>>(async () => {
+    const form = await fromQuery(search)
+    setFormInitialValues(form)
+    return UnitApi.fetchAll(form)
+  }, [search])
+  const [isFetching, units] = useRemoteData(fetchUnit, [])
 
   useEffect(() => {
-    forceCheck()
+    forceLazyload()
   }, [units])
 
   return (
@@ -56,6 +53,7 @@ export default function UnitsRoute() {
           <table className="table table-striped">
             <thead>
               <tr>
+                <th scope="col">{}</th>
                 <th scope="col">
                   <SortableCol sortKey="code">
                     <FormattedMessage id="unit.code" />
@@ -92,10 +90,11 @@ export default function UnitsRoute() {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <RemoteData fetching={isFetching} fallback={null}>
               <UnitList units={units} />
-            </tbody>
+            </RemoteData>
           </table>
+          <RemoteData fetching={isFetching} fallback={<Loading size="2x" />} />
         </>
       </Formik>
     </Layout>

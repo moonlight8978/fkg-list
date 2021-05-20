@@ -12,10 +12,10 @@
   "unit.favorite.doll": "Doll",
   "unit.favorite.jewel": "Jewel",
 
-  "unit.attribute.blue": "打 (Blue)",
-  "unit.attribute.red": "斬 (Red)",
-  "unit.attribute.yellow": "突 (Yellow)",
-  "unit.attribute.violet": "魔 (Violet)",
+  "unit.attribute.blue": "打",
+  "unit.attribute.red": "斬",
+  "unit.attribute.yellow": "突",
+  "unit.attribute.violet": "魔",
 
   "unit.rarity.value": "★{value}",
 
