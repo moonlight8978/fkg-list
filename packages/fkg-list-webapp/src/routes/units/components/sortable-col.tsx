@@ -14,7 +14,7 @@ interface Props {
 
 const SortIcon = ({ isSorting, direction }: { isSorting: boolean; direction: SortDirection }) => {
   if (!isSorting) {
-    return <FontAwesomeIcon icon="sort" className="ms-2" />
+    return <FontAwesomeIcon icon="sort" className="ms-2 text-muted" />
   }
 
   if (direction === SortDirection.ascending) {
