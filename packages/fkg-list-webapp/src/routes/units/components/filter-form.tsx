@@ -4,27 +4,17 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { FormData } from '../../../types'
-import { attributeColor } from '../../../domain/unit'
-import { breakpoints } from '../../../config/bootstrap'
+import {
+  attributeColor,
+  familyValues,
+  enhancementValues,
+  upgradabilityValues,
+  favoriteValues,
+  attributeValues,
+  rarityValues,
+} from '../../../domain/unit'
 
-const Select = styled.select`
-  min-width: 120px;
-  @media (min-width: ${breakpoints.md}) {
-    min-width: 200px;
-  }
-`
-
-const getSelectValue = (value: any[]) => {
-  if (value.length > 0) {
-    return {
-      value: value.map((v) => v.toString()),
-    }
-  }
-
-  return {
-    defaultValue: [''],
-  }
-}
+import { MultipleSelect } from './select'
 
 const KeywordLabel = styled.label`
   word-break: keep-all;
@@ -55,66 +45,86 @@ export function FilterForm() {
           <label className="mx-auto">
             <FormattedMessage id="unit.rarity" />
           </label>
-          <Select
-            className="form-select w-auto mx-auto"
-            multiple
-            aria-label="multiple select example"
-            onChange={handleChange('star')}
-            {...getSelectValue(values.star)}
-          >
-            <option value="">{intl.formatMessage({ id: 'routes.units.selectAll' })}</option>
-            {[2, 3, 4, 5, 6].map((rarity) => (
+          <MultipleSelect onChange={handleChange('star')} value={values.star}>
+            {rarityValues.map((rarity) => (
               <option value={rarity} key={rarity.toString()}>
                 {intl.formatMessage({ id: 'unit.rarity.value' }, { value: rarity })}
               </option>
             ))}
-          </Select>
+          </MultipleSelect>
         </div>
 
         <div className="col-6 col-sm-4 text-center">
           <label className="mx-auto">
             <FormattedMessage id="unit.attribute" />
           </label>
-          <Select
-            className="form-select w-auto mx-auto"
-            multiple
-            aria-label="multiple select example"
-            onChange={handleChange('attribute')}
-            {...getSelectValue(values.attribute)}
-          >
-            <option value="">{intl.formatMessage({ id: 'routes.units.selectAll' })}</option>
-            {[Unit.Attribute.blue, Unit.Attribute.red, Unit.Attribute.violet, Unit.Attribute.yellow].map(
-              (attribute) => (
-                <option value={attribute} key={attribute.toString()} style={{ color: attributeColor({ attribute }) }}>
-                  {intl.formatMessage({ id: `unit.attribute.${Unit.Attribute[attribute]}` })}
-                </option>
-              )
-            )}
-          </Select>
+          <MultipleSelect onChange={handleChange('attribute')} value={values.attribute}>
+            {attributeValues.map((attribute) => (
+              <option value={attribute} key={attribute.toString()} style={{ color: attributeColor({ attribute }) }}>
+                {intl.formatMessage({ id: `unit.attribute.${Unit.Attribute[attribute]}` })}
+              </option>
+            ))}
+          </MultipleSelect>
         </div>
 
-        <div className="col-6 col-sm-4 offset-3 offset-sm-0 text-center mt-3 mt-sm-0">
+        <div className="col-6 col-sm-4 text-center mt-3 mt-sm-0">
           <label className="mx-auto">
             <FormattedMessage id="unit.favorite" />
           </label>
-          <Select
-            className="form-select w-auto mx-auto"
-            multiple
-            aria-label="multiple select example"
-            onChange={handleChange('favorite')}
-            {...getSelectValue(values.favorite)}
-          >
-            <option value="">{intl.formatMessage({ id: 'routes.units.selectAll' })}</option>
-            {[Unit.Favorite.book, Unit.Favorite.cake, Unit.Favorite.doll, Unit.Favorite.jewel].map((favorite) => (
+          <MultipleSelect onChange={handleChange('favorite')} value={values.favorite}>
+            {favoriteValues.map((favorite) => (
               <option value={favorite} key={favorite.toString()}>
                 {intl.formatMessage({ id: `unit.favorite.${Unit.Favorite[favorite]}` })}
               </option>
             ))}
-          </Select>
+          </MultipleSelect>
+        </div>
+
+        <div className="col-6 col-sm-4 text-center mt-3">
+          <label className="mx-auto">
+            <FormattedMessage id="unit.family" />
+          </label>
+          <MultipleSelect onChange={handleChange('family')} value={values.family}>
+            {familyValues.map((family) => (
+              <option value={family} key={family.toString()}>
+                {intl.formatMessage({ id: `unit.family.${Unit.Family[family]}` })}
+              </option>
+            ))}
+          </MultipleSelect>
+        </div>
+
+        <div className="col-6 col-sm-4 text-center mt-3">
+          <label className="mx-auto">
+            <FormattedMessage id="unit.enhancement" />
+          </label>
+          <MultipleSelect onChange={handleChange('enhancement')} value={values.enhancement}>
+            {enhancementValues.map((enhancement) => (
+              <option value={enhancement} key={enhancement.toString()}>
+                {intl.formatMessage({ id: `unit.enhancement.${Unit.Enhancement[enhancement]}` })}
+              </option>
+            ))}
+          </MultipleSelect>
+        </div>
+
+        <div className="col-6 col-sm-4 text-center mt-3">
+          <label className="mx-auto">
+            <FormattedMessage id="unit.upgradability" />
+          </label>
+          <MultipleSelect onChange={handleChange('upgradability')} value={values.upgradability}>
+            {upgradabilityValues.map((upgradability) => (
+              <option value={upgradability} key={upgradability.toString()}>
+                {intl.formatMessage({ id: `unit.upgradability.${Unit.Upgradability[upgradability]}` })}
+              </option>
+            ))}
+          </MultipleSelect>
         </div>
       </div>
 
       <div className="text-center my-4">
+        <button type="button" className="btn btn-secondary me-3">
+          <FormattedMessage id="routes.units.reset" />
+        </button>
+
         <button type="submit" className="btn btn-primary">
           <FormattedMessage id="routes.units.submit" />
         </button>
