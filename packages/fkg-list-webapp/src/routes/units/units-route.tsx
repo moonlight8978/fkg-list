@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router'
 import { Formik } from 'formik'
 import { forceCheck as forceLazyload } from 'react-lazyload'
 import { FormattedMessage, useIntl } from 'react-intl'
+import styled from 'styled-components'
 
 import Layout from '../../components/layout'
 import { routePaths } from '../../config/route-defs'
@@ -16,6 +17,11 @@ import { fromQuery, initialValues, toQuery } from './units.form'
 import { FilterForm } from './components/filter-form'
 import { UnitList } from './components/unit-list'
 import { SortableCol } from './components/sortable-col'
+
+const HorizontalScrollableTable = styled.div`
+  white-space: nowrap;
+  overflow-x: scroll;
+`
 
 export default function UnitsRoute() {
   const { search } = useLocation()
@@ -50,58 +56,60 @@ export default function UnitsRoute() {
       >
         <>
           <FilterForm />
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">{}</th>
-                <th scope="col">
-                  <SortableCol sortKey="code">
-                    <FormattedMessage id="unit.code" />
-                  </SortableCol>
-                </th>
-                <th scope="col">
-                  <FormattedMessage id="unit.images" />
-                </th>
-                <th scope="col">
-                  <FormattedMessage id="unit.name" />
-                </th>
-                <th scope="col">
-                  <FormattedMessage id="unit.attribute" />
-                </th>
-                <th scope="col">
-                  <SortableCol sortKey="star">
-                    <FormattedMessage id="unit.rarity" />
-                  </SortableCol>
-                </th>
-                <th scope="col">
-                  <SortableCol sortKey="totalStats">
-                    <FormattedMessage id="unit.totalStats" />
-                  </SortableCol>
-                </th>
-                <th scope="col">
-                  <SortableCol sortKey="hp">
-                    <FormattedMessage id="unit.hp" />
-                  </SortableCol>
-                </th>
-                <th scope="col">
-                  <SortableCol sortKey="attack">
-                    <FormattedMessage id="unit.attack" />
-                  </SortableCol>
-                </th>
-                <th scope="col">
-                  <SortableCol sortKey="defense">
-                    <FormattedMessage id="unit.defense" />
-                  </SortableCol>
-                </th>
-                <th scope="col">
-                  <FormattedMessage id="unit.favorite" />
-                </th>
-              </tr>
-            </thead>
-            <RemoteData fetching={isFetching} fallback={null}>
-              <UnitList units={units} />
-            </RemoteData>
-          </table>
+          <HorizontalScrollableTable>
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">{}</th>
+                  <th scope="col">
+                    <SortableCol sortKey="code">
+                      <FormattedMessage id="unit.code" />
+                    </SortableCol>
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="unit.images" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="unit.name" />
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="unit.attribute" />
+                  </th>
+                  <th scope="col">
+                    <SortableCol sortKey="star">
+                      <FormattedMessage id="unit.rarity" />
+                    </SortableCol>
+                  </th>
+                  <th scope="col">
+                    <SortableCol sortKey="totalStats">
+                      <FormattedMessage id="unit.totalStats" />
+                    </SortableCol>
+                  </th>
+                  <th scope="col">
+                    <SortableCol sortKey="hp">
+                      <FormattedMessage id="unit.hp" />
+                    </SortableCol>
+                  </th>
+                  <th scope="col">
+                    <SortableCol sortKey="attack">
+                      <FormattedMessage id="unit.attack" />
+                    </SortableCol>
+                  </th>
+                  <th scope="col">
+                    <SortableCol sortKey="defense">
+                      <FormattedMessage id="unit.defense" />
+                    </SortableCol>
+                  </th>
+                  <th scope="col">
+                    <FormattedMessage id="unit.favorite" />
+                  </th>
+                </tr>
+              </thead>
+              <RemoteData fetching={isFetching} fallback={null}>
+                <UnitList units={units} />
+              </RemoteData>
+            </table>
+          </HorizontalScrollableTable>
           <RemoteData fetching={isFetching} fallback={<Loading size="2x" />} />
         </>
       </Formik>
