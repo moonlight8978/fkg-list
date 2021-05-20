@@ -1,6 +1,6 @@
 {
   "name": "fkg-list-types",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Shared types for fkg-list",
   "homepage": "https://github.com/moonlight8978/fkg-list#readme",
   "bugs": {
@@ -22,7 +22,6 @@
     "lib"
   ],
   "scripts": {
-    "build": "tsc",
-    "postinstall": "yarn build"
+    "build": "tsc"
   }
 }

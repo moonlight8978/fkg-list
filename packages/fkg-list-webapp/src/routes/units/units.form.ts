@@ -11,7 +11,7 @@ export const validationSchema: SchemaOf<FormData.FilterUnits> = object({
   star: array()
     .of(number().oneOf([2, 3, 4, 5, 6]))
     .required(),
-  sortKey: string().required().oneOf(['totalStats', 'code']),
+  sortKey: string().required().oneOf(['totalStats', 'code', 'star', 'attack', 'defense', 'hp']),
   sortDirection: string().oneOf([SortDirection.ascending, SortDirection.descending]).required(),
   attribute: array()
     .of(number().oneOf([Unit.Attribute.blue, Unit.Attribute.red, Unit.Attribute.violet, Unit.Attribute.yellow]))

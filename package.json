@@ -1,8 +1,8 @@
 {
   "name": "fkg-list",
-  "version": "1.0.0",
+  "version": "2.2.0",
   "private": true,
-  "description": "フラワーナイトガールのユニット一覧",
+  "description": "フラワーナイトガールキャラクター一覧",
   "repository": "https://github.com/moonlight8978/fkg-list.git",
   "license": "MIT",
   "author": "_MoonLight_ <moonlight8978@gmail.com>",
@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "install": "lerna bootstrap",
-    "postinstall": "yarn build:types",
-    "build:types": "lerna run --scope fkg-list-types build && lerna link",
+    "postinstall": "yarn build:shared && lerna link",
+    "build:shared": "lerna run --scope fkg-list-types --scope fkg-list-shared build",
     "prebuild:webapp": "yarn start:crawler",
     "build:webapp": "lerna run --scope fkg-list-webapp build",
     "start:crawler": "lerna run --scope fkg-list-crawler start",
@@ -24,7 +24,8 @@
     "deploy:github": "gh-pages --dist packages/fkg-list-webapp/build --branch v2",
     "deploy:local": "npx serve packages/fkg-list-webapp/build",
     "predeploy": "yarn build:webapp",
-    "deploy": "yarn deploy:github"
+    "deploy": "yarn deploy:github",
+    "test": "lerna exec --scope fkg-list-crawler --scope fkg-list-shared 'yarn test'"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.23.0",

@@ -20,12 +20,12 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - crawler-data-v2
+            - crawler-data-v3
 
   save-crawler-cache:
     steps:
       - save_cache:
-          key: crawler-data-v2
+          key: crawler-data-v3
           paths:
             - packages/fkg-list-crawler/tmp
 

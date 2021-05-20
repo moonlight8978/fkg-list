@@ -10,5 +10,6 @@
     "outDir": "build",
     "declarationDir": "build",
     "declaration": true
-  }
+  },
+  "exclude": ["build/"]
 }

@@ -1,19 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
+import './config/initializers'
 import './index.css'
-import App from './App'
+import 'animate.css/animate.min.css'
+import App from './app'
+import { LanguageContext } from './locale'
 // import reportWebVitals from './reportWebVitals'
-
-library.add(fab, fas)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LanguageContext.PersistedProvider>
+      <App />
+    </LanguageContext.PersistedProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )

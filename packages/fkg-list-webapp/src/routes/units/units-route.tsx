@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router'
 import { Formik } from 'formik'
-import { forceCheck } from 'react-lazyload'
+import { forceCheck as forceLazyload } from 'react-lazyload'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import Layout from '../../components/layout'
 import { routePaths } from '../../config/route-defs'
 import { FlowerKnightGirl, FormData } from '../../types'
 import { UnitApi } from '../../api/unit-api'
+import { useTitle } from '../../utils/page-title'
+import { RemoteData, useRemoteData } from '../../components/remote-data'
+import { Loading } from '../../components/loading'
 
 import { fromQuery, initialValues, toQuery } from './units.form'
 import { FilterForm } from './components/filter-form'
@@ -16,22 +20,20 @@ import { SortableCol } from './components/sortable-col'
 export default function UnitsRoute() {
   const { search } = useLocation()
   const history = useHistory()
-  const [units, setUnits] = useState<FlowerKnightGirl[]>([])
   const [formInitialValues, setFormInitialValues] = useState<FormData.FilterUnits>(initialValues)
+  const intl = useIntl()
+
+  useTitle(intl.formatMessage({ id: 'routes.units.title' }))
+
+  const fetchUnit = useCallback<() => Promise<FlowerKnightGirl[]>>(async () => {
+    const form = await fromQuery(search)
+    setFormInitialValues(form)
+    return UnitApi.fetchAll(form)
+  }, [search])
+  const [isFetching, units] = useRemoteData(fetchUnit, [])
 
   useEffect(() => {
-    async function fetchUnits() {
-      const form = await fromQuery(search)
-      setFormInitialValues(form)
-      const response = await UnitApi.fetchAll(form)
-      setUnits(response)
-    }
-
-    fetchUnits()
-  }, [search, setUnits])
-
-  useEffect(() => {
-    forceCheck()
+    forceLazyload()
   }, [units])
 
   return (
@@ -51,26 +53,56 @@ export default function UnitsRoute() {
           <table className="table table-striped">
             <thead>
               <tr>
+                <th scope="col">{}</th>
                 <th scope="col">
-                  <SortableCol sortKey="code">#</SortableCol>
+                  <SortableCol sortKey="code">
+                    <FormattedMessage id="unit.code" />
+                  </SortableCol>
                 </th>
-                <th scope="col">アバター</th>
-                <th scope="col">名前</th>
-                <th scope="col">属性</th>
-                <th scope="col">レア度</th>
                 <th scope="col">
-                  <SortableCol sortKey="totalStats">総合力</SortableCol>
+                  <FormattedMessage id="unit.images" />
                 </th>
-                <th scope="col">HP</th>
-                <th scope="col">攻撃力</th>
-                <th scope="col">防御力</th>
-                <th scope="col">好きな物</th>
+                <th scope="col">
+                  <FormattedMessage id="unit.name" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="unit.attribute" />
+                </th>
+                <th scope="col">
+                  <SortableCol sortKey="star">
+                    <FormattedMessage id="unit.rarity" />
+                  </SortableCol>
+                </th>
+                <th scope="col">
+                  <SortableCol sortKey="totalStats">
+                    <FormattedMessage id="unit.totalStats" />
+                  </SortableCol>
+                </th>
+                <th scope="col">
+                  <SortableCol sortKey="hp">
+                    <FormattedMessage id="unit.hp" />
+                  </SortableCol>
+                </th>
+                <th scope="col">
+                  <SortableCol sortKey="attack">
+                    <FormattedMessage id="unit.attack" />
+                  </SortableCol>
+                </th>
+                <th scope="col">
+                  <SortableCol sortKey="defense">
+                    <FormattedMessage id="unit.defense" />
+                  </SortableCol>
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="unit.favorite" />
+                </th>
               </tr>
             </thead>
-            <tbody>
+            <RemoteData fetching={isFetching} fallback={null}>
               <UnitList units={units} />
-            </tbody>
+            </RemoteData>
           </table>
+          <RemoteData fetching={isFetching} fallback={<Loading size="2x" />} />
         </>
       </Formik>
     </Layout>
