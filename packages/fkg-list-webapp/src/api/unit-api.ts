@@ -1,3 +1,4 @@
+import * as unitModel from '../domain/unit'
 import { ApiFlowerKnightGirl, FlowerKnightGirl, FormData, SortDirection } from '../types'
 
 import { client } from './client'
@@ -49,8 +50,8 @@ class Api {
 
       this.cache = units.map((unit) => ({
         ...unit,
-        id: `${unit.code}-${unit.star}`,
-        totalStats: unit.hp + unit.attack + unit.defense,
+        id: unitModel.id(unit),
+        totalStats: unitModel.totalStats(unit),
       }))
     }
 

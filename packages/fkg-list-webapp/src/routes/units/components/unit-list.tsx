@@ -5,21 +5,24 @@ import styled from 'styled-components'
 
 import LazyImage from '../../../components/lazy-image'
 import LazyLoad from '../../../components/lazy-load'
+import { attributeColor } from '../../../domain/unit'
 import { FlowerKnightGirl } from '../../../types'
 
 interface UnitListItemProps {
   unit: FlowerKnightGirl
+  ordinal: number
 }
 
 const UnitImage = styled(LazyImage)`
   width: 50px;
 `
 
-const UnitListItem = memo(function UnitListItem({ unit }: UnitListItemProps) {
+function UnitListItem({ unit, ordinal }: UnitListItemProps) {
   const intl = useIntl()
 
   return (
     <LazyLoad>
+      <td>{ordinal}</td>
       <td>{unit.code}</td>
       <td>
         {unit.images.map((image, index) => (
@@ -32,7 +35,7 @@ const UnitListItem = memo(function UnitListItem({ unit }: UnitListItemProps) {
         ))}
       </td>
       <td>{unit.name}</td>
-      <td>
+      <td style={{ color: attributeColor(unit) }}>
         <FormattedMessage id={`unit.attribute.${Unit.Attribute[unit.attribute]}`} />
       </td>
       <td>
@@ -47,7 +50,7 @@ const UnitListItem = memo(function UnitListItem({ unit }: UnitListItemProps) {
       </td>
     </LazyLoad>
   )
-})
+}
 
 interface UnitListProps {
   units: FlowerKnightGirl[]
@@ -55,10 +58,10 @@ interface UnitListProps {
 
 export const UnitList = memo(function UnitList({ units }: UnitListProps) {
   return (
-    <>
-      {units.map((unit) => (
-        <UnitListItem key={unit.id} unit={unit} />
+    <tbody className="animate__animated animate__fadeIn">
+      {units.map((unit, index) => (
+        <UnitListItem key={unit.id} unit={unit} ordinal={index + 1} />
       ))}
-    </>
+    </tbody>
   )
 })

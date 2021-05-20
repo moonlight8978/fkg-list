@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { FormData } from '../../../types'
+import { attributeColor } from '../../../domain/unit'
 
 const Select = styled.select`
   min-width: 200px;
@@ -80,7 +81,7 @@ export function FilterForm() {
             <option value="">{intl.formatMessage({ id: 'routes.units.selectAll' })}</option>
             {[Unit.Attribute.blue, Unit.Attribute.red, Unit.Attribute.violet, Unit.Attribute.yellow].map(
               (attribute) => (
-                <option value={attribute} key={attribute.toString()}>
+                <option value={attribute} key={attribute.toString()} style={{ color: attributeColor({ attribute }) }}>
                   {intl.formatMessage({ id: `unit.attribute.${Unit.Attribute[attribute]}` })}
                 </option>
               )

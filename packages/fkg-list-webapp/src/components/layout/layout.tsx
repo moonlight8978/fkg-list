@@ -17,10 +17,10 @@ const Container = styled.div`
 
 export default function Layout({ children }: Props) {
   const { pathname } = useLocation()
-  const [_, onLanguageChange] = useLanguage()
+  const [currentLanguage, onLanguageChange] = useLanguage()
 
   return (
-    <Container>
+    <Container className="animate__animated animate__fadeIn">
       <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div className="container">
           <Link to={routePaths.units} className="navbar-brand">
@@ -71,16 +71,18 @@ export default function Layout({ children }: Props) {
                   <FormattedMessage id="layout.language" />
                 </span>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <button className="dropdown-item" type="button" onClick={() => onLanguageChange(Language.english)}>
-                      <FormattedMessage id="language.en" />
-                    </button>
-                  </li>
-                  <li>
-                    <button className="dropdown-item" type="button" onClick={() => onLanguageChange(Language.japanese)}>
-                      <FormattedMessage id="language.ja" />
-                    </button>
-                  </li>
+                  {[Language.english, Language.japanese].map((language) => (
+                    <li key={language}>
+                      <button
+                        className="dropdown-item"
+                        type="button"
+                        onClick={() => onLanguageChange(language)}
+                        disabled={language === currentLanguage}
+                      >
+                        <FormattedMessage id={`language.${language}`} />
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               </li>
             </ul>
