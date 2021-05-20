@@ -69,7 +69,9 @@ export default function UnitsRoute() {
                   <FormattedMessage id="unit.attribute" />
                 </th>
                 <th scope="col">
-                  <FormattedMessage id="unit.rarity" />
+                  <SortableCol sortKey="star">
+                    <FormattedMessage id="unit.rarity" />
+                  </SortableCol>
                 </th>
                 <th scope="col">
                   <SortableCol sortKey="totalStats">
@@ -77,13 +79,19 @@ export default function UnitsRoute() {
                   </SortableCol>
                 </th>
                 <th scope="col">
-                  <FormattedMessage id="unit.hp" />
+                  <SortableCol sortKey="hp">
+                    <FormattedMessage id="unit.hp" />
+                  </SortableCol>
                 </th>
                 <th scope="col">
-                  <FormattedMessage id="unit.attack" />
+                  <SortableCol sortKey="attack">
+                    <FormattedMessage id="unit.attack" />
+                  </SortableCol>
                 </th>
                 <th scope="col">
-                  <FormattedMessage id="unit.defense" />
+                  <SortableCol sortKey="defense">
+                    <FormattedMessage id="unit.defense" />
+                  </SortableCol>
                 </th>
                 <th scope="col">
                   <FormattedMessage id="unit.favorite" />
