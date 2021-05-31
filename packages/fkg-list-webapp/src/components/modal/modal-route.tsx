@@ -14,13 +14,13 @@ export default function ModalRoute({ onClose, isVisible, children }: Props) {
   return (
     <CSSTransition
       classNames={{
-        exit: 'animate__fadeOutDown',
+        exit: 'animate__fadeOut',
       }}
       timeout={300}
       in={isVisible}
       unmountOnExit
     >
-      <Modal onClose={onClose} visible className="animate__animated animate__fadeInUp">
+      <Modal onClose={onClose} visible className="animate__animated animate__fadeIn">
         {children}
       </Modal>
     </CSSTransition>

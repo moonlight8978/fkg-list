@@ -6,13 +6,24 @@ export default function UnitDetailsRoute() {
   const { close, ...modalRouteProps } = useModalRoute(routePaths.units)
 
   return (
-    <ModalRoute {...modalRouteProps}>
-      <div className="modal-header">
-        <h5 className="modal-title">Modal title</h5>
-        <button type="button" className="btn-close" aria-label="Close" onClick={close} />
-      </div>
+    <ModalRoute {...modalRouteProps} isVisible onClose={() => {}}>
       <div className="modal-body">
-        <p>Modal body text goes here.</p>
+        <div>
+          <span
+            style={{
+              borderRadius: 999,
+              backgroundColor: 'blue',
+              color: 'white',
+              width: '30px',
+              height: '30px',
+              display: 'inline-block',
+            }}
+          >
+            打
+          </span>
+          <span>嗚呼嗚呼嗚呼[浴衣]</span>
+          <button type="button" className="btn-close" aria-label="Close" onClick={close} />
+        </div>
       </div>
     </ModalRoute>
   )

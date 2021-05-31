@@ -14,29 +14,29 @@ export default function Modal({ onClose = noop, children, visible, className, ..
   const modalHtml = useRef<HTMLDivElement | null>()
   const modal = useRef<BSModal | null>()
 
-  useEffect(() => {
-    modalHtml.current?.removeEventListener('hidden.bs.modal', onClose)
-    modalHtml.current?.addEventListener('hidden.bs.modal', onClose)
+  // useEffect(() => {
+  //   modalHtml.current?.removeEventListener('hidden.bs.modal', onClose)
+  //   modalHtml.current?.addEventListener('hidden.bs.modal', onClose)
 
-    return () => {
-      modal.current?.hide()
-      modal.current?.dispose()
-      modalHtml.current?.removeEventListener('hidden.bs.modal', onClose)
-    }
-  }, [onClose])
+  //   return () => {
+  //     modal.current?.hide()
+  //     modal.current?.dispose()
+  //     modalHtml.current?.removeEventListener('hidden.bs.modal', onClose)
+  //   }
+  // }, [onClose])
 
-  useEffect(() => {
-    if (visible) {
-      modal.current?.show()
-    } else {
-      modal.current?.hide()
-    }
-  }, [visible])
+  // useEffect(() => {
+  //   if (visible) {
+  //     modal.current?.show()
+  //   } else {
+  //     modal.current?.hide()
+  //   }
+  // }, [visible])
 
   return (
     <div
       {...props}
-      className={classNames('modal', className)}
+      className={classNames('modal show', className)}
       tabIndex={-1}
       ref={(element) => {
         if (element && !modalHtml.current) {
